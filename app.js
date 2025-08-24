@@ -1,170 +1,263 @@
-const products = [
-    {
-        id: 1,
-        name: "Ручка-скоба матовая (128мм)",
-        price: "85 ₽",
-        category: "handles",
-        image: "https://via.placeholder.com/250x250?text=Ручка+128мм",
-        description: "Материал: сталь, цвет: матовый никель"
-    },
-    {
-        id: 2,
-        name: "Ручка-кнопка золото (16мм)",
-        price: "45 ₽",
-        category: "handles",
-        image: "https://via.placeholder.com/250x250?text=Ручка+16мм",
-        description: "Материал: алюминий, цвет: золото"
-    },
-    {
-        id: 3,
-        name: "Петля четырехшарнирная (110°)",
-        price: "120 ₽",
-        category: "loops",
-        image: "https://via.placeholder.com/250x250?text=Петля+110°",
-        description: "Регулировка по 3 осям, накладная"
-    },
-    {
-        id: 4,
-        name: "Направляющая роликовая (400мм)",
-        price: "190 ₽",
-        category: "guides",
-        image: "https://via.placeholder.com/250x250?text=Направляющая",
-        description: "Для выдвижных ящиков, нагрузка до 30кг"
-    },
-    {
-        id: 5,
-        name: "Винт конфирмат (6.3x50mm)",
-        price: "5 ₽",
-        category: "fasteners",
-        image: "https://via.placeholder.com/250x250?text=Конфирмат",
-        description: "Упаковка 100 шт., оцинкованный"
-    },
-    {
-        id: 6,
-        name: "Угловая стяжка",
-        price: "15 ₽",
-        category: "fasteners",
-        image: "https://via.placeholder.com/250x250?text=Угловая+стяжка",
-        description: "Для перпендикулярного соединения"
+// Gallery functionality
+class Gallery {
+    constructor() {
+        this.slider = document.querySelector('.gallery-slider');
+        this.track = document.querySelector('.gallery-track');
+        this.slides = document.querySelectorAll('.gallery-slide');
+        this.prevBtn = document.querySelector('.gallery-prev');
+        this.nextBtn = document.querySelector('.gallery-next');
+        this.dotsContainer = document.querySelector('.gallery-dots');
+        
+        this.currentIndex = 0;
+        this.slideCount = this.slides.length;
+        
+        this.init();
     }
-];
-
-// Текущий выбранный товар
-let currentProduct = null;
-
-// Функция для отображения товаров
-function displayProducts(category = 'all') {
-    const container = document.getElementById('productsContainer');
-    container.innerHTML = ''; // Очищаем контейнер
-
-    const filteredProducts = category === 'all' 
-        ? products 
-        : products.filter(product => product.category === category);
-
-    filteredProducts.forEach(product => {
-        const productElement = document.createElement('div');
-        productElement.className = 'product';
-        productElement.dataset.category = product.category;
-        
-        productElement.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <p><strong>${product.price}</strong></p>
-            <button class="buy-btn" onclick="openOrderModal(${product.id})">Купить</button>
-        `;
-        
-        container.appendChild(productElement);
-    });
-}
-
-// Функция для фильтрации товаров по категориям
-function filterProducts(category) {
-    // Убираем активный класс у всех кнопок
-    document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    // Добавляем активный класс нажатой кнопке
-    event.target.classList.add('active');
     
-    displayProducts(category);
-}
-
-// Функция открытия модального окна
-function openOrderModal(productId) {
-    currentProduct = products.find(p => p.id === productId);
+    init() {
+        this.createDots();
+        this.setupEventListeners();
+        this.updateGallery();
+    }
     
-    // Заполняем данные (если есть интеграция с Telegram)
-    if (window.Telegram && Telegram.WebApp) {
-        const user = Telegram.WebApp.initDataUnsafe.user;
-        if (user) {
-            document.getElementById('userName').value = user.first_name || '';
+    createDots() {
+        for (let i = 0; i < this.slideCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'gallery-dot';
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => this.goToSlide(i));
+            this.dotsContainer.appendChild(dot);
         }
     }
     
-    // Показываем модальное окно и затемнение
-    document.getElementById('orderModal').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
-}
-
-// Функция отправки заказа
-function sendOrder() {
-    const name = document.getElementById('userName').value;
-    const phone = document.getElementById('userPhone').value;
-    const comment = document.getElementById('userComment').value;
-
-    if (!name || !phone) {
-        alert('Пожалуйста, заполните имя и телефон');
-        return;
+    setupEventListeners() {
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
+        
+        // Touch events for mobile
+        let startX, endX;
+        
+        this.track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        
+        this.track.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            this.handleSwipe(startX, endX);
+        });
     }
-
-    const message = `
-🛒 НОВЫЙ ЗАКАЗ ФУРНИТУРЫ!
-───────────────────────
-👤 КЛИЕНТ: ${name}
-📞 ТЕЛЕФОН: ${phone}
-───────────────────────
-📦 ТОВАР: ${currentProduct.name}
-💰 ЦЕНА: ${currentProduct.price}
-📝 КОММЕНТАРИЙ: ${comment || 'Не указан'}
-───────────────────────
-🌐 САЙТ: ${window.location.href}
-    `;
-
-    // Отправляем в Telegram (используйте ваш существующий метод)
-    sendToTelegram(message);
     
-    // Закрываем модальное окно
-    closeOrderModal();
+    handleSwipe(startX, endX) {
+        const diff = startX - endX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                this.nextSlide();
+            } else {
+                this.prevSlide();
+            }
+        }
+    }
     
-    // Показываем подтверждение
-    alert('✅ Спасибо за заказ! Мы свяжемся с вами в течение 15 минут для подтверждения.');
+    goToSlide(index) {
+        this.currentIndex = index;
+        this.updateGallery();
+    }
+    
+    prevSlide() {
+        this.currentIndex = (this.currentIndex - 1 + this.slideCount) % this.slideCount;
+        this.updateGallery();
+    }
+    
+    nextSlide() {
+        this.currentIndex = (this.currentIndex + 1) % this.slideCount;
+        this.updateGallery();
+    }
+    
+    updateGallery() {
+        const offset = -this.currentIndex * 100;
+        this.track.style.transform = `translateX(${offset}%)`;
+        
+        // Update dots
+        document.querySelectorAll('.gallery-dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.currentIndex);
+        });
+    }
 }
 
-// Функция закрытия модального окна
-function closeOrderModal() {
-    document.getElementById('orderModal').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-    // Очищаем поля
-    document.getElementById('userName').value = '';
-    document.getElementById('userPhone').value = '';
-    document.getElementById('userComment').value = '';
-}
-
-// Назначаем обработчики событий после загрузки DOM
-document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация товаров
-    displayProducts();
-    
-    // Назначаем обработчики для кнопок модального окна
-    document.getElementById('confirmOrder').addEventListener('click', sendOrder);
-    document.getElementById('closeModal').addEventListener('click', closeOrderModal);
-    
-    // Закрытие по клику на затемнение
-    document.getElementById('overlay').addEventListener('click', closeOrderModal);
+// Smooth scroll for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
 });
 
-// Ваша существующая функция отправки в Telegram (оставьте как есть)
+// Animation on scroll
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll(
+        '.category-card, .advantage-card, .contact-card, .about-feature'
+    );
+    
+    animatedElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'all 0.6s ease';
+        observer.observe(element);
+    });
+}
+
+// Form handling
+document.querySelector('.contact-form form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const name = formData.get('name');
+    const phone = formData.get('phone');
+    const message = formData.get('message');
+    
+    const telegramMessage = `
+📧 НОВЫЙ ЗАПРОС С САЙТА ВЕГАДАР
+───────────────────────
+👤 Имя: ${name}
+📞 Телефон: ${phone}
+───────────────────────
+💬 Сообщение:
+${message || 'Не указано'}
+───────────────────────
+🌐 Сайт: vegadar.ru
+    `;
+    
+    sendToTelegram(telegramMessage);
+    showNotification('Спасибо! Мы свяжемся с вами в течение 15 минут.');
+    this.reset();
+});
+
+// Button handlers
+document.querySelectorAll('.btn-primary').forEach(button => {
+    button.addEventListener('click', function() {
+        const buttonText = this.textContent.toLowerCase();
+        let message = '';
+        
+        if (buttonText.includes('каталог')) {
+            message = 'Запрос каталога товаров с сайта Вегадар';
+        } else if (buttonText.includes('звонок') || buttonText.includes('консультацию')) {
+            message = 'Запрос обратного звонка с сайта Вегадар';
+        } else if (buttonText.includes('сообщение')) {
+            message = 'Новое сообщение с контактной формы сайта Вегадар';
+        } else {
+            message = 'Запрос с сайта Вегадар';
+        }
+        
+        sendToTelegram(message);
+        showNotification('Спасибо! Наш менеджер свяжется с вами в течение 15 минут.');
+    });
+});
+
+// Notification system
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--green);
+        color: var(--black);
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 600;
+        z-index: 10000;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: slideIn 0.3s ease;
+    `;
+    
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Add notification animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Fixed header on scroll
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 100) {
+        header.style.background = 'rgba(0, 0, 0, 0.98)';
+        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    } else {
+        header.style.background = 'rgba(0, 0, 0, 0.95)';
+        header.style.boxShadow = 'none';
+    }
+});
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize gallery if it exists
+    if (document.querySelector('.gallery-slider')) {
+        new Gallery();
+    }
+    
+    // Initialize animations
+    initScrollAnimations();
+    
+    // Auto-advance gallery slides
+    setInterval(() => {
+        if (window.gallery) {
+            window.gallery.nextSlide();
+        }
+    }, 5000);
+});
+
+// Your existing Telegram function
 async function sendToTelegram(message) {
     try {
         const response = await fetch('/api/telegram', {
@@ -182,3 +275,6 @@ async function sendToTelegram(message) {
         console.error('Error:', error);
     }
 }
+
+// Make gallery globally accessible
+window.gallery = null;

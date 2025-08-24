@@ -1,25 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Мой магазин</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
-    <script src="app.js"></script>
+    <title>ФурнитураPRO - Магазин мебельной фурнитуры</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 8px;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .category-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+        .category-btn.active {
+            background: #2c3e50;
+            font-weight: bold;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .product img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .buy-btn {
+            background: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .buy-btn:hover {
+            background: #2ecc71;
+        }
+        /* Стили для модального окна */
+        #orderModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            z-index: 1000;
+            width: 300px;
+        }
+        #orderModal h3 {
+            margin-top: 0;
+        }
+        #orderModal input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #orderModal button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #confirmOrder {
+            background: #27ae60;
+            color: white;
+        }
+        #closeModal {
+            background: #e74c3c;
+            color: white;
+        }
+        /* Затемнение фона */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Добро пожаловать!</h1>
-        <div class="products">
-            <!-- Пример товара -->
-            <div class="product">
-                <img src="https://via.placeholder.com/150" alt="Товар 1">
-                <h3>Пример товара</h3>
-                <p>Цена: 100 ₽</p>
-                <button class="buy-btn">Купить</button>
-            </div>
-            <!-- Добавьте ещё 2-3 товара аналогично -->
-        </div>
+    <div class="header">
+        <h1>🔩 ФурнитураPRO</h1>
+        <p>Всё для сборки и ремонта мебели</p>
     </div>
+
+    <div class="categories">
+        <button class="category-btn active" onclick="filterProducts('all')">Все товары</button>
+        <button class="category-btn" onclick="filterProducts('handles')">Ручки</button>
+        <button class="category-btn" onclick="filterProducts('loops')">Петли</button>
+        <button class="category-btn" onclick="filterProducts('guides')">Направляющие</button>
+        <button class="category-btn" onclick="filterProducts('fasteners')">Крепеж</button>
+    </div>
+
+    <div class="products" id="productsContainer">
+        <!-- Товары будут подгружаться из app.js -->
+    </div>
+
+    <!-- Модальное окно заказа -->
+    <div class="overlay" id="overlay"></div>
+    <div id="orderModal">
+        <h3>🛒 Оформление заказа</h3>
+        <input type="text" id="userName" placeholder="Ваше имя">
+        <input type="tel" id="userPhone" placeholder="Ваш телефон">
+        <input type="text" id="userComment" placeholder="Комментарий к заказу (необязательно)">
+        <p><small>После отправки мы свяжемся с вами для уточнения деталей</small></p>
+        <button id="confirmOrder">✅ Подтвердить заказ</button>
+        <button id="closeModal">❌ Отмена</button>
+    </div>
+
+    <!-- Подключаем скрипты -->
+    <script src="app.js"></script>
 </body>
 </html>

@@ -8,10 +8,10 @@
 :root {
     --black: #000000;
     --dark-black: #111111;
-    --green: #22C55E; /* Более яркий зеленый */
-    --green-light: #4ADE80; /* Светлее на 1 градацию */
-    --green-lighter: #86EFAC; /* Светлее на 2 градации */
-    --green-bright: #16A34A; /* Ярче на 3 градации */
+    --green: #22C55E;
+    --green-light: #4ADE80;
+    --green-lighter: #86EFAC;
+    --green-bright: #16A34A;
     --gray: #666666;
     --light-gray: #F5F5F5;
     --white: #FFFFFF;
@@ -399,10 +399,69 @@ body {
     color: var(--green-bright);
 }
 
+/* Catalog Section */
+.catalog {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-content {
+    padding: 1.5rem;
+}
+
+.product-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--black);
+}
+
+.product-content p {
+    color: var(--gray);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 1rem;
+}
+
 /* Gallery Section */
 .gallery {
     padding: 100px 0;
-    background: var(--white);
+    background: var(--light-gray);
 }
 
 .gallery-container {
@@ -854,52 +913,95 @@ body {
 .category-card,
 .feature,
 .advantage-card,
-.contact-card {
+.contact-card,
+.product-card {
     animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Адаптивность */
-@media (max-width: 1024px) {
-    .hero .container {
-        text-align: center;
-    }
-    
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .contacts-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
-}
-
+/* Адаптивность - Важные исправления для мобильных */
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .nav-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .phone-number a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .btn-secondary, .btn-primary {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
     }
     
     .section-title {
         font-size: 2.2rem;
     }
     
-    .hero-actions {
-        flex-direction: column;
+    .categories-grid,
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .contacts-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
     
     .hero-stats {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
     }
     
-    .categories-grid {
-        grid-template-columns: 1fr;
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+    }
+    
+    .gallery-slide img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-actions .btn-large {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
     }
     
     .nav-menu {
@@ -910,34 +1012,46 @@ body {
         display: flex;
     }
     
-    .cta-actions {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .btn-large {
-        padding: 1rem 2rem;
-    }
-    
     .contact-card {
         flex-direction: column;
         text-align: center;
+        padding: 1.5rem;
     }
     
-    .footer-content {
-        grid-template-columns: 1fr;
+    .contact-icon {
+        margin-bottom: 0.5rem;
+    }
+    
+    .product-content {
+        padding: 1rem;
+    }
+    
+    .product-price {
+        font-size: 1.3rem;
+    }
+}
+
+/* Специальные исправления для очень маленьких экранов */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .btn-large {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .category-content,
+    .product-content {
+        padding: 1rem;
     }
 }

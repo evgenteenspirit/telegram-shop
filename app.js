@@ -116,7 +116,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     const animatedElements = document.querySelectorAll(
-        '.category-card, .advantage-card, .contact-card, .about-feature'
+        '.category-card, .advantage-card, .contact-card, .product-card, .about-feature'
     );
     
     animatedElements.forEach(element => {
@@ -165,6 +165,9 @@ document.querySelectorAll('.btn-primary').forEach(button => {
             message = 'Запрос обратного звонка с сайта Вегадар';
         } else if (buttonText.includes('сообщение')) {
             message = 'Новое сообщение с контактной формы сайта Вегадар';
+        } else if (buttonText.includes('корзину')) {
+            const productName = this.closest('.product-content').querySelector('h3').textContent;
+            message = `Добавление товара в корзину: ${productName}`;
         } else {
             message = 'Запрос с сайта Вегадар';
         }
@@ -237,6 +240,12 @@ window.addEventListener('scroll', function() {
         header.style.background = 'rgba(0, 0, 0, 0.95)';
         header.style.boxShadow = 'none';
     }
+});
+
+// Mobile menu toggle
+document.querySelector('.mobile-menu-btn')?.addEventListener('click', function() {
+    const menu = document.querySelector('.nav-menu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
 });
 
 // Initialize everything when DOM is loaded

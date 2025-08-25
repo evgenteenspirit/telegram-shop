@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вегадар - Магазин мебельной фурнитуры</title>
+    <title>Вегадар - Магазин мебельной фурнитуры в Пятигорске</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,17 +23,13 @@
             
             <div class="nav-menu">
                 <a href="#products" class="nav-link">Каталог</a>
-                <a href="#catalog" class="nav-link">Товары</a>
                 <a href="#about" class="nav-link">О нас</a>
+                <a href="#gallery" class="nav-link">Галерея</a>
                 <a href="#advantages" class="nav-link">Преимущества</a>
                 <a href="#contacts" class="nav-link">Контакты</a>
             </div>
 
             <div class="nav-actions">
-                <div class="cart-icon" id="cartButton">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </div>
                 <div class="phone-number">
                     <a href="tel:+79624044323">+7 (962) 404-43-23</a>
                 </div>
@@ -48,28 +44,6 @@
             </div>
         </nav>
     </header>
-
-    <!-- Cart Modal -->
-    <div id="cartModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>🛒 Корзина</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div id="cartItems" class="cart-items">
-                    <p class="empty-cart">Корзина пуста</p>
-                </div>
-                <div class="cart-total">
-                    <strong>Итого: <span id="cartTotal">0</span> ₽</strong>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" id="continueShopping">Продолжить покупки</button>
-                <button class="btn-primary" id="checkout">Оформить заказ</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -90,11 +64,11 @@
                     Оптовые и розничные поставки. Гарантия качества.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn-primary btn-large" onclick="scrollToSection('products')">
+                    <button class="btn-primary btn-large">
                         <i class="fas fa-box-open"></i>
                         <span>Перейти в каталог</span>
                     </button>
-                    <button class="btn-secondary btn-large" onclick="scrollToSection('contacts')">
+                    <button class="btn-secondary btn-large">
                         <i class="fas fa-phone"></i>
                         <span>Получить консультацию</span>
                     </button>
@@ -128,15 +102,15 @@
             <div class="categories-grid">
                 <div class="category-card">
                     <div class="category-image">
-                        <img src="https://storgom.ua/uploads/products/484/48478/shuf_000000000002473478.jpg" alt="Мебельные ручки">
+                        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&h=300&fit=crop" alt="Ручки и кнобы">
                         <div class="category-overlay"></div>
                     </div>
                     <div class="category-content">
                         <div class="category-icon">🚪</div>
-                        <h3>Мебельные ручки</h3>
-                        <p>Широкий выбор ручек для мебели всех стилей</p>
+                        <h3>Ручки и кнобы</h3>
+                        <p>Мебельные ручки всех видов и конфигураций</p>
                         <a href="#catalog" class="category-link">
-                            <span>Смотреть товары</span>
+                            <span>Смотреть каталог</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -144,15 +118,15 @@
                 
                 <div class="category-card">
                     <div class="category-image">
-                        <img src="https://storgom.ua/uploads/products/487/48763/shuf_000000000002476363.jpg" alt="Мебельные петли">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="Петли и механизмы">
                         <div class="category-overlay"></div>
                     </div>
                     <div class="category-content">
                         <div class="category-icon">🔄</div>
-                        <h3>Мебельные петли</h3>
-                        <p>Четырехшарнирные и скрытые петли для мебели</p>
+                        <h3>Петли и механизмы</h3>
+                        <p>Четырехшарнирные петли и подъемные механизмы</p>
                         <a href="#catalog" class="category-link">
-                            <span>Смотреть товары</span>
+                            <span>Смотреть каталог</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -160,63 +134,15 @@
                 
                 <div class="category-card">
                     <div class="category-image">
-                        <img src="https://storgom.ua/uploads/products/492/49278/shuf_000000000002482780.jpg" alt="Системы хранения">
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop" alt="Системы хранения">
                         <div class="category-overlay"></div>
                     </div>
                     <div class="category-content">
                         <div class="category-icon">📦</div>
                         <h3>Системы хранения</h3>
-                        <p>Направляющие и выдвижные механизмы</p>
+                        <p>Направляющие для ящиков и подъемные механизмы</p>
                         <a href="#catalog" class="category-link">
-                            <span>Смотреть товары</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-image">
-                        <img src="https://storgom.ua/uploads/products/475/47586/shuf_000000000002465865.jpg" alt="Крепежные изделия">
-                        <div class="category-overlay"></div>
-                    </div>
-                    <div class="category-content">
-                        <div class="category-icon">🔩</div>
-                        <h3>Крепежные изделия</h3>
-                        <p>Винты, шурупы, стяжки и метизы</p>
-                        <a href="#catalog" class="category-link">
-                            <span>Смотреть товары</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-image">
-                        <img src="https://storgom.ua/uploads/products/489/48974/shuf_000000000002479743.jpg" alt="Кухонная фурнитура">
-                        <div class="category-overlay"></div>
-                    </div>
-                    <div class="category-content">
-                        <div class="category-icon">🍳</div>
-                        <h3>Кухонная фурнитура</h3>
-                        <p>Фурнитура для кухонной мебели и гарнитуров</p>
-                        <a href="#catalog" class="category-link">
-                            <span>Смотреть товары</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-image">
-                        <img src="https://storgom.ua/uploads/products/485/48584/shuf_000000000002475840.jpg" alt="Дверная фурнитура">
-                        <div class="category-overlay"></div>
-                    </div>
-                    <div class="category-content">
-                        <div class="category-icon">🚪</div>
-                        <h3>Дверная фурнитура</h3>
-                        <p>Ручки, петли и замки для межкомнатных дверей</p>
-                        <a href="#catalog" class="category-link">
-                            <span>Смотреть товары</span>
+                            <span>Смотреть каталог</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -231,127 +157,80 @@
             <div class="section-header">
                 <h2 class="section-title">Каталог товаров</h2>
                 <p class="section-subtitle">Популярные товары из нашего ассортимента</p>
-                <div class="catalog-filters">
-                    <button class="filter-btn active" data-filter="all">Все товары</button>
-                    <button class="filter-btn" data-filter="handles">Ручки</button>
-                    <button class="filter-btn" data-filter="hinges">Петли</button>
-                    <button class="filter-btn" data-filter="systems">Системы</button>
-                </div>
             </div>
             
             <div class="products-grid">
-                <div class="product-card" data-category="handles">
+                <div class="product-card">
                     <div class="product-image">
-                        <img src="https://storgom.ua/uploads/products/484/48478/shuf_000000000002473478.jpg" alt="Ручка мебельная Престиж">
-                        <button class="add-to-cart-btn" data-product="Ручка мебельная Престиж" data-price="450">
-                            <i class="fas fa-plus"></i>
-                        </button>
+                        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&h=300&fit=crop" alt="Ручка мебельная">
                     </div>
                     <div class="product-content">
                         <h3>Ручка мебельная "Престиж"</h3>
-                        <p>Алюминиевая ручка с матовым покрытием, 128мм</p>
+                        <p>Алюминиевая ручка с матовым покрытием</p>
                         <div class="product-price">450 ₽</div>
-                        <button class="btn-primary add-to-cart" data-product="Ручка мебельная Престиж" data-price="450">
-                            В корзину
-                        </button>
+                        <button class="btn-primary">В корзину</button>
                     </div>
                 </div>
                 
-                <div class="product-card" data-category="handles">
+                <div class="product-card">
                     <div class="product-image">
-                        <img src="https://storgom.ua/uploads/products/484/48478/shuf_000000000002473478.jpg" alt="Ручка-кноб">
-                        <button class="add-to-cart-btn" data-product="Ручка-кноб" data-price="320">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <div class="product-content">
-                        <h3>Ручка-кноб "Элегант"</h3>
-                        <p>Шарообразная ручка, хром покрытие, 32мм</p>
-                        <div class="product-price">320 ₽</div>
-                        <button class="btn-primary add-to-cart" data-product="Ручка-кноб Элегант" data-price="320">
-                            В корзину
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="product-card" data-category="hinges">
-                    <div class="product-image">
-                        <img src="https://storgom.ua/uploads/products/487/48763/shuf_000000000002476363.jpg" alt="Петля четырехшарнирная">
-                        <button class="add-to-cart-btn" data-product="Петля четырехшарнирная" data-price="280">
-                            <i class="fas fa-plus"></i>
-                        </button>
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="Петля мебельная">
                     </div>
                     <div class="product-content">
                         <h3>Петля четырехшарнирная</h3>
-                        <p>С доводчиком, регулировка по 3 осям, 110°</p>
-                        <div class="product-price">280 ₽</div>
-                        <button class="btn-primary add-to-cart" data-product="Петля четырехшарнирная" data-price="280">
-                            В корзину
-                        </button>
+                        <p>С доводчиком, регулировка по 3 осям</p>
+                        <div class="product-price">320 ₽</div>
+                        <button class="btn-primary">В корзину</button>
                     </div>
                 </div>
                 
-                <div class="product-card" data-category="hinges">
+                <div class="product-card">
                     <div class="product-image">
-                        <img src="https://storgom.ua/uploads/products/487/48763/shuf_000000000002476363.jpg" alt="Петля скрытая">
-                        <button class="add-to-cart-btn" data-product="Петля скрытая" data-price="390">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <div class="product-content">
-                        <h3>Петля скрытая INVISIBLE</h3>
-                        <p>Скрытое крепление, для современных интерьеров</p>
-                        <div class="product-price">390 ₽</div>
-                        <button class="btn-primary add-to-cart" data-product="Петля скрытая INVISIBLE" data-price="390">
-                            В корзину
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="product-card" data-category="systems">
-                    <div class="product-image">
-                        <img src="https://storgom.ua/uploads/products/492/49278/shuf_000000000002482780.jpg" alt="Направляющая шариковая">
-                        <button class="add-to-cart-btn" data-product="Направляющая шариковая" data-price="890">
-                            <i class="fas fa-plus"></i>
-                        </button>
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop" alt="Направляющая">
                     </div>
                     <div class="product-content">
                         <h3>Направляющая шариковая</h3>
-                        <p>Для выдвижных ящиков, нагрузка до 50кг, 400мм</p>
+                        <p>Для выдвижных ящиков, нагрузка до 50кг</p>
                         <div class="product-price">890 ₽</div>
-                        <button class="btn-primary add-to-cart" data-product="Направляющая шариковая" data-price="890">
-                            В корзину
-                        </button>
+                        <button class="btn-primary">В корзину</button>
                     </div>
                 </div>
                 
-                <div class="product-card" data-category="systems">
+                <div class="product-card">
                     <div class="product-image">
-                        <img src="https://storgom.ua/uploads/products/492/49278/shuf_000000000002482780.jpg" alt="Лифт подъемный">
-                        <button class="add-to-cart-btn" data-product="Лифт подъемный" data-price="1250">
-                            <i class="fas fa-plus"></i>
-                        </button>
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" alt="Кронштейн">
                     </div>
                     <div class="product-content">
-                        <h3>Лифт подъемный механизм</h3>
-                        <p>Для верхних шкафов, плавное открывание</p>
-                        <div class="product-price">1 250 ₽</div>
-                        <button class="btn-primary add-to-cart" data-product="Лифт подъемный механизм" data-price="1250">
-                            В корзину
-                        </button>
+                        <h3>Кронштейн TV</h3>
+                        <p>Для телевизоров до 55", поворотный механизм</p>
+                        <div class="product-price">2 500 ₽</div>
+                        <button class="btn-primary">В корзину</button>
                     </div>
                 </div>
-            </div>
-
-            <div class="catalog-actions">
-                <button class="btn-secondary btn-large" onclick="scrollToSection('products')">
-                    <i class="fas fa-arrow-left"></i>
-                    Назад к категориям
-                </button>
-                <button class="btn-primary btn-large" id="viewCartBtn">
-                    <i class="fas fa-shopping-cart"></i>
-                    Перейти в корзину
-                </button>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?w=400&h=300&fit=crop" alt="Защелка">
+                    </div>
+                    <div class="product-content">
+                        <h3>Защелка магнитная</h3>
+                        <p>Для мебельных фасадов, врезной монтаж</p>
+                        <div class="product-price">180 ₽</div>
+                        <button class="btn-primary">В корзину</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" alt="Ножка мебельная">
+                    </div>
+                    <div class="product-content">
+                        <h3>Ножка мебельная регулируемая</h3>
+                        <p>Высота 100-120мм, пластик/металл</p>
+                        <div class="product-price">210 ₽</div>
+                        <button class="btn-primary">В корзину</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -368,21 +247,21 @@
                 <div class="gallery-slider">
                     <div class="gallery-track">
                         <div class="gallery-slide">
-                            <img src="https://storgom.ua/uploads/products/484/48478/shuf_000000000002473478.jpg" alt="Ассортимент ручек">
+                            <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&h=400&fit=crop" alt="Ассортимент ручек">
                             <div class="slide-caption">
                                 <h4>Широкий ассортимент ручек</h4>
                                 <p>Более 1000 моделей на выбор</p>
                             </div>
                         </div>
                         <div class="gallery-slide">
-                            <img src="https://storgom.ua/uploads/products/487/48763/shuf_000000000002476363.jpg" alt="Петли и фурнитура">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop" alt="Петли и фурнитура">
                             <div class="slide-caption">
                                 <h4>Качественные петли</h4>
                                 <p>Немецкое качество по доступным ценам</p>
                             </div>
                         </div>
                         <div class="gallery-slide">
-                            <img src="https://storgom.ua/uploads/products/492/49278/shuf_000000000002482780.jpg" alt="Системы хранения">
+                            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&h=400&fit=crop" alt="Системы хранения">
                             <div class="slide-caption">
                                 <h4>Системы хранения</h4>
                                 <p>Современные решения для вашей мебели</p>

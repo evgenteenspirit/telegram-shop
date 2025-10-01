@@ -22,12 +22,13 @@
                 </div>
             </div>
             
-            <div class="nav-menu">
-                <a href="#products" class="nav-link">Каталог</a>
-                <a href="#about" class="nav-link">О нас</a>
-                <a href="#gallery" class="nav-link">Галерея</a>
-                <a href="#advantages" class="nav-link">Преимущества</a>
-                <a href="#contacts" class="nav-link">Контакты</a>
+            <div class="nav-menu" id="navMenu">
+                <a href="#products" class="nav-link" onclick="handleNavClick('products')">Категории</a>
+                <a href="#catalog" class="nav-link" onclick="handleNavClick('catalog')">Каталог</a>
+                <a href="#about" class="nav-link" onclick="handleNavClick('about')">О нас</a>
+                <a href="#gallery" class="nav-link" onclick="handleNavClick('gallery')">Галерея</a>
+                <a href="#advantages" class="nav-link" onclick="handleNavClick('advantages')">Преимущества</a>
+                <a href="#contacts" class="nav-link" onclick="handleNavClick('contacts')">Контакты</a>
             </div>
 
             <div class="nav-actions">
@@ -38,7 +39,7 @@
                 <button class="btn-primary" onclick="showContactForm()">Заказать звонок</button>
             </div>
 
-            <div class="mobile-menu-btn">
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -47,7 +48,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="hero-background">
             <div class="hero-overlay"></div>
         </div>
@@ -65,7 +66,7 @@
                     Оптовые и розничные поставки. Гарантия качества.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn-primary btn-large" onclick="scrollToSection('products')">
+                    <button class="btn-primary btn-large" onclick="scrollToSection('catalog')">
                         <i class="fas fa-box-open"></i>
                         <span>Перейти в каталог</span>
                     </button>
@@ -92,60 +93,63 @@
         </div>
     </section>
 
-    <!-- Products Section -->
+    <!-- Categories Section -->
     <section id="products" class="products">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Популярные категории</h2>
+                <h2 class="section-title">Категории товаров</h2>
                 <p class="section-subtitle">Широкий ассортимент качественной фурнитуры</p>
             </div>
             
             <div class="categories-grid">
-                <div class="category-card">
+                <!-- Ручки и кнобы -->
+                <div class="category-card" onclick="filterCatalog('handles')">
                     <div class="category-image">
-                        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&h=300&fit=crop" alt="Ручки и кнобы">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Ручки и кнобы">
                         <div class="category-overlay"></div>
                     </div>
                     <div class="category-content">
                         <div class="category-icon">🚪</div>
                         <h3>Ручки и кнобы</h3>
                         <p>Мебельные ручки всех видов и конфигураций</p>
-                        <a href="#catalog" class="category-link" onclick="scrollToSection('catalog')">
-                            <span>Смотреть каталог</span>
+                        <div class="category-link">
+                            <span>Смотреть товары</span>
                             <i class="fas fa-arrow-right"></i>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="category-card">
+                <!-- Петли и механизмы -->
+                <div class="category-card" onclick="filterCatalog('hinges')">
                     <div class="category-image">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="Петли и механизмы">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Петли и механизмы">
                         <div class="category-overlay"></div>
                     </div>
                     <div class="category-content">
                         <div class="category-icon">🔄</div>
                         <h3>Петли и механизмы</h3>
                         <p>Четырехшарнирные петли и подъемные механизмы</p>
-                        <a href="#catalog" class="category-link" onclick="scrollToSection('catalog')">
-                            <span>Смотреть каталог</span>
+                        <div class="category-link">
+                            <span>Смотреть товары</span>
                             <i class="fas fa-arrow-right"></i>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="category-card">
+                <!-- Системы хранения -->
+                <div class="category-card" onclick="filterCatalog('storage')">
                     <div class="category-image">
-                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop" alt="Системы хранения">
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Системы хранения">
                         <div class="category-overlay"></div>
                     </div>
                     <div class="category-content">
                         <div class="category-icon">📦</div>
                         <h3>Системы хранения</h3>
                         <p>Направляющие для ящиков и подъемные механизмы</p>
-                        <a href="#catalog" class="category-link" onclick="scrollToSection('catalog')">
-                            <span>Смотреть каталог</span>
+                        <div class="category-link">
+                            <span>Смотреть товары</span>
                             <i class="fas fa-arrow-right"></i>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,81 +161,19 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Каталог товаров</h2>
-                <p class="section-subtitle">Популярные товары из нашего ассортимента</p>
+                <p class="section-subtitle">Все товары из нашего ассортимента</p>
+                
+                <!-- Фильтры категорий -->
+                <div class="catalog-filters">
+                    <button class="filter-btn active" onclick="filterCatalog('all')">Все товары</button>
+                    <button class="filter-btn" onclick="filterCatalog('handles')">Ручки</button>
+                    <button class="filter-btn" onclick="filterCatalog('hinges')">Петли</button>
+                    <button class="filter-btn" onclick="filterCatalog('storage')">Системы хранения</button>
+                </div>
             </div>
             
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&h=300&fit=crop" alt="Ручка мебельная">
-                    </div>
-                    <div class="product-content">
-                        <h3>Ручка мебельная "Престиж"</h3>
-                        <p>Алюминиевая ручка с матовым покрытием</p>
-                        <div class="product-price">450 ₽</div>
-                        <button class="btn-primary" onclick="addToCart('Ручка мебельная \"Престиж\"', 450)">В корзину</button>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="Петля мебельная">
-                    </div>
-                    <div class="product-content">
-                        <h3>Петля четырехшарнирная</h3>
-                        <p>С доводчиком, регулировка по 3 осям</p>
-                        <div class="product-price">320 ₽</div>
-                        <button class="btn-primary" onclick="addToCart('Петля четырехшарнирная', 320)">В корзину</button>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop" alt="Направляющая">
-                    </div>
-                    <div class="product-content">
-                        <h3>Направляющая шариковая</h3>
-                        <p>Для выдвижных ящиков, нагрузка до 50кг</p>
-                        <div class="product-price">890 ₽</div>
-                        <button class="btn-primary" onclick="addToCart('Направляющая шариковая', 890)">В корзину</button>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" alt="Кронштейн">
-                    </div>
-                    <div class="product-content">
-                        <h3>Кронштейн TV</h3>
-                        <p>Для телевизоров до 55", поворотный механизм</p>
-                        <div class="product-price">2 500 ₽</div>
-                        <button class="btn-primary" onclick="addToCart('Кронштейн TV', 2500)">В корзину</button>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?w=400&h=300&fit=crop" alt="Защелка">
-                    </div>
-                    <div class="product-content">
-                        <h3>Защелка магнитная</h3>
-                        <p>Для мебельных фасадов, врезной монтаж</p>
-                        <div class="product-price">180 ₽</div>
-                        <button class="btn-primary" onclick="addToCart('Защелка магнитная', 180)">В корзину</button>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" alt="Ножка мебельная">
-                    </div>
-                    <div class="product-content">
-                        <h3>Ножка мебельная регулируемая</h3>
-                        <p>Высота 100-120мм, пластик/металл</p>
-                        <div class="product-price">210 ₽</div>
-                        <button class="btn-primary" onclick="addToCart('Ножка мебельная регулируемая', 210)">В корзину</button>
-                    </div>
-                </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Товары будут добавляться через JavaScript -->
             </div>
         </div>
     </section>
@@ -248,21 +190,21 @@
                 <div class="gallery-slider">
                     <div class="gallery-track">
                         <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&h=400&fit=crop" alt="Ассортимент ручек">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80" alt="Ассортимент ручек">
                             <div class="slide-caption">
                                 <h4>Широкий ассортимент ручек</h4>
                                 <p>Более 1000 моделей на выбор</p>
                             </div>
                         </div>
                         <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop" alt="Петли и фурнитура">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80" alt="Петли и фурнитура">
                             <div class="slide-caption">
                                 <h4>Качественные петли</h4>
                                 <p>Немецкое качество по доступным ценам</p>
                             </div>
                         </div>
                         <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&h=400&fit=crop" alt="Системы хранения">
+                            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80" alt="Системы хранения">
                             <div class="slide-caption">
                                 <h4>Системы хранения</h4>
                                 <p>Современные решения для вашей мебели</p>
@@ -312,7 +254,7 @@
                 </div>
                 
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?w=500&h=400&fit=crop" alt="Наш магазин">
+                    <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400&q=80" alt="Наш магазин">
                 </div>
             </div>
         </div>
@@ -488,10 +430,9 @@
                 
                 <div class="footer-section">
                     <h4>Категории</h4>
-                    <a href="#catalog" onclick="scrollToSection('catalog')">Ручки и кнобы</a>
-                    <a href="#catalog" onclick="scrollToSection('catalog')">Петли и механизмы</a>
-                    <a href="#catalog" onclick="scrollToSection('catalog')">Системы хранения</a>
-                    <a href="#catalog" onclick="scrollToSection('catalog')">Крепеж и метизы</a>
+                    <a href="#catalog" onclick="filterCatalog('handles')">Ручки и кнобы</a>
+                    <a href="#catalog" onclick="filterCatalog('hinges')">Петли и механизмы</a>
+                    <a href="#catalog" onclick="filterCatalog('storage')">Системы хранения</a>
                 </div>
                 
                 <div class="footer-section">

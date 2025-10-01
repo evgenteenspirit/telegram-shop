@@ -29,6 +29,89 @@ function initTelegramApp() {
 
 // Global variables
 let cart = [];
+let currentFilter = 'all';
+
+// Product data
+const products = {
+    handles: [
+        {
+            id: 1,
+            name: 'Ручка мебельная "Престиж"',
+            description: 'Алюминиевая ручка с матовым покрытием',
+            price: 450,
+            image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
+            category: 'handles'
+        },
+        {
+            id: 2,
+            name: 'Ручка "Модерн"',
+            description: 'Стальная ручка с хромированным покрытием',
+            price: 380,
+            image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
+            category: 'handles'
+        },
+        {
+            id: 3,
+            name: 'Кноб деревянный',
+            description: 'Натуральное дерево, классический дизайн',
+            price: 520,
+            image: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
+            category: 'handles'
+        }
+    ],
+    hinges: [
+        {
+            id: 4,
+            name: 'Петля четырехшарнирная',
+            description: 'С доводчиком, регулировка по 3 осям',
+            price: 320,
+            image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
+            category: 'hinges'
+        },
+        {
+            id: 5,
+            name: 'Петля скрытого монтажа',
+            description: 'Для мебельных фасадов, невидимая установка',
+            price: 280,
+            image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
+            category: 'hinges'
+        },
+        {
+            id: 6,
+            name: 'Подъемный механизм',
+            description: 'Для вертикальных фасадов, плавный ход',
+            price: 890,
+            image: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
+            category: 'hinges'
+        }
+    ],
+    storage: [
+        {
+            id: 7,
+            name: 'Направляющая шариковая',
+            description: 'Для выдвижных ящиков, нагрузка до 50кг',
+            price: 890,
+            image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
+            category: 'storage'
+        },
+        {
+            id: 8,
+            name: 'Система выдвижных корзин',
+            description: 'Для кухонной мебели, металлические корзины',
+            price: 1250,
+            image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
+            category: 'storage'
+        },
+        {
+            id: 9,
+            name: 'Направляющая телескопическая',
+            description: 'Полное выдвижение, плавный ход',
+            price: 670,
+            image: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
+            category: 'storage'
+        }
+    ]
+};
 
 // Utility Functions
 function scrollToSection(sectionId) {
@@ -38,7 +121,14 @@ function scrollToSection(sectionId) {
             behavior: 'smooth',
             block: 'start'
         });
+        
+        // Close mobile menu if open
+        closeMobileMenu();
     }
+}
+
+function handleNavClick(sectionId) {
+    scrollToSection(sectionId);
 }
 
 function showContactForm() {
@@ -50,16 +140,77 @@ function showContactForm() {
 }
 
 function downloadCatalog() {
-    showNotification('Каталог будет отправлен вам в ближайшее время!');
+    showNotification('📥 Каталог будет отправлен вам в ближайшее время!');
     sendToTelegram('📥 Запрос каталога товаров с сайта Вегадар');
 }
 
-function addToCart(productName, price) {
-    cart.push({ name: productName, price: price });
+function addToCart(productName, price, productId) {
+    cart.push({ id: productId, name: productName, price: price });
     showNotification(`✅ "${productName}" добавлен в корзину!`);
     
     // Send to Telegram
     sendToTelegram(`🛒 Добавлен товар в корзину: ${productName} - ${price}₽`);
+}
+
+// Catalog filtering
+function filterCatalog(category) {
+    currentFilter = category;
+    
+    // Update active filter button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Scroll to catalog section
+    scrollToSection('catalog');
+    
+    // Render products
+    renderProducts();
+}
+
+function renderProducts() {
+    const productsGrid = document.getElementById('productsGrid');
+    if (!productsGrid) return;
+    
+    let productsToShow = [];
+    
+    if (currentFilter === 'all') {
+        // Show all products from all categories
+        Object.values(products).forEach(categoryProducts => {
+            productsToShow = productsToShow.concat(categoryProducts);
+        });
+    } else {
+        // Show products from specific category
+        productsToShow = products[currentFilter] || [];
+    }
+    
+    if (productsToShow.length === 0) {
+        productsGrid.innerHTML = `
+            <div class="no-products">
+                <i class="fas fa-box-open"></i>
+                <h3>Товары не найдены</h3>
+                <p>В этой категории пока нет товаров</p>
+            </div>
+        `;
+        return;
+    }
+    
+    productsGrid.innerHTML = productsToShow.map(product => `
+        <div class="product-card">
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
+            </div>
+            <div class="product-content">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <div class="product-price">${product.price} ₽</div>
+                <button class="btn-primary" onclick="addToCart('${product.name}', ${product.price}, ${product.id})">
+                    В корзину
+                </button>
+            </div>
+        </div>
+    `).join('');
 }
 
 // Gallery functionality
@@ -148,6 +299,48 @@ class Gallery {
     }
 }
 
+// Mobile menu functionality
+function initMobileMenu() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            const isVisible = navMenu.style.display === 'flex';
+            navMenu.style.display = isVisible ? 'none' : 'flex';
+            
+            // Animate hamburger icon
+            const spans = this.querySelectorAll('span');
+            if (!isVisible) {
+                spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    }
+}
+
+function closeMobileMenu() {
+    const navMenu = document.querySelector('.nav-menu');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (navMenu && window.innerWidth <= 768) {
+        navMenu.style.display = 'none';
+        
+        // Reset hamburger icon
+        if (mobileMenuBtn) {
+            const spans = mobileMenuBtn.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    }
+}
+
 // Smooth scroll for navigation
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -159,6 +352,7 @@ function initSmoothScroll() {
                     behavior: 'smooth',
                     block: 'start'
                 });
+                closeMobileMenu();
             }
         });
     });
@@ -221,26 +415,6 @@ ${message || 'Не указано'}
             this.reset();
         });
     }
-
-    // Button handlers
-    document.querySelectorAll('.btn-primary').forEach(button => {
-        button.addEventListener('click', function() {
-            const buttonText = this.textContent.toLowerCase();
-            let message = '';
-            
-            if (buttonText.includes('каталог')) {
-                message = '📥 Запрос каталога товаров с сайта Вегадар';
-            } else if (buttonText.includes('звонок') || buttonText.includes('консультацию')) {
-                message = '📞 Запрос обратного звонка с сайта Вегадар';
-            } else if (buttonText.includes('сообщение')) {
-                message = '💬 Новое сообщение с контактной формы сайта Вегадар';
-            } else {
-                message = '📋 Запрос с сайта Вегадар';
-            }
-            
-            sendToTelegram(message);
-        });
-    });
 }
 
 // Notification system
@@ -296,6 +470,44 @@ function addNotificationStyles() {
                 opacity: 0;
             }
         }
+        
+        .catalog-filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: var(--light-gray);
+            border: 2px solid var(--light-gray);
+            color: var(--gray);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--black);
+        }
+        
+        .no-products {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray);
+        }
+        
+        .no-products i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--green);
+        }
     `;
     document.head.appendChild(style);
 }
@@ -312,31 +524,6 @@ function initScrollHeader() {
             header.style.boxShadow = 'none';
         }
     });
-}
-
-// Mobile menu toggle
-function initMobileMenu() {
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (mobileMenuBtn && navMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
-            const isVisible = navMenu.style.display === 'flex';
-            navMenu.style.display = isVisible ? 'none' : 'flex';
-            
-            // Animate hamburger icon
-            const spans = this.querySelectorAll('span');
-            if (!isVisible) {
-                spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-    }
 }
 
 // Telegram message sending
@@ -379,6 +566,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollHeader();
     initMobileMenu();
     addNotificationStyles();
+    
+    // Render initial products
+    renderProducts();
     
     // Auto-advance gallery slides
     setInterval(() => {

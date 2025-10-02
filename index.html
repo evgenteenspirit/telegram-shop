@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -27,9 +26,13 @@
             </div>
 
             <div class="nav-actions">
+                <button class="cart-btn" id="cartButton">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
                 <button class="btn-primary" onclick="openTelegram()">
                     <i class="fab fa-telegram"></i>
-                    Написать в Telegram
+                    Написать
                 </button>
             </div>
 
@@ -95,7 +98,7 @@
             <div class="categories-grid">
                 <div class="category-card">
                     <div class="category-image">
-                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x300/22C55E/FFFFFF?text=Ручки+Мебельные'">
+                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x300/22C55E/FFFFFF?text=Мебельные+Ручки'">
                     </div>
                     <div class="category-content">
                         <div class="category-icon">🚪</div>
@@ -110,7 +113,7 @@
                 
                 <div class="category-card">
                     <div class="category-image">
-                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x300/22C55E/FFFFFF?text=Петли+Мебельные'">
+                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x300/22C55E/FFFFFF?text=Мебельные+Петли'">
                     </div>
                     <div class="category-content">
                         <div class="category-icon">🔄</div>
@@ -172,7 +175,7 @@
                 <button class="filter-btn" data-filter="hardware">Крепеж</button>
             </div>
             
-            <div class="products-grid">
+            <div class="products-grid" id="productsGrid">
                 <!-- Товары будут добавлены через JavaScript -->
             </div>
 
@@ -181,9 +184,9 @@
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
-                <button class="btn-primary btn-large" onclick="openTelegram()">
-                    <i class="fab fa-telegram"></i>
-                    Заказать в Telegram
+                <button class="btn-primary btn-large" onclick="openCartModal()">
+                    <i class="fas fa-shopping-cart"></i>
+                    Оформить заказ
                 </button>
             </div>
         </div>
@@ -217,7 +220,7 @@
                 </div>
                 
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?w=500&h=400&fit=crop" alt="Наш магазин">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=400&fit=crop" alt="Наш магазин фурнитуры">
                 </div>
             </div>
         </div>
@@ -301,7 +304,7 @@
                     </div>
                     <p>Магазин качественной мебельной фурнитуры в Пятигорске</p>
                     <div class="social-links">
-                        <a href="https://t.me/vegadar_bot" class="social-link" target="_blank">
+                        <a href="https://t.me/+79624044323" class="social-link" target="_blank">
                             <i class="fab fa-telegram"></i>
                         </a>
                         <a href="https://wa.me/79624044323" class="social-link" target="_blank">
@@ -336,6 +339,28 @@
             </div>
         </div>
     </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Корзина</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems" class="cart-items">
+                    <!-- Товары в корзине -->
+                </div>
+                <div class="cart-total">
+                    <strong>Итого: <span id="cartTotal">0</span> ₽</strong>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="continueShopping">Продолжить покупки</button>
+                <button class="btn-primary" id="checkout">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

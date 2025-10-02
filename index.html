@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вегадар - Магазин мебельной фурнитуры в Пятигорске</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -15,7 +13,6 @@
     <header class="header">
         <nav class="nav container">
             <div class="nav-logo">
-                <img src="logo.png" alt="Вегадар" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="logo-fallback">
                     <span class="logo-icon">🔩</span>
                     <span class="logo-text">VEGADAR</span>
@@ -23,35 +20,29 @@
             </div>
             
             <div class="nav-menu" id="navMenu">
-                <a href="#products" class="nav-link" onclick="handleNavClick('products')">Категории</a>
-                <a href="#catalog" class="nav-link" onclick="handleNavClick('catalog')">Каталог</a>
-                <a href="#about" class="nav-link" onclick="handleNavClick('about')">О нас</a>
-                <a href="#gallery" class="nav-link" onclick="handleNavClick('gallery')">Галерея</a>
-                <a href="#advantages" class="nav-link" onclick="handleNavClick('advantages')">Преимущества</a>
-                <a href="#contacts" class="nav-link" onclick="handleNavClick('contacts')">Контакты</a>
+                <a href="#products" class="nav-link">Каталог</a>
+                <a href="#catalog" class="nav-link">Товары</a>
+                <a href="#about" class="nav-link">О нас</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
             </div>
 
             <div class="nav-actions">
-                <div class="phone-number">
-                    <a href="tel:+79624044323">+7 (962) 404-43-23</a>
-                </div>
-                <button class="btn-secondary" onclick="downloadCatalog()">Каталог PDF</button>
-                <button class="btn-primary" onclick="showContactForm()">Заказать звонок</button>
+                <button class="btn-primary" onclick="openTelegram()">
+                    <i class="fab fa-telegram"></i>
+                    Написать в Telegram
+                </button>
             </div>
 
-            <div class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-background">
-            <div class="hero-overlay"></div>
-        </div>
+    <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
@@ -63,16 +54,16 @@
                 </h1>
                 <p class="hero-subtitle">
                     Более 5000 наименований фурнитуры от ведущих производителей. 
-                    Оптовые и розничные поставки. Гарантия качества.
+                    Гарантия качества и доступные цены.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn-primary btn-large" onclick="scrollToSection('catalog')">
+                    <button class="btn-primary btn-large" onclick="scrollToSection('products')">
                         <i class="fas fa-box-open"></i>
-                        <span>Перейти в каталог</span>
+                        Перейти в каталог
                     </button>
-                    <button class="btn-secondary btn-large" onclick="showContactForm()">
-                        <i class="fas fa-phone"></i>
-                        <span>Получить консультацию</span>
+                    <button class="btn-secondary btn-large" onclick="openTelegram()">
+                        <i class="fab fa-telegram"></i>
+                        Написать в Telegram
                     </button>
                 </div>
                 <div class="hero-stats">
@@ -93,63 +84,72 @@
         </div>
     </section>
 
-    <!-- Categories Section -->
+    <!-- Products Section -->
     <section id="products" class="products">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Категории товаров</h2>
+                <h2 class="section-title">Популярные категории</h2>
                 <p class="section-subtitle">Широкий ассортимент качественной фурнитуры</p>
             </div>
             
             <div class="categories-grid">
-                <!-- Ручки и кнобы -->
-                <div class="category-card" onclick="filterCatalog('handles')">
+                <div class="category-card">
                     <div class="category-image">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Ручки и кнобы">
-                        <div class="category-overlay"></div>
+                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x300/22C55E/FFFFFF?text=Ручки+Мебельные'">
                     </div>
                     <div class="category-content">
                         <div class="category-icon">🚪</div>
-                        <h3>Ручки и кнобы</h3>
-                        <p>Мебельные ручки всех видов и конфигураций</p>
-                        <div class="category-link">
-                            <span>Смотреть товары</span>
+                        <h3>Мебельные ручки</h3>
+                        <p>Широкий выбор ручек для мебели всех стилей и размеров</p>
+                        <button class="category-link" onclick="scrollToSection('catalog')">
+                            Смотреть товары
                             <i class="fas fa-arrow-right"></i>
-                        </div>
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Петли и механизмы -->
-                <div class="category-card" onclick="filterCatalog('hinges')">
+                <div class="category-card">
                     <div class="category-image">
-                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Петли и механизмы">
-                        <div class="category-overlay"></div>
+                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x300/22C55E/FFFFFF?text=Петли+Мебельные'">
                     </div>
                     <div class="category-content">
                         <div class="category-icon">🔄</div>
-                        <h3>Петли и механизмы</h3>
-                        <p>Четырехшарнирные петли и подъемные механизмы</p>
-                        <div class="category-link">
-                            <span>Смотреть товары</span>
+                        <h3>Мебельные петли</h3>
+                        <p>Четырехшарнирные и скрытые петли для любой мебели</p>
+                        <button class="category-link" onclick="scrollToSection('catalog')">
+                            Смотреть товары
                             <i class="fas fa-arrow-right"></i>
-                        </div>
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Системы хранения -->
-                <div class="category-card" onclick="filterCatalog('storage')">
+                <div class="category-card">
                     <div class="category-image">
-                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Системы хранения">
-                        <div class="category-overlay"></div>
+                        <img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x300/22C55E/FFFFFF?text=Системы+Хранения'">
                     </div>
                     <div class="category-content">
                         <div class="category-icon">📦</div>
                         <h3>Системы хранения</h3>
-                        <p>Направляющие для ящиков и подъемные механизмы</p>
-                        <div class="category-link">
-                            <span>Смотреть товары</span>
+                        <p>Направляющие и выдвижные механизмы для ящиков</p>
+                        <button class="category-link" onclick="scrollToSection('catalog')">
+                            Смотреть товары
                             <i class="fas fa-arrow-right"></i>
-                        </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x300/22C55E/FFFFFF?text=Крепеж+Метизы'">
+                    </div>
+                    <div class="category-content">
+                        <div class="category-icon">🔩</div>
+                        <h3>Крепежные изделия</h3>
+                        <p>Винты, шурупы, стяжки и метизы для сборки мебели</p>
+                        <button class="category-link" onclick="scrollToSection('catalog')">
+                            Смотреть товары
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -161,67 +161,30 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Каталог товаров</h2>
-                <p class="section-subtitle">Все товары из нашего ассортимента</p>
-                
-                <!-- Фильтры категорий -->
-                <div class="catalog-filters">
-                    <button class="filter-btn active" onclick="filterCatalog('all')">Все товары</button>
-                    <button class="filter-btn" onclick="filterCatalog('handles')">Ручки</button>
-                    <button class="filter-btn" onclick="filterCatalog('hinges')">Петли</button>
-                    <button class="filter-btn" onclick="filterCatalog('storage')">Системы хранения</button>
-                </div>
+                <p class="section-subtitle">Популярные товары из нашего ассортимента</p>
             </div>
             
-            <div class="products-grid" id="productsGrid">
-                <!-- Товары будут добавляться через JavaScript -->
+            <div class="catalog-filters">
+                <button class="filter-btn active" data-filter="all">Все товары</button>
+                <button class="filter-btn" data-filter="handles">Ручки</button>
+                <button class="filter-btn" data-filter="hinges">Петли</button>
+                <button class="filter-btn" data-filter="systems">Системы</button>
+                <button class="filter-btn" data-filter="hardware">Крепеж</button>
             </div>
-        </div>
-    </section>
+            
+            <div class="products-grid">
+                <!-- Товары будут добавлены через JavaScript -->
+            </div>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Наш магазин</h2>
-                <p class="section-subtitle">Посмотрите, как мы работаем и что предлагаем</p>
-            </div>
-            
-            <div class="gallery-container">
-                <div class="gallery-slider">
-                    <div class="gallery-track">
-                        <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80" alt="Ассортимент ручек">
-                            <div class="slide-caption">
-                                <h4>Широкий ассортимент ручек</h4>
-                                <p>Более 1000 моделей на выбор</p>
-                            </div>
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80" alt="Петли и фурнитура">
-                            <div class="slide-caption">
-                                <h4>Качественные петли</h4>
-                                <p>Немецкое качество по доступным ценам</p>
-                            </div>
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80" alt="Системы хранения">
-                            <div class="slide-caption">
-                                <h4>Системы хранения</h4>
-                                <p>Современные решения для вашей мебели</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-controls">
-                    <button class="gallery-prev">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="gallery-dots"></div>
-                    <button class="gallery-next">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
+            <div class="catalog-actions">
+                <button class="btn-secondary btn-large" onclick="scrollToSection('products')">
+                    <i class="fas fa-arrow-left"></i>
+                    Назад к категориям
+                </button>
+                <button class="btn-primary btn-large" onclick="openTelegram()">
+                    <i class="fab fa-telegram"></i>
+                    Заказать в Telegram
+                </button>
             </div>
         </div>
     </section>
@@ -234,8 +197,8 @@
                     <h2 class="section-title">О компании Вегадар</h2>
                     <p>
                         Компания "Вегадар" - надежный поставщик качественной мебельной фурнитуры 
-                        в Пятигорске и Ставропольском крае. Мы работаем с 2008 года и предлагаем 
-                        широкий ассортимент продукции от ведущих производителей.
+                        в Пятигорске. Мы работаем с 2008 года и предлагаем широкий ассортимент 
+                        продукции от ведущих производителей.
                     </p>
                     <div class="about-features">
                         <div class="about-feature">
@@ -254,75 +217,7 @@
                 </div>
                 
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400&q=80" alt="Наш магазин">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Advantages Section -->
-    <section id="advantages" class="advantages">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Почему выбирают Вегадар?</h2>
-                <p class="section-subtitle">Наши преимущества для вашего бизнеса</p>
-            </div>
-            
-            <div class="advantages-grid">
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-boxes"></i>
-                    </div>
-                    <div class="advantage-number">01</div>
-                    <h3>Широкий ассортимент</h3>
-                    <p>Более 5000 наименований фурнитуры от ведущих производителей</p>
-                </div>
-                
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-warehouse"></i>
-                    </div>
-                    <div class="advantage-number">02</div>
-                    <h3>Собственный склад</h3>
-                    <p>Все позиции в наличии на собственном складе в Пятигорске</p>
-                </div>
-                
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <div class="advantage-number">03</div>
-                    <h3>Быстрая доставка</h3>
-                    <p>Доставляем заказы в день оформления по Пятигорску</p>
-                </div>
-                
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div class="advantage-number">04</div>
-                    <h3>Поддержка 24/7</h3>
-                    <p>Круглосуточная поддержка и консультации по всем вопросам</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Готовы начать сотрудничество?</h2>
-                <p>Получите бесплатную консультацию и расчет стоимости вашего заказа</p>
-                <div class="cta-actions">
-                    <button class="btn-primary btn-large" onclick="showContactForm()">
-                        <i class="fas fa-phone"></i>
-                        <span>Заказать звонок</span>
-                    </button>
-                    <button class="btn-secondary btn-large" onclick="downloadCatalog()">
-                        <i class="fas fa-file-pdf"></i>
-                        <span>Скачать каталог</span>
-                    </button>
+                    <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?w=500&h=400&fit=crop" alt="Наш магазин">
                 </div>
             </div>
         </div>
@@ -344,7 +239,7 @@
                         </div>
                         <div>
                             <h3>Адрес</h3>
-                            <p>г. Пятигорск, Ставропольский край, ш. Черкесское, д. 54</p>
+                            <p>г. Пятигорск, ул. Промышленная, 15</p>
                         </div>
                     </div>
                     
@@ -355,16 +250,6 @@
                         <div>
                             <h3>Телефон</h3>
                             <p><a href="tel:+79624044323">+7 (962) 404-43-23</a></p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3>Email</h3>
-                            <p><a href="mailto:vegadar@yandex.ru">vegadar@yandex.ru</a></p>
                         </div>
                     </div>
                     
@@ -397,7 +282,7 @@
                         </div>
                         <button type="submit" class="btn-primary btn-large">
                             <i class="fas fa-paper-plane"></i>
-                            <span>Отправить сообщение</span>
+                            Отправить сообщение
                         </button>
                     </form>
                 </div>
@@ -411,18 +296,15 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="logo.png" alt="Вегадар" class="footer-logo-img" onerror="this.style.display='none'">
+                        <span class="logo-icon">🔩</span>
                         <span class="footer-logo-text">VEGADAR</span>
                     </div>
-                    <p>Магазин качественной мебельной фурнитуры в Пятигорске, Ставропольский край</p>
+                    <p>Магазин качественной мебельной фурнитуры в Пятигорске</p>
                     <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-vk"></i>
-                        </a>
-                        <a href="#" class="social-link">
+                        <a href="https://t.me/vegadar_bot" class="social-link" target="_blank">
                             <i class="fab fa-telegram"></i>
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="https://wa.me/79624044323" class="social-link" target="_blank">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
@@ -430,23 +312,22 @@
                 
                 <div class="footer-section">
                     <h4>Категории</h4>
-                    <a href="#catalog" onclick="filterCatalog('handles')">Ручки и кнобы</a>
-                    <a href="#catalog" onclick="filterCatalog('hinges')">Петли и механизмы</a>
-                    <a href="#catalog" onclick="filterCatalog('storage')">Системы хранения</a>
+                    <a href="#catalog">Ручки и кнобы</a>
+                    <a href="#catalog">Петли и механизмы</a>
+                    <a href="#catalog">Системы хранения</a>
+                    <a href="#catalog">Крепеж и метизы</a>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Компания</h4>
-                    <a href="#about" onclick="scrollToSection('about')">О нас</a>
-                    <a href="#contacts" onclick="scrollToSection('contacts')">Контакты</a>
-                    <a href="#gallery" onclick="scrollToSection('gallery')">Галерея</a>
+                    <a href="#about">О нас</a>
+                    <a href="#contacts">Контакты</a>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Контакты</h4>
                     <p><i class="fas fa-phone"></i> +7 (962) 404-43-23</p>
-                    <p><i class="fas fa-envelope"></i> vegadar@yandex.ru</p>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, Ставропольский край, ш. Черкесское, д. 54</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, ул. Промышленная, 15</p>
                 </div>
             </div>
             

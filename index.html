@@ -16,20 +16,20 @@
             --lime: #32CD32;
             --lime-dark: #28a428;
             --lime-light: #90EE90;
-            --black: #1a1a1a;
-            --dark-gray: #2d2d2d;
-            --gray: #666;
-            --light-gray: #f8f9fa;
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --gray: #888;
+            --light-gray: #222;
             --white: #ffffff;
-            --shadow: 0 4px 12px rgba(0,0,0,0.08);
-            --shadow-hover: 0 8px 24px rgba(0,0,0,0.12);
+            --shadow: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.5);
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: var(--black);
-            background: var(--white);
+            color: var(--white);
+            background: var(--black);
             overflow-x: hidden;
         }
 
@@ -41,8 +41,8 @@
 
         /* Header */
         .header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--dark-gray);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             position: fixed;
             top: 0;
             width: 100%;
@@ -64,7 +64,7 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 1.5rem;
-            color: var(--black);
+            color: var(--white);
         }
 
         .logo-icon {
@@ -82,7 +82,7 @@
         .logo-icon::after {
             content: '';
             position: absolute;
-            border: 2px solid var(--white);
+            border: 2px solid var(--black);
             border-radius: 50%;
             animation: spiral 3s linear infinite;
         }
@@ -113,7 +113,7 @@
         }
 
         .nav-link {
-            color: var(--black);
+            color: var(--white);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -152,17 +152,19 @@
 
         .search-input {
             padding: 0.5rem 1rem 0.5rem 2.5rem;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #333;
             border-radius: 20px;
             font-size: 0.9rem;
             width: 200px;
             transition: all 0.3s ease;
+            background: var(--dark-gray);
+            color: var(--white);
         }
 
         .search-input:focus {
             outline: none;
             border-color: var(--lime);
-            box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.1);
+            box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.2);
             width: 250px;
         }
 
@@ -180,7 +182,7 @@
             cursor: pointer;
             position: relative;
             padding: 0.5rem;
-            color: var(--black);
+            color: var(--white);
             transition: color 0.3s ease;
         }
 
@@ -193,7 +195,7 @@
             top: -5px;
             right: -5px;
             background: var(--lime);
-            color: var(--white);
+            color: var(--black);
             border-radius: 50%;
             width: 18px;
             height: 18px;
@@ -210,6 +212,7 @@
             border: none;
             cursor: pointer;
             padding: 0.5rem;
+            color: var(--white);
         }
 
         /* Buttons */
@@ -229,7 +232,7 @@
 
         .btn-primary {
             background: var(--lime);
-            color: var(--white);
+            color: var(--black);
         }
 
         .btn-primary:hover {
@@ -246,13 +249,13 @@
 
         .btn-secondary:hover {
             background: var(--lime);
-            color: var(--white);
+            color: var(--black);
         }
 
         .btn-outline {
             background: transparent;
             color: var(--gray);
-            border: 1px solid #e0e0e0;
+            border: 1px solid #333;
         }
 
         .btn-outline:hover {
@@ -268,7 +271,7 @@
         /* Hero Section */
         .hero {
             padding: 140px 0 80px;
-            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
             position: relative;
         }
 
@@ -282,7 +285,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(50, 205, 50, 0.1);
+            background: rgba(50, 205, 50, 0.2);
             color: var(--lime);
             padding: 0.5rem 1rem;
             border-radius: 20px;
@@ -296,7 +299,7 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            color: var(--black);
+            color: var(--white);
         }
 
         .hero-subtitle {
@@ -345,7 +348,7 @@
         }
 
         .section-light {
-            background: var(--light-gray);
+            background: var(--dark-gray);
         }
 
         .section-header {
@@ -357,7 +360,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            color: var(--black);
+            color: var(--white);
         }
 
         .section-subtitle {
@@ -376,7 +379,7 @@
         }
 
         .category-card {
-            background: var(--white);
+            background: var(--dark-gray);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -414,7 +417,7 @@
         .category-card h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: var(--black);
+            color: var(--white);
             font-weight: 600;
         }
 
@@ -445,7 +448,7 @@
         }
 
         .product-card {
-            background: var(--white);
+            background: var(--dark-gray);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -474,7 +477,7 @@
             top: 1rem;
             left: 1rem;
             background: var(--lime);
-            color: var(--white);
+            color: var(--black);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -488,7 +491,7 @@
         .product-card h3 {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
-            color: var(--black);
+            color: var(--white);
             font-weight: 600;
             line-height: 1.3;
         }
@@ -581,7 +584,7 @@
             align-items: start;
             gap: 1.5rem;
             padding: 1.5rem;
-            background: var(--white);
+            background: var(--dark-gray);
             border-radius: 12px;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease;
@@ -600,7 +603,7 @@
         .contact-card h3 {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: var(--black);
+            color: var(--white);
             font-weight: 600;
         }
 
@@ -621,7 +624,7 @@
 
         /* Contact Form */
         .contact-form {
-            background: var(--white);
+            background: var(--dark-gray);
             padding: 2rem;
             border-radius: 12px;
             box-shadow: var(--shadow);
@@ -634,7 +637,7 @@
         .form-header h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
-            color: var(--black);
+            color: var(--white);
         }
 
         .form-header p {
@@ -649,10 +652,10 @@
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #333;
             border-radius: 8px;
             background: var(--light-gray);
-            color: var(--black);
+            color: var(--white);
             font-family: inherit;
             transition: all 0.3s ease;
         }
@@ -661,7 +664,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--lime);
-            background: var(--white);
+            background: var(--dark-gray);
         }
 
         .form-group textarea {
@@ -741,7 +744,7 @@
 
         .social-link:hover {
             background: var(--lime);
-            color: var(--white);
+            color: var(--black);
         }
 
         .footer-bottom {
@@ -760,18 +763,18 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.7);
             backdrop-filter: blur(5px);
         }
 
         .modal-content {
-            background-color: var(--white);
+            background-color: var(--dark-gray);
             margin: 5% auto;
             padding: 0;
             border-radius: 16px;
             width: 90%;
             max-width: 600px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             animation: modalSlideIn 0.3s ease;
         }
 
@@ -788,7 +791,7 @@
 
         .modal-header {
             padding: 1.5rem 2rem;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #333;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -796,7 +799,7 @@
 
         .modal-header h3 {
             margin: 0;
-            color: var(--black);
+            color: var(--white);
             font-size: 1.5rem;
             font-weight: 700;
         }
@@ -810,7 +813,7 @@
         }
 
         .close:hover {
-            color: var(--black);
+            color: var(--white);
         }
 
         .modal-body {
@@ -821,7 +824,7 @@
 
         .modal-footer {
             padding: 1.5rem 2rem;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid #333;
             display: flex;
             gap: 1rem;
             justify-content: space-between;
@@ -841,7 +844,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #333;
         }
 
         .cart-item:last-child {
@@ -855,6 +858,7 @@
         .cart-item-name {
             font-weight: 600;
             margin-bottom: 0.25rem;
+            color: var(--white);
         }
 
         .cart-item-price {
@@ -880,11 +884,12 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            color: var(--white);
         }
 
         .quantity-btn:hover {
             background: var(--lime);
-            color: var(--white);
+            color: var(--black);
         }
 
         .cart-item-remove {
@@ -904,7 +909,8 @@
             text-align: right;
             font-size: 1.2rem;
             padding-top: 1rem;
-            border-top: 2px solid #e0e0e0;
+            border-top: 2px solid #333;
+            color: var(--white);
         }
 
         .empty-cart {
@@ -920,7 +926,7 @@
             top: 100%;
             left: 0;
             right: 0;
-            background: var(--white);
+            background: var(--dark-gray);
             border-radius: 12px;
             box-shadow: var(--shadow-hover);
             max-height: 300px;
@@ -930,9 +936,10 @@
 
         .search-result-item {
             padding: 1rem;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #333;
             cursor: pointer;
             transition: background 0.3s ease;
+            color: var(--white);
         }
 
         .search-result-item:hover {
@@ -961,7 +968,7 @@
             width: 60px;
             height: 60px;
             background: var(--lime);
-            color: var(--white);
+            color: var(--black);
             border: none;
             border-radius: 50%;
             cursor: pointer;
@@ -976,6 +983,32 @@
         .ai-button:hover {
             transform: scale(1.1);
             background: var(--lime-dark);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--lime);
+            color: var(--black);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-hover);
+            z-index: 10000;
+            font-weight: 600;
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         /* Responsive */
@@ -1001,7 +1034,7 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: var(--white);
+                background: var(--dark-gray);
                 flex-direction: column;
                 padding: 1rem;
                 gap: 0;
@@ -1014,7 +1047,7 @@
             
             .nav-link {
                 padding: 0.75rem 1rem;
-                border-bottom: 1px solid #e0e0e0;
+                border-bottom: 1px solid #333;
                 width: 100%;
             }
             
@@ -1210,7 +1243,7 @@
             <div class="categories-grid">
                 <a href="#handles" class="category-card" onclick="showCategory('handles')">
                     <div class="category-image">
-                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Мебельные+Ручки'">
+                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Ручки'">
                     </div>
                     <div class="category-content">
                         <h3>Мебельные ручки</h3>
@@ -1224,7 +1257,7 @@
                 
                 <a href="#hinges" class="category-card" onclick="showCategory('hinges')">
                     <div class="category-image">
-                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Мебельные+Петли'">
+                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Петли'">
                     </div>
                     <div class="category-content">
                         <h3>Мебельные петли</h3>
@@ -1238,7 +1271,7 @@
                 
                 <a href="#systems" class="category-card" onclick="showCategory('systems')">
                     <div class="category-image">
-                        <img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Системы+Хранения'">
+                        <img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Системы+Хранения'">
                     </div>
                     <div class="category-content">
                         <h3>Системы хранения</h3>
@@ -1252,7 +1285,7 @@
 
                 <a href="#hardware" class="category-card" onclick="showCategory('hardware')">
                     <div class="category-image">
-                        <img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Крепежные+Изделия'">
+                        <img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Крепежные+Изделия'">
                     </div>
                     <div class="category-content">
                         <h3>Крепежные изделия</h3>
@@ -1926,7 +1959,7 @@
                 productsGrid.innerHTML = categoryProducts.map(product => `
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Мебельная+Фурнитура'">
+                            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
                             <div class="product-badge">${getCategoryName(product.category)}</div>
                         </div>
                         <div class="product-content">

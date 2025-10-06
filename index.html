@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -14,25 +13,24 @@
         }
 
         :root {
-            --black: #000000;
-            --dark-black: #111111;
-            --green: #22C55E;
-            --green-dark: #16A34A;
-            --green-light: #4ADE80;
-            --gray: #666666;
-            --light-gray: #F5F5F5;
-            --white: #FFFFFF;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --hover-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            --lime: #32CD32;
+            --lime-dark: #28a428;
+            --lime-light: #90EE90;
+            --black: #1a1a1a;
+            --dark-gray: #2d2d2d;
+            --gray: #666;
+            --light-gray: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.12);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--black);
             background: var(--white);
             overflow-x: hidden;
-            padding-top: 80px; /* Отступ для фиксированного хедера */
         }
 
         .container {
@@ -41,61 +39,105 @@
             padding: 0 20px;
         }
 
-        /* Header & Navigation */
+        /* Header */
         .header {
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            padding: 15px 0;
+            padding: 1rem 0;
         }
 
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 2rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.75rem;
             text-decoration: none;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            border-radius: 5px;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--white);
+            font-size: 1.5rem;
+            color: var(--black);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--lime);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon::before,
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            border: 2px solid var(--white);
+            border-radius: 50%;
+            animation: spiral 3s linear infinite;
+        }
+
+        .logo-icon::before {
+            width: 24px;
+            height: 24px;
+            border-top-color: transparent;
+            animation-delay: 0s;
+        }
+
+        .logo-icon::after {
+            width: 16px;
+            height: 16px;
+            border-bottom-color: transparent;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes spiral {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .nav-menu {
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-link {
-            color: var(--white);
+            color: var(--black);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
         }
 
         .nav-link:hover {
-            color: var(--green);
-            background: rgba(34, 197, 94, 0.1);
+            color: var(--lime);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--lime);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .nav-actions {
@@ -104,144 +146,149 @@
             gap: 1rem;
         }
 
-        .cart-btn {
+        .search-container {
             position: relative;
-            background: transparent;
-            border: 2px solid var(--green);
-            color: var(--green);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            width: 200px;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--lime);
+            box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.1);
+            width: 250px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .cart-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem;
+            color: var(--black);
+            transition: color 0.3s ease;
         }
 
         .cart-btn:hover {
-            background: var(--green);
-            color: var(--black);
+            color: var(--lime);
         }
 
         .cart-count {
-            background: var(--green);
-            color: var(--black);
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--lime);
+            color: var(--white);
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
             font-weight: 600;
-            position: absolute;
-            top: -8px;
-            right: -8px;
         }
 
         .mobile-menu-btn {
             display: none;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-            padding: 8px;
             background: none;
             border: none;
-        }
-
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: var(--white);
-            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 0.5rem;
         }
 
         /* Buttons */
         .btn {
-            padding: 0.875rem 1.75rem;
-            border-radius: 10px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             font-size: 0.95rem;
-            border: none;
-            text-decoration: none;
         }
 
         .btn-primary {
-            background: var(--green);
-            color: var(--black);
+            background: var(--lime);
+            color: var(--white);
         }
 
         .btn-primary:hover {
-            background: var(--green-dark);
+            background: var(--lime-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+            box-shadow: var(--shadow-hover);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--green);
-            border: 2px solid var(--green);
+            color: var(--lime);
+            border: 2px solid var(--lime);
         }
 
         .btn-secondary:hover {
-            background: var(--green);
-            color: var(--black);
-            transform: translateY(-2px);
+            background: var(--lime);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gray);
+            border: 1px solid #e0e0e0;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--lime);
+            color: var(--lime);
         }
 
         .btn-large {
-            padding: 1.125rem 2.25rem;
+            padding: 1rem 2rem;
             font-size: 1.05rem;
         }
 
         /* Hero Section */
         .hero {
-            padding: 80px 0 60px;
-            background: linear-gradient(135deg, var(--dark-black) 0%, #000 100%);
-            color: var(--white);
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
             position: relative;
-            overflow: hidden;
-            margin-top: -80px; /* Компенсируем padding-top body */
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero-badge {
-            background: rgba(34, 197, 94, 0.2);
-            border: 1px solid rgba(34, 197, 94, 0.4);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-badge span {
-            color: var(--green);
-            font-weight: 600;
+            background: rgba(50, 205, 50, 0.1);
+            color: var(--lime);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
         }
 
         .hero-title {
@@ -249,35 +296,29 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--white) 0%, var(--green-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--black);
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
             line-height: 1.6;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .hero-actions {
             display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+            gap: 1rem;
             justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
         }
 
         .hero-stats {
             display: flex;
             gap: 3rem;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .stat {
@@ -288,13 +329,13 @@
             display: block;
             font-size: 2rem;
             font-weight: 800;
-            color: var(--green);
+            color: var(--lime);
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray);
             font-weight: 500;
         }
 
@@ -317,19 +358,6 @@
             font-weight: 800;
             margin-bottom: 1rem;
             color: var(--black);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(135deg, var(--green), var(--green-dark));
-            border-radius: 2px;
         }
 
         .section-subtitle {
@@ -340,7 +368,7 @@
             line-height: 1.6;
         }
 
-        /* Categories Grid */
+        /* Categories */
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -349,138 +377,84 @@
 
         .category-card {
             background: var(--white);
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all 0.4s ease;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
         }
 
         .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--hover-shadow);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
         .category-image {
             height: 200px;
             overflow: hidden;
-            position: relative;
         }
 
         .category-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
 
         .category-card:hover .category-image img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .category-content {
             padding: 1.5rem;
-            text-align: center;
-        }
-
-        .category-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--green), var(--green-dark));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: -40px auto 1rem;
-            position: relative;
-            z-index: 2;
-            font-size: 1.2rem;
-            color: var(--white);
         }
 
         .category-card h3 {
             font-size: 1.3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: var(--black);
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .category-card p {
             color: var(--gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            line-height: 1.5;
+            margin-bottom: 1rem;
         }
 
         .category-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--green);
-            text-decoration: none;
+            color: var(--lime);
             font-weight: 600;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .category-link:hover {
-            gap: 0.75rem;
-            color: var(--green-dark);
-        }
-
-        /* Catalog Header */
-        .catalog-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .back-btn {
-            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--green);
-            text-decoration: none;
-            font-weight: 600;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: gap 0.3s ease;
         }
 
-        .back-btn:hover {
-            background: rgba(34, 197, 94, 0.1);
+        .category-card:hover .category-link {
             gap: 0.75rem;
         }
 
-        /* Products Grid */
+        /* Products */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
-            margin-bottom: 2rem;
         }
 
         .product-card {
             background: var(--white);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: var(--card-shadow);
+            box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
+            box-shadow: var(--shadow-hover);
         }
 
         .product-image {
@@ -499,35 +473,12 @@
             position: absolute;
             top: 1rem;
             left: 1rem;
-            background: var(--green);
-            color: var(--black);
+            background: var(--lime);
+            color: var(--white);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
-        }
-
-        .add-to-cart-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--green);
-            color: var(--black);
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-        }
-
-        .add-to-cart-btn:hover {
-            background: var(--green-dark);
-            transform: scale(1.1);
         }
 
         .product-content {
@@ -552,7 +503,7 @@
         .product-price {
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--green);
+            color: var(--lime);
             margin-bottom: 1rem;
         }
 
@@ -568,31 +519,236 @@
             padding: 0.6rem 1rem;
         }
 
-        /* Filters */
-        .catalog-filters {
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .about-features {
             display: flex;
+            flex-direction: column;
             gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            justify-content: center;
         }
 
-        .filter-btn {
-            padding: 0.6rem 1.2rem;
-            border: 2px solid var(--green);
-            background: transparent;
-            color: var(--green);
-            border-radius: 20px;
-            cursor: pointer;
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .about-feature i {
+            color: var(--lime);
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Contacts */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--lime);
+            flex-shrink: 0;
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .contact-card p {
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .contact-card a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--lime);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+        }
+
+        .form-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .form-header p {
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: var(--light-gray);
+            color: var(--black);
+            font-family: inherit;
             transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.9rem;
         }
 
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--green);
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--lime);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
             color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.7rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--lime);
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--lime);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--lime);
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* Cart Modal */
@@ -614,7 +770,7 @@
             padding: 0;
             border-radius: 16px;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             animation: modalSlideIn 0.3s ease;
         }
@@ -631,8 +787,8 @@
         }
 
         .modal-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--light-gray);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e0e0e0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -641,7 +797,7 @@
         .modal-header h3 {
             margin: 0;
             color: var(--black);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
 
@@ -658,17 +814,22 @@
         }
 
         .modal-body {
-            padding: 1.5rem;
+            padding: 2rem;
             max-height: 400px;
             overflow-y: auto;
         }
 
         .modal-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--light-gray);
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #e0e0e0;
             display: flex;
             gap: 1rem;
-            justify-content: flex-end;
+            justify-content: space-between;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 1rem;
         }
 
         .cart-items {
@@ -680,7 +841,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .cart-item:last-child {
@@ -722,7 +883,7 @@
         }
 
         .quantity-btn:hover {
-            background: var(--green);
+            background: var(--lime);
             color: var(--white);
         }
 
@@ -743,7 +904,7 @@
             text-align: right;
             font-size: 1.2rem;
             padding-top: 1rem;
-            border-top: 2px solid var(--light-gray);
+            border-top: 2px solid #e0e0e0;
         }
 
         .empty-cart {
@@ -752,53 +913,99 @@
             padding: 2rem;
         }
 
-        /* Notification */
-        .notification {
+        /* Search Results */
+        .search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-result-item:hover {
+            background: var(--light-gray);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .no-results {
+            padding: 1rem;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
             position: fixed;
-            top: 100px;
-            right: 20px;
-            background: var(--green);
-            color: var(--black);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            z-index: 10001;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: slideIn 0.3s ease;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
+        .ai-button {
+            width: 60px;
+            height: 60px;
+            background: var(--lime);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-hover);
+            transition: all 0.3s ease;
+        }
+
+        .ai-button:hover {
+            transform: scale(1.1);
+            background: var(--lime-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
             }
-            to {
-                transform: translateX(0);
-                opacity: 1;
+            
+            .about-content {
+                gap: 3rem;
+            }
+            
+            .contacts-grid {
+                gap: 3rem;
             }
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
-            
-            .hero {
-                margin-top: -70px;
-                padding: 70px 0 50px;
-            }
-            
             .nav-menu {
                 display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: var(--dark-black);
+                background: var(--white);
                 flex-direction: column;
                 padding: 1rem;
                 gap: 0;
+                box-shadow: var(--shadow-hover);
             }
             
             .nav-menu.active {
@@ -807,7 +1014,8 @@
             
             .nav-link {
                 padding: 0.75rem 1rem;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                border-bottom: 1px solid #e0e0e0;
+                width: 100%;
             }
             
             .nav-link:last-child {
@@ -815,7 +1023,15 @@
             }
             
             .mobile-menu-btn {
-                display: flex;
+                display: block;
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .search-input:focus {
+                width: 180px;
             }
             
             .hero-title {
@@ -836,9 +1052,19 @@
                 align-items: center;
             }
             
-            .catalog-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .contacts-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
             
             .modal-content {
@@ -849,43 +1075,87 @@
             .modal-footer {
                 flex-direction: column;
             }
+            
+            .cart-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn-large {
+                padding: 1rem 1.5rem;
+            }
+            
+            .contact-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            
+            .contact-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .ai-assistant {
+                bottom: 1rem;
+                right: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <nav class="nav container">
-            <a href="#" class="logo">
-                <!-- Замени на свой логотип -->
-                <div class="logo-img" style="background: var(--green); color: var(--black); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px; font-weight: bold;">V</div>
-                <span class="logo-text">VEGADAR</span>
-            </a>
-            
-            <div class="nav-menu" id="navMenu">
-                <a href="#products" class="nav-link">Каталог</a>
-                <a href="#about" class="nav-link">О нас</a>
-                <a href="#contacts" class="nav-link">Контакты</a>
-            </div>
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <div class="logo-icon"></div>
+                    <span>VEGADAR</span>
+                </a>
+                
+                <div class="nav-menu" id="navMenu">
+                    <a href="#products" class="nav-link">Каталог</a>
+                    <a href="#about" class="nav-link">О компании</a>
+                    <a href="#contacts" class="nav-link">Контакты</a>
+                </div>
 
-            <div class="nav-actions">
-                <button class="cart-btn" id="cartButton">
-                    <i class="fas fa-shopping-cart"></i>
-                    Корзина
-                    <span class="cart-count">0</span>
-                </button>
-                <button class="btn btn-primary" onclick="openTelegram()">
-                    <i class="fab fa-telegram"></i>
-                    Написать
-                </button>
-            </div>
+                <div class="nav-actions">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Поиск товаров..." id="searchInput">
+                        <div class="search-results" id="searchResults"></div>
+                    </div>
+                    <button class="cart-btn" id="cartButton">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -896,16 +1166,13 @@
                     <i class="fas fa-truck"></i>
                     <span>Бесплатная доставка по Пятигорску</span>
                 </div>
-                <h1 class="hero-title">
-                    Мебельная фурнитура<br>
-                    премиум-качества
-                </h1>
+                <h1 class="hero-title">Мебельная фурнитура премиум-качества</h1>
                 <p class="hero-subtitle">
                     Более 5000 наименований фурнитуры от ведущих производителей. 
                     Гарантия качества и доступные цены. Работаем с 2008 года.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary btn-large" onclick="showCatalog()">
+                    <button class="btn btn-primary btn-large" onclick="scrollToSection('products')">
                         <i class="fas fa-box-open"></i>
                         Перейти в каталог
                     </button>
@@ -933,112 +1200,317 @@
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="section section-light">
+    <section id="products" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Популярные категории</h2>
+                <h2 class="section-title">Категории товаров</h2>
                 <p class="section-subtitle">Широкий ассортимент качественной фурнитуры для профессионалов</p>
             </div>
             
             <div class="categories-grid">
-                <div class="category-card" onclick="showCategory('handles')">
+                <a href="#handles" class="category-card" onclick="showCategory('handles')">
                     <div class="category-image">
-                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/22C55E/FFFFFF?text=Мебельные+Ручки'">
+                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Мебельные+Ручки'">
                     </div>
                     <div class="category-content">
-                        <div class="category-icon">
-                            <i class="fas fa-grip-vertical"></i>
-                        </div>
                         <h3>Мебельные ручки</h3>
                         <p>Широкий выбор ручек для мебели всех стилей и размеров от ведущих производителей</p>
-                        <button class="category-link">
+                        <div class="category-link">
                             Смотреть товары
                             <i class="fas fa-arrow-right"></i>
-                        </button>
+                        </div>
                     </div>
-                </div>
+                </a>
                 
-                <div class="category-card" onclick="showCategory('hinges')">
+                <a href="#hinges" class="category-card" onclick="showCategory('hinges')">
                     <div class="category-image">
-                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/22C55E/FFFFFF?text=Мебельные+Петли'">
+                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Мебельные+Петли'">
                     </div>
                     <div class="category-content">
-                        <div class="category-icon">
-                            <i class="fas fa-door-open"></i>
-                        </div>
                         <h3>Мебельные петли</h3>
                         <p>Четырехшарнирные и скрытые петли для любой мебели с регулировками</p>
-                        <button class="category-link">
+                        <div class="category-link">
                             Смотреть товары
                             <i class="fas fa-arrow-right"></i>
-                        </button>
+                        </div>
                     </div>
-                </div>
+                </a>
                 
-                <div class="category-card" onclick="showCategory('systems')">
+                <a href="#systems" class="category-card" onclick="showCategory('systems')">
                     <div class="category-image">
-                        <img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/22C55E/FFFFFF?text=Системы+Хранения'">
+                        <img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Системы+Хранения'">
                     </div>
                     <div class="category-content">
-                        <div class="category-icon">
-                            <i class="fas fa-drawer"></i>
-                        </div>
                         <h3>Системы хранения</h3>
                         <p>Направляющие и выдвижные механизмы для ящиков с плавным ходом</p>
-                        <button class="category-link">
+                        <div class="category-link">
                             Смотреть товары
                             <i class="fas fa-arrow-right"></i>
-                        </button>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="category-card" onclick="showCategory('hardware')">
+                <a href="#hardware" class="category-card" onclick="showCategory('hardware')">
                     <div class="category-image">
-                        <img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/22C55E/FFFFFF?text=Крепежные+Изделия'">
+                        <img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Крепежные+Изделия'">
                     </div>
                     <div class="category-content">
-                        <div class="category-icon">
-                            <i class="fas fa-screwdriver"></i>
-                        </div>
                         <h3>Крепежные изделия</h3>
                         <p>Винты, шурупы, стяжки и метизы для профессиональной сборки мебели</p>
-                        <button class="category-link">
+                        <div class="category-link">
                             Смотреть товары
                             <i class="fas fa-arrow-right"></i>
-                        </button>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Catalog Section -->
-    <section id="catalog" class="section" style="display: none;">
+    <!-- Category Sections -->
+    <section id="handles" class="section section-light" style="display: none;">
         <div class="container">
-            <div class="catalog-header">
-                <button class="back-btn" onclick="showCategories()">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
-                <div>
-                    <h2 class="section-title" id="catalogTitle" style="text-align: left; margin-bottom: 0.5rem;"></h2>
-                    <p class="section-subtitle" id="catalogSubtitle" style="text-align: left; margin: 0;"></p>
-                </div>
+                <h2 class="section-title">Мебельные ручки</h2>
+                <p class="section-subtitle">Качественные ручки для любой мебели</p>
             </div>
             
-            <div class="catalog-filters">
-                <button class="filter-btn active" onclick="showAllProducts()">Все товары</button>
-                <button class="filter-btn" onclick="showCategory('handles')">Ручки</button>
-                <button class="filter-btn" onclick="showCategory('hinges')">Петли</button>
-                <button class="filter-btn" onclick="showCategory('systems')">Системы</button>
-                <button class="filter-btn" onclick="showCategory('hardware')">Крепеж</button>
-            </div>
-            
-            <div class="products-grid" id="productsGrid">
+            <div class="products-grid" id="handlesProducts">
                 <!-- Товары будут загружены через JavaScript -->
             </div>
         </div>
     </section>
+
+    <section id="hinges" class="section section-light" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i>
+                    Назад к категориям
+                </button>
+                <h2 class="section-title">Мебельные петли</h2>
+                <p class="section-subtitle">Надежные петли для мебельных фасадов</p>
+            </div>
+            
+            <div class="products-grid" id="hingesProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="systems" class="section section-light" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i>
+                    Назад к категориям
+                </button>
+                <h2 class="section-title">Системы хранения</h2>
+                <p class="section-subtitle">Современные системы для организации пространства</p>
+            </div>
+            
+            <div class="products-grid" id="systemsProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="hardware" class="section section-light" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i>
+                    Назад к категориям
+                </button>
+                <h2 class="section-title">Крепежные изделия</h2>
+                <p class="section-subtitle">Профессиональный крепеж для сборки мебели</p>
+            </div>
+            
+            <div class="products-grid" id="hardwareProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">О компании Вегадар</h2>
+                    <p>
+                        Компания "Вегадар" основана в 2008 году и за время работы зарекомендовала себя 
+                        как надежный поставщик качественной мебельной фурнитуры в Пятигорске и 
+                        Ставропольском крае.
+                    </p>
+                    <p>
+                        Мы сотрудничаем с ведущими производителями Европы и России, что позволяет 
+                        предлагать нашим клиентам широкий ассортимент продукции по доступным ценам.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Собственный склад с 5000+ наименований</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Гарантия качества на всю продукцию</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Бесплатная доставка по Пятигорску</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Профессиональные консультации</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=500&fit=crop" alt="Наш магазин фурнитуры">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section id="contacts" class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Контакты</h2>
+                <p class="section-subtitle">Свяжитесь с нами удобным для вас способом</p>
+            </div>
+            
+            <div class="contacts-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Адрес магазина</h3>
+                            <p>г. Пятигорск, ул. Промышленная, 15</p>
+                            <p><small>Режим работы: Пн-Пт 9:00-18:00, Сб 10:00-16:00</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p><a href="tel:+79624044323">+7 (962) 404-43-23</a></p>
+                            <p><small>Ежедневно с 8:00 до 20:00</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:vegadar@yandex.ru">vegadar@yandex.ru</a></p>
+                            <p><small>Отвечаем в течение 24 часов</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div>
+                            <h3>Доставка</h3>
+                            <p>Бесплатная доставка по Пятигорску</p>
+                            <p><small>Доставка по Ставропольскому краю - 1-2 дня</small></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <div class="form-header">
+                        <h3>Остались вопросы?</h3>
+                        <p>Заполните форму и мы свяжемся с вами в течение 15 минут</p>
+                    </div>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required id="contactName">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Ваш телефон" required id="contactPhone">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Ваш вопрос или комментарий" rows="4" id="contactMessage"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i>
+                            Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon"></div>
+                        <span>VEGADAR</span>
+                    </div>
+                    <p>Магазин качественной мебельной фурнитуры в Пятигорске. Работаем с 2008 года.</p>
+                    <div class="social-links">
+                        <a href="https://t.me/+79624044323" class="social-link" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://wa.me/79624044323" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://vk.com" class="social-link" target="_blank">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Категории</h4>
+                    <a href="#handles" onclick="showCategory('handles')">Мебельные ручки</a>
+                    <a href="#hinges" onclick="showCategory('hinges')">Мебельные петли</a>
+                    <a href="#systems" onclick="showCategory('systems')">Системы хранения</a>
+                    <a href="#hardware" onclick="showCategory('hardware')">Крепежные изделия</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Компания</h4>
+                    <a href="#about">О нас</a>
+                    <a href="#contacts">Контакты</a>
+                    <a href="#delivery">Доставка и оплата</a>
+                    <a href="#guarantee">Гарантия</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +7 (962) 404-43-23</p>
+                    <p><i class="fas fa-envelope"></i> vegadar@yandex.ru</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, ул. Промышленная, 15</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Вегадар. Все права защищены. ИНН: 1234567890 ОГРН: 1234567890123</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Cart Modal -->
     <div id="cartModal" class="modal">
@@ -1056,10 +1528,25 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" id="continueShopping">Продолжить покупки</button>
-                <button class="btn btn-primary" id="checkout">Оформить заказ в Telegram</button>
+                <div class="cart-actions">
+                    <button class="btn btn-outline" id="clearCart">
+                        <i class="fas fa-trash"></i>
+                        Очистить корзину
+                    </button>
+                </div>
+                <div>
+                    <button class="btn btn-secondary" id="continueShopping">Продолжить покупки</button>
+                    <button class="btn btn-primary" id="checkout">Оформить заказ</button>
+                </div>
             </div>
         </div>
+    </div>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant">
+        <button class="ai-button" onclick="openAIAssistant()">
+            <i class="fas fa-robot"></i>
+        </button>
     </div>
 
     <script>
@@ -1068,19 +1555,19 @@
             // Мебельные ручки
             {
                 id: 1,
-                name: "Ручка мебельная 'Престиж'",
+                name: "Ручка мебельная 'Престиж' алюминиевая",
                 price: 450,
                 category: "handles",
                 image: "images/handles.jpg",
-                description: "Алюминиевая ручка с матовым покрытием, 128мм"
+                description: "Алюминиевая ручка с матовым покрытием, 128мм. Для современной мебели."
             },
             {
                 id: 2,
-                name: "Ручка-кноб 'Элегант'",
+                name: "Ручка-кноб 'Элегант' хром",
                 price: 320,
                 category: "handles",
                 image: "images/handles.jpg",
-                description: "Шарообразная ручка, хром покрытие, 32мм"
+                description: "Шарообразная ручка, хром покрытие, 32мм. Универсальное решение."
             },
             {
                 id: 3,
@@ -1088,25 +1575,25 @@
                 price: 280,
                 category: "handles",
                 image: "images/handles.jpg",
-                description: "Стальная ручка для современной мебели, 96мм"
+                description: "Стальная ручка для современной мебели, 96мм. Стильный дизайн."
             },
             {
                 id: 4,
-                name: "Ручка скоба 'Классика'",
+                name: "Ручка скоба 'Классика' латунь",
                 price: 390,
                 category: "handles",
                 image: "images/handles.jpg",
-                description: "Латунная ручка для классической мебели, 128мм"
+                description: "Латунная ручка для классической мебели, 128мм. Премиальное качество."
             },
             
             // Мебельные петли
             {
                 id: 5,
-                name: "Петля четырехшарнирная",
+                name: "Петля четырехшарнирная с доводчиком",
                 price: 280,
                 category: "hinges",
                 image: "images/hinges.jpg",
-                description: "С доводчиком, регулировка по 3 осям, 110°"
+                description: "С доводчиком, регулировка по 3 осям, 110°. Немецкое качество."
             },
             {
                 id: 6,
@@ -1114,7 +1601,7 @@
                 price: 390,
                 category: "hinges",
                 image: "images/hinges.jpg",
-                description: "Скрытое крепление, для современных интерьеров"
+                description: "Скрытое крепление, для современных интерьеров. Невидимый монтаж."
             },
             {
                 id: 7,
@@ -1122,7 +1609,7 @@
                 price: 220,
                 category: "hinges",
                 image: "images/hinges.jpg",
-                description: "Для мебельных фасадов, угол открывания 95°"
+                description: "Для мебельных фасадов, угол открывания 95°. Надежная конструкция."
             },
             {
                 id: 8,
@@ -1130,90 +1617,90 @@
                 price: 310,
                 category: "hinges",
                 image: "images/hinges.jpg",
-                description: "Для угловых шкафов, широкий угол открывания"
+                description: "Для угловых шкафов, широкий угол открывания. С плавным ходом."
             },
             
             // Системы хранения
             {
                 id: 9,
-                name: "Направляющая шариковая",
+                name: "Направляющая шариковая 400мм",
                 price: 890,
                 category: "systems",
                 image: "images/drawers.jpg",
-                description: "Для выдвижных ящиков, нагрузка до 50кг, 400мм"
+                description: "Для выдвижных ящиков, нагрузка до 50кг, 400мм. Плавный ход."
             },
             {
                 id: 10,
-                name: "Лифт подъемный механизм",
+                name: "Лифт подъемный механизм газлифт",
                 price: 1250,
                 category: "systems",
                 image: "images/drawers.jpg",
-                description: "Для верхних шкафов, плавное открывание"
+                description: "Для верхних шкафов, плавное открывание. Gas-lift система."
             },
             {
                 id: 11,
-                name: "Направляющая телескопическая",
+                name: "Направляющая телескопическая 450мм",
                 price: 750,
                 category: "systems",
                 image: "images/drawers.jpg",
-                description: "Полное выдвижение, нагрузка до 35кг, 450мм"
+                description: "Полное выдвижение, нагрузка до 35кг, 450мм. Тихая работа."
             },
             {
                 id: 12,
-                name: "Система пантограф",
+                name: "Система пантограф для верхних шкафов",
                 price: 1850,
                 category: "systems",
                 image: "images/drawers.jpg",
-                description: "Для верхних шкафов, вертикальное открывание"
+                description: "Для верхних шкафов, вертикальное открывание. Премиум-класс."
             },
             
             // Крепежные изделия
             {
                 id: 13,
-                name: "Винт мебельный конфирмат",
+                name: "Винт мебельный конфирмат 6.3x50mm",
                 price: 5,
                 category: "hardware",
                 image: "images/hardware.jpg",
-                description: "Для сборки мебели, 6.3x50mm, оцинкованный"
+                description: "Для сборки мебели, 6.3x50mm, оцинкованный. Высокая прочность."
             },
             {
                 id: 14,
-                name: "Угловая стяжка",
+                name: "Угловая стяжка мебельная",
                 price: 15,
                 category: "hardware",
                 image: "images/hardware.jpg",
-                description: "Для перпендикулярного соединения деталей"
+                description: "Для перпендикулярного соединения деталей. Надежная фиксация."
             },
             {
                 id: 15,
-                name: "Шуруп мебельный",
+                name: "Шуруп мебельный 4x30mm",
                 price: 3,
                 category: "hardware",
                 image: "images/hardware.jpg",
-                description: "Универсальный шуруп для ДСП, 4x30mm"
+                description: "Универсальный шуруп для ДСП, 4x30mm. Антикоррозийное покрытие."
             },
             {
                 id: 16,
-                name: "Мебельный уголок",
+                name: "Мебельный уголок усиленный",
                 price: 25,
                 category: "hardware",
                 image: "images/hardware.jpg",
-                description: "Усиленный уголок для крепления полок"
+                description: "Усиленный уголок для крепления полок. Грузоподъемность 50кг."
             }
         ];
 
         // Корзина
         let cart = [];
         let cartCount = 0;
-        let currentCategory = 'all';
 
         // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             initCart();
             setupEventListeners();
             setupMobileMenu();
+            loadAllProducts();
             
-            console.log('Сайт загружен! Корзина:', cart);
+            console.log('Сайт загружен!');
         });
 
         // Корзина
@@ -1254,8 +1741,6 @@
             saveCart();
             updateCartCount();
             showNotification(`✅ "${productName}" добавлен в корзину!`);
-            
-            console.log('Товар добавлен в корзину:', productName, 'Корзина:', cart);
         }
 
         function removeFromCart(productId) {
@@ -1263,6 +1748,14 @@
             saveCart();
             updateCartCount();
             updateCartModal();
+        }
+
+        function clearCart() {
+            cart = [];
+            saveCart();
+            updateCartCount();
+            updateCartModal();
+            showNotification('🗑️ Корзина очищена');
         }
 
         function updateQuantity(productId, change) {
@@ -1289,6 +1782,7 @@
             const closeButton = document.querySelector('.close');
             const continueShopping = document.getElementById('continueShopping');
             const checkoutButton = document.getElementById('checkout');
+            const clearCartButton = document.getElementById('clearCart');
 
             if (cartButton) {
                 cartButton.addEventListener('click', openCartModal);
@@ -1304,6 +1798,10 @@
 
             if (checkoutButton) {
                 checkoutButton.addEventListener('click', processCheckout);
+            }
+
+            if (clearCartButton) {
+                clearCartButton.addEventListener('click', clearCart);
             }
 
             window.addEventListener('click', (event) => {
@@ -1365,101 +1863,90 @@
             ).join('\n');
 
             const totalAmount = calculateTotal();
-            const message = `🛒 ЗАКАЗ С САЙТА VEGADAR\n\n${orderItems}\n\n💰 ИТОГО: ${totalAmount}₽\n\n📞 Для подтверждения заказа свяжитесь с клиентом.`;
+            const message = `🛒 ЗАКАЗ С САЙТА VEGADAR.RU\n\n${orderItems}\n\n💰 ИТОГО: ${totalAmount}₽\n\n📞 Для подтверждения заказа свяжитесь с клиентом.`;
 
             const phone = '+79624044323';
             const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
             
-            // Открываем Telegram
             window.open(telegramUrl, '_blank');
             
             showNotification('✅ Заказ оформлен! Открываю Telegram для отправки.');
             
-            // Очищаем корзину
             cart = [];
             saveCart();
             updateCartCount();
             closeCartModal();
         }
 
-        // Навигация по каталогу
-        function showCatalog() {
+        // Навигация по категориям
+        function showCategory(category) {
+            // Скрываем все секции
             document.getElementById('products').style.display = 'none';
-            document.getElementById('catalog').style.display = 'block';
-            document.getElementById('catalogTitle').textContent = 'Каталог товаров';
-            document.getElementById('catalogSubtitle').textContent = 'Все товары из нашего ассортимента';
+            document.getElementById('handles').style.display = 'none';
+            document.getElementById('hinges').style.display = 'none';
+            document.getElementById('systems').style.display = 'none';
+            document.getElementById('hardware').style.display = 'none';
             
-            loadProducts('all');
-            // Прокручиваем сразу к началу каталога
-            document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+            // Показываем выбранную категорию
+            document.getElementById(category).style.display = 'block';
+            
+            // Прокручиваем к категории
+            document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
         }
 
         function showCategories() {
-            document.getElementById('catalog').style.display = 'none';
+            // Скрываем все категории
+            document.getElementById('handles').style.display = 'none';
+            document.getElementById('hinges').style.display = 'none';
+            document.getElementById('systems').style.display = 'none';
+            document.getElementById('hardware').style.display = 'none';
+            
+            // Показываем главную секцию с категориями
             document.getElementById('products').style.display = 'block';
+            
+            // Прокручиваем к категориям
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function showCategory(category) {
-            document.getElementById('products').style.display = 'none';
-            document.getElementById('catalog').style.display = 'block';
-            
-            const categoryNames = {
-                'handles': 'Мебельные ручки',
-                'hinges': 'Мебельные петли',
-                'systems': 'Системы хранения',
-                'hardware': 'Крепежные изделия'
-            };
-            
-            document.getElementById('catalogTitle').textContent = categoryNames[category] || 'Каталог товаров';
-            document.getElementById('catalogSubtitle').textContent = 'Товары выбранной категории';
-            
-            loadProducts(category);
-            // Прокручиваем сразу к началу каталога
-            document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showAllProducts() {
-            document.getElementById('catalogTitle').textContent = 'Каталог товаров';
-            document.getElementById('catalogSubtitle').textContent = 'Все товары из нашего ассортимента';
-            loadProducts('all');
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         // Загрузка товаров
-        function loadProducts(category) {
-            const productsGrid = document.getElementById('productsGrid');
-            currentCategory = category;
+        function loadAllProducts() {
+            const categories = ['handles', 'hinges', 'systems', 'hardware'];
             
-            const filteredProducts = category === 'all' 
-                ? productsData 
-                : productsData.filter(product => product.category === category);
-            
-            productsGrid.innerHTML = filteredProducts.map(product => `
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x200/22C55E/FFFFFF?text=Мебельная+Фурнитура'">
-                        <div class="product-badge">${getCategoryName(product.category)}</div>
-                        <button class="add-to-cart-btn" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <div class="product-content">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        <div class="product-price">${product.price} ₽</div>
-                        <div class="product-actions">
-                            <button class="btn btn-primary" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
-                                <i class="fas fa-cart-plus"></i>
-                                В корзину
-                            </button>
-                            <button class="btn btn-secondary" onclick="orderProduct(${product.id})">
-                                <i class="fab fa-telegram"></i>
-                                Заказать
-                            </button>
+            categories.forEach(category => {
+                const productsGrid = document.getElementById(category + 'Products');
+                const categoryProducts = productsData.filter(product => product.category === category);
+                
+                productsGrid.innerHTML = categoryProducts.map(product => `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/FFFFFF?text=Мебельная+Фурнитура'">
+                            <div class="product-badge">${getCategoryName(product.category)}</div>
+                        </div>
+                        <div class="product-content">
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <div class="product-price">${product.price} ₽</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
+                                    <i class="fas fa-cart-plus"></i>
+                                    В корзину
+                                </button>
+                                <button class="btn btn-secondary" onclick="orderProduct(${product.id})">
+                                    <i class="fab fa-telegram"></i>
+                                    Заказать
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            });
         }
 
         function getCategoryName(category) {
@@ -1470,6 +1957,57 @@
                 'hardware': 'Крепеж'
             };
             return names[category] || 'Товар';
+        }
+
+        // Поиск
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                const results = productsData.filter(product => 
+                    product.name.toLowerCase().includes(query) || 
+                    product.description.toLowerCase().includes(query)
+                );
+                
+                if (results.length > 0) {
+                    searchResults.innerHTML = results.map(product => `
+                        <div class="search-result-item" onclick="selectSearchResult('${product.category}', ${product.id})">
+                            <div style="font-weight: 600;">${product.name}</div>
+                            <div style="font-size: 0.9rem; color: var(--gray);">${product.price} ₽</div>
+                        </div>
+                    `).join('');
+                } else {
+                    searchResults.innerHTML = '<div class="no-results">Товары не найдены</div>';
+                }
+                
+                searchResults.style.display = 'block';
+            });
+            
+            // Скрываем результаты при клике вне поиска
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+        }
+
+        function selectSearchResult(category, productId) {
+            showCategory(category);
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResults').style.display = 'none';
+            
+            // Прокручиваем к товару (в реальном приложении можно подсветить товар)
+            setTimeout(() => {
+                document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
+            }, 100);
         }
 
         // Заказ товара
@@ -1491,6 +2029,12 @@
             const phone = '+79624044323';
             const url = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
+        }
+
+        // ИИ-ассистент
+        function openAIAssistant() {
+            showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время');
+            // В будущем здесь будет интеграция с ИИ-ассистентом
         }
 
         // Мобильное меню
@@ -1533,6 +2077,28 @@
         // Настройка всех обработчиков событий
         function setupEventListeners() {
             setupCartModal();
+            setupSearch();
+            
+            // Обработчик контактной формы
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const phone = document.getElementById('contactPhone').value;
+                    const message = document.getElementById('contactMessage').value;
+                    
+                    processContactForm(name, phone, message);
+                });
+            }
+        }
+
+        function processContactForm(name, phone, message) {
+            const fullMessage = `📧 НОВАЯ ЗАЯВКА С САЙТА VEGADAR.RU\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Сообщение: ${message || 'Не указано'}`;
+            openTelegramWithMessage(fullMessage);
+            
+            document.getElementById('contactForm').reset();
+            showNotification('✅ Сообщение отправлено! Мы свяжемся с вами в течение 15 минут.');
         }
     </script>
 </body>

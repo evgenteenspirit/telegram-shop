@@ -9,25 +9,116 @@ if (window.Telegram?.WebApp) {
 // Данные товаров
 const products = {
     handles: [
-        { id: 1, name: "Ручка мебельная алюминиевая", price: 450, image: "images/handle1.jpg", category: "handles" },
-        { id: 2, name: "Ручка кнопка черная", price: 320, image: "images/handle2.jpg", category: "handles" },
-        { id: 3, name: "Ручка-скоба 128мм", price: 580, image: "images/handle3.jpg", category: "handles" },
-        { id: 4, name: "Ручка профиль 1м", price: 1200, image: "images/handle4.jpg", category: "handles" }
+        { 
+            id: 1, 
+            name: "Ручка мебельная алюминиевая", 
+            price: 450, 
+            image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop", 
+            category: "handles",
+            description: "Качественная алюминиевая ручка для мебели"
+        },
+        { 
+            id: 2, 
+            name: "Ручка кнопка черная", 
+            price: 320, 
+            image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop", 
+            category: "handles",
+            description: "Стильная черная ручка-кнопка"
+        },
+        { 
+            id: 3, 
+            name: "Ручка-скоба 128мм", 
+            price: 580, 
+            image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop", 
+            category: "handles",
+            description: "Прочная ручка-скоба длиной 128мм"
+        },
+        { 
+            id: 4, 
+            name: "Ручка профиль 1м", 
+            price: 1200, 
+            image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop", 
+            category: "handles",
+            description: "Алюминиевый профиль для современной мебели"
+        }
     ],
     hinges: [
-        { id: 5, name: "Петля накладная 110°", price: 280, image: "images/hinge1.jpg", category: "hinges" },
-        { id: 6, name: "Петля с доводчиком", price: 650, image: "images/hinge2.jpg", category: "hinges" },
-        { id: 7, name: "Петля скрытая", price: 890, image: "images/hinge3.jpg", category: "hinges" }
+        { 
+            id: 5, 
+            name: "Петля накладная 110°", 
+            price: 280, 
+            image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop", 
+            category: "hinges",
+            description: "Накладная петля с углом открывания 110°"
+        },
+        { 
+            id: 6, 
+            name: "Петля с доводчиком", 
+            price: 650, 
+            image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop", 
+            category: "hinges",
+            description: "Петля со встроенным доводчиком"
+        },
+        { 
+            id: 7, 
+            name: "Петля скрытая", 
+            price: 890, 
+            image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop", 
+            category: "hinges",
+            description: "Скрытая петля для мебели"
+        }
     ],
     systems: [
-        { id: 8, name: "Направляющие шариковые 500мм", price: 1200, image: "images/system1.jpg", category: "systems" },
-        { id: 9, name: "Система пантограф", price: 4500, image: "images/system2.jpg", category: "systems" },
-        { id: 10, name: "Направляющие для ящиков", price: 780, image: "images/system3.jpg", category: "systems" }
+        { 
+            id: 8, 
+            name: "Направляющие шариковые 500мм", 
+            price: 1200, 
+            image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop", 
+            category: "systems",
+            description: "Шариковые направляющие для ящиков"
+        },
+        { 
+            id: 9, 
+            name: "Система пантограф", 
+            price: 4500, 
+            image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop", 
+            category: "systems",
+            description: "Система подъема фасадов пантограф"
+        },
+        { 
+            id: 10, 
+            name: "Направляющие для ящиков", 
+            price: 780, 
+            image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop", 
+            category: "systems",
+            description: "Качественные направляющие для мебельных ящиков"
+        }
     ],
     hardware: [
-        { id: 11, name: "Шурупы конфирмат 6.4x50", price: 45, image: "images/hardware1.jpg", category: "hardware" },
-        { id: 12, name: "Стяжка мебельная", price: 28, image: "images/hardware2.jpg", category: "hardware" },
-        { id: 13, name: "Шкант мебельный 8x30", price: 12, image: "images/hardware3.jpg", category: "hardware" }
+        { 
+            id: 11, 
+            name: "Шурупы конфирмат 6.4x50", 
+            price: 45, 
+            image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop", 
+            category: "hardware",
+            description: "Шурупы для сборки мебели конфирмат"
+        },
+        { 
+            id: 12, 
+            name: "Стяжка мебельная", 
+            price: 28, 
+            image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop", 
+            category: "hardware",
+            description: "Мебельная стяжка для надежной сборки"
+        },
+        { 
+            id: 13, 
+            name: "Шкант мебельный 8x30", 
+            price: 12, 
+            image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop", 
+            category: "hardware",
+            description: "Деревянный шкант для мебели"
+        }
     ]
 };
 
@@ -37,7 +128,7 @@ const allProducts = Object.values(products).flat();
 // Корзина
 let cart = JSON.parse(localStorage.getItem('vegadar_cart')) || {};
 
-// Инициализация
+// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
     setupEventListeners();
@@ -47,31 +138,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initApp() {
-    // Логотип спираль
-    createLogoSvg('logoSvg');
-    createLogoSvg('logoSvgFooter');
+    console.log('Vegadar app initialized');
     
-    // Рипл-эффект
+    // Установка рипл-эффекта
     setupRippleEffects();
     
     // Показать категории по умолчанию
     showCategories();
-}
-
-function createLogoSvg(svgId) {
-    const svg = document.getElementById(svgId);
-    if (!svg) return;
-    
-    const spiral = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    spiral.setAttribute("d", "M60,60 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0");
-    spiral.setAttribute("fill", "none");
-    spiral.setAttribute("stroke", "#22C55E");
-    spiral.setAttribute("stroke-width", "8");
-    spiral.setAttribute("stroke-linecap", "round");
-    spiral.setAttribute("stroke-dasharray", "100 200");
-    spiral.setAttribute("stroke-dashoffset", "50");
-    
-    svg.appendChild(spiral);
 }
 
 function setupEventListeners() {
@@ -79,11 +152,15 @@ function setupEventListeners() {
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.addEventListener('input', handleSearch);
-        searchInput.addEventListener('focus', showSearchResults);
+        searchInput.addEventListener('focus', function() {
+            if (this.value.trim()) {
+                showSearchResults();
+            }
+        });
     }
     
     // Клик вне поиска
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', function(e) {
         if (!e.target.closest('.search-container')) {
             hideSearchResults();
         }
@@ -104,8 +181,10 @@ function setupEventListeners() {
     // Модальное окно
     const modal = document.getElementById('cartModal');
     if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeCart();
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeCart();
+            }
         });
     }
     
@@ -114,9 +193,16 @@ function setupEventListeners() {
     if (contactForm) {
         contactForm.addEventListener('submit', handleContactForm);
     }
+    
+    // Закрытие модального окна при нажатии ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeCart();
+        }
+    });
 }
 
-// Поиск
+// Поиск товаров
 function handleSearch(e) {
     const query = e.target.value.toLowerCase().trim();
     const resultsContainer = document.getElementById('searchResults');
@@ -127,7 +213,8 @@ function handleSearch(e) {
     }
     
     const filtered = allProducts.filter(product => 
-        product.name.toLowerCase().includes(query)
+        product.name.toLowerCase().includes(query) ||
+        product.description.toLowerCase().includes(query)
     );
     
     showSearchResults(filtered);
@@ -135,13 +222,18 @@ function handleSearch(e) {
 
 function showSearchResults(results = null) {
     const container = document.getElementById('searchResults');
-    if (!container) return;
+    const searchInput = document.getElementById('searchInput');
+    
+    if (!container || !searchInput) return;
     
     if (results) {
         container.innerHTML = results.length ? 
             results.map(product => `
-                <div class="search-result-item" onclick="addToCart(${product.id})">
-                    <span>${product.name}</span>
+                <div class="search-result-item" onclick="addToCart(${product.id}); hideSearchResults();">
+                    <div>
+                        <div style="font-weight: 600;">${product.name}</div>
+                        <div style="font-size: 12px; color: #666;">${product.description}</div>
+                    </div>
                     <strong>${formatPrice(product.price)}</strong>
                 </div>
             `).join('') :
@@ -153,7 +245,9 @@ function showSearchResults(results = null) {
 
 function hideSearchResults() {
     const container = document.getElementById('searchResults');
-    if (container) container.style.display = 'none';
+    if (container) {
+        container.style.display = 'none';
+    }
 }
 
 // Лента подборок
@@ -162,16 +256,15 @@ function renderFeed() {
     if (!scroller) return;
     
     const feeds = [
-        { title: "Новинки", image: "images/feed-new.jpg" },
-        { title: "Хиты продаж", image: "images/feed-popular.jpg" },
-        { title: "Акции", image: "images/feed-sale.jpg" },
-        { title: "Премиум", image: "images/feed-premium.jpg" }
+        { title: "Новинки", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop" },
+        { title: "Хиты продаж", image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&h=400&fit=crop" },
+        { title: "Акции", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop" },
+        { title: "Премиум", image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&h=400&fit=crop" }
     ];
     
     scroller.innerHTML = feeds.map(feed => `
-        <div class="feed-card" role="listitem">
-            <img src="${feed.image}" alt="${feed.title}" 
-                 onerror="this.src='https://via.placeholder.com/600x400/22C55E/000000?text=${encodeURIComponent(feed.title)}'">
+        <div class="feed-card">
+            <img src="${feed.image}" alt="${feed.title}">
             <div class="feed-caption">${feed.title}</div>
         </div>
     `).join('');
@@ -192,13 +285,12 @@ function renderProducts(category) {
     container.innerHTML = categoryProducts.map(product => `
         <div class="product-card">
             <div class="product-image">
-                <img src="${product.image}" alt="${product.name}" 
-                     onerror="this.src='https://via.placeholder.com/400x300/22C55E/FFFFFF?text=${encodeURIComponent(product.name)}'">
+                <img src="${product.image}" alt="${product.name}">
                 <div class="product-badge">В наличии</div>
             </div>
             <div class="product-content">
                 <h3>${product.name}</h3>
-                <p>Высокое качество, гарантия производителя</p>
+                <p>${product.description}</p>
                 <div class="product-price">${formatPrice(product.price)}</div>
                 <button class="btn-primary add-to-cart ripple" onclick="addToCart(${product.id})">
                     В корзину
@@ -210,26 +302,40 @@ function renderProducts(category) {
 
 // Навигация по категориям
 function showCategories() {
-    document.querySelectorAll('.catalog').forEach(el => el.style.display = 'none');
-    document.getElementById('products').style.display = 'block';
+    document.querySelectorAll('.catalog').forEach(el => {
+        el.style.display = 'none';
+    });
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+        productsSection.style.display = 'block';
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showCategory(category) {
-    document.querySelectorAll('.catalog').forEach(el => el.style.display = 'none');
-    document.getElementById('products').style.display = 'none';
+    document.querySelectorAll('.catalog').forEach(el => {
+        el.style.display = 'none';
+    });
+    
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+        productsSection.style.display = 'none';
+    }
     
     const target = document.getElementById(category);
     if (target) {
         target.style.display = 'block';
-        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+        window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
     }
 }
 
 // Корзина
 function addToCart(productId) {
     const product = allProducts.find(p => p.id === productId);
-    if (!product) return;
+    if (!product) {
+        console.error('Product not found:', productId);
+        return;
+    }
     
     if (cart[productId]) {
         cart[productId].quantity += 1;
@@ -251,10 +357,13 @@ function addToCart(productId) {
 }
 
 function removeFromCart(productId) {
-    delete cart[productId];
-    saveCart();
-    updateCartCount();
-    renderCart();
+    if (cart[productId]) {
+        delete cart[productId];
+        saveCart();
+        updateCartCount();
+        renderCart();
+        showNotification('Товар удален из корзины');
+    }
 }
 
 function updateQuantity(productId, change) {
@@ -271,7 +380,11 @@ function updateQuantity(productId, change) {
 }
 
 function saveCart() {
-    localStorage.setItem('vegadar_cart', JSON.stringify(cart));
+    try {
+        localStorage.setItem('vegadar_cart', JSON.stringify(cart));
+    } catch (e) {
+        console.error('Error saving cart:', e);
+    }
 }
 
 function updateCartCount() {
@@ -308,7 +421,13 @@ function renderCart() {
     const items = Object.values(cart);
     
     if (items.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:2rem;color:#666">Корзина пуста</div>';
+        container.innerHTML = `
+            <div style="text-align: center; padding: 3rem 1rem; color: #666;">
+                <div style="font-size: 48px; margin-bottom: 1rem;">🛒</div>
+                <div style="font-size: 18px; font-weight: 600; margin-bottom: 0.5rem;">Корзина пуста</div>
+                <div style="color: #888;">Добавьте товары из каталога</div>
+            </div>
+        `;
         if (totalElement) totalElement.textContent = formatPrice(0);
         return;
     }
@@ -319,7 +438,7 @@ function renderCart() {
             <div class="cart-item-price">${formatPrice(item.price)}</div>
             <div class="cart-item-quantity">
                 <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                <span>${item.quantity}</span>
+                <span style="min-width: 30px; text-align: center;">${item.quantity}</span>
                 <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
             </div>
             <button class="cart-item-remove" onclick="removeFromCart(${item.id})">×</button>
@@ -332,6 +451,43 @@ function renderCart() {
     }
 }
 
+function checkout() {
+    const items = Object.values(cart);
+    if (items.length === 0) {
+        showNotification('Добавьте товары в корзину');
+        return;
+    }
+    
+    const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const orderDetails = items.map(item => 
+        `${item.name} - ${item.quantity} × ${formatPrice(item.price)}`
+    ).join('\n');
+    
+    const message = `Заказ из магазина Вегадар:\n\n${orderDetails}\n\nИтого: ${formatPrice(total)}`;
+    
+    if (tg) {
+        // В Telegram Web App
+        tg.sendData(JSON.stringify({
+            type: 'order',
+            items: items,
+            total: total
+        }));
+        showNotification('Заказ отправлен!');
+    } else {
+        // В браузере - открываем Telegram
+        const phone = '79624044323';
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://t.me/share/url?url=&text=${encodedMessage}`, '_blank');
+        showNotification('Открываем Telegram для отправки заказа');
+    }
+    
+    // Очищаем корзину после заказа
+    cart = {};
+    saveCart();
+    updateCartCount();
+    closeCart();
+}
+
 // Утилиты
 function formatPrice(price) {
     return new Intl.NumberFormat('ru-RU', {
@@ -342,20 +498,32 @@ function formatPrice(price) {
 }
 
 function showNotification(message) {
+    // Удаляем существующие уведомления
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notif => notif.remove());
+    
     const notification = document.createElement('div');
     notification.className = 'notification';
     notification.textContent = message;
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.remove();
+        if (notification.parentNode) {
+            notification.remove();
+        }
     }, 3000);
 }
 
 function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
     if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        const targetPosition = element.offsetTop - headerHeight - 20;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
     }
 }
 
@@ -365,8 +533,18 @@ function openTelegram() {
 
 function toggleMobileMenu() {
     const menu = document.getElementById('navMenu');
-    if (menu) {
+    const button = document.getElementById('mobileMenuBtn');
+    
+    if (menu && button) {
         menu.classList.toggle('active');
+        button.classList.toggle('active');
+        
+        // Блокируем прокрутку тела при открытом меню
+        if (menu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
     }
 }
 
@@ -380,6 +558,12 @@ function setupRippleEffects() {
             
             button.style.setProperty('--rx', `${x}px`);
             button.style.setProperty('--ry', `${y}px`);
+            
+            // Убираем свойства после анимации
+            setTimeout(() => {
+                button.style.removeProperty('--rx');
+                button.style.removeProperty('--ry');
+            }, 350);
         }
     });
 }
@@ -391,6 +575,11 @@ function handleContactForm(e) {
     const phone = document.getElementById('contactPhone').value;
     const message = document.getElementById('contactMessage').value;
     
+    if (!name || !phone) {
+        showNotification('Пожалуйста, заполните обязательные поля');
+        return;
+    }
+    
     // Имитация отправки
     showNotification('Сообщение отправлено! Свяжемся с вами в течение 15 минут');
     
@@ -398,7 +587,17 @@ function handleContactForm(e) {
     e.target.reset();
     
     // В реальном приложении здесь был бы fetch запрос
-    console.log('Contact form:', { name, phone, message });
+    console.log('Contact form submitted:', { name, phone, message });
+    
+    // Отправка в Telegram (если доступно)
+    if (tg) {
+        tg.sendData(JSON.stringify({
+            type: 'contact',
+            name: name,
+            phone: phone,
+            message: message
+        }));
+    }
 }
 
 // Глобальные функции для HTML onclick
@@ -411,3 +610,4 @@ window.openCart = openCart;
 window.closeCart = closeCart;
 window.scrollToSection = scrollToSection;
 window.openTelegram = openTelegram;
+window.checkout = checkout;

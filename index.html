@@ -5,7 +5,1219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вегадар - Магазин мебельной фурнитуры в Пятигорске</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --lime: #32CD32;
+            --lime-dark: #28a428;
+            --lime-light: #90EE90;
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --gray: #888;
+            --light-gray: #222;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--white);
+            background: var(--black);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--dark-gray);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--lime);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon::before,
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            animation: spiral 3s linear infinite;
+        }
+
+        .logo-icon::before {
+            width: 24px;
+            height: 24px;
+            border-top-color: transparent;
+            animation-delay: 0s;
+        }
+
+        .logo-icon::after {
+            width: 16px;
+            height: 16px;
+            border-bottom-color: transparent;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes spiral {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header Carousel */
+        .header-carousel {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background: var(--black);
+        }
+
+        .carousel-slides {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            animation: slide 20s infinite;
+        }
+
+        .carousel-slide {
+            width: 20%;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(0); }
+            25% { transform: translateX(-20%); }
+            45% { transform: translateX(-20%); }
+            50% { transform: translateX(-40%); }
+            70% { transform: translateX(-40%); }
+            75% { transform: translateX(-60%); }
+            95% { transform: translateX(-60%); }
+            100% { transform: translateX(-80%); }
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--lime);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--lime);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #333;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            width: 200px;
+            transition: all 0.3s ease;
+            background: var(--dark-gray);
+            color: var(--white);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--lime);
+            box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.2);
+            width: 250px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .cart-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem;
+            color: var(--white);
+            transition: color 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .cart-btn:hover {
+            color: var(--lime);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--lime);
+            color: var(--black);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--lime);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background: var(--lime-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--lime);
+            border: 2px solid var(--lime);
+        }
+
+        .btn-secondary:hover {
+            background: var(--lime);
+            color: var(--black);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gray);
+            border: 1px solid #333;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--lime);
+            color: var(--lime);
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(50, 205, 50, 0.2);
+            color: var(--lime);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--lime);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-light {
+            background: var(--dark-gray);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Categories */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-image img {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .category-card p {
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .category-link {
+            color: var(--lime);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .category-card:hover .category-link {
+            gap: 0.75rem;
+        }
+
+        /* Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--lime);
+            color: var(--black);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .product-card p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--lime);
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .product-actions .btn {
+            flex: 1;
+            justify-content: center;
+            font-size: 0.85rem;
+            padding: 0.6rem 1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .about-feature i {
+            color: var(--lime);
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Contacts */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--dark-gray);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--lime);
+            flex-shrink: 0;
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .contact-card p {
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .contact-card a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--lime);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+        }
+
+        .form-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .form-header p {
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: var(--light-gray);
+            color: var(--white);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--lime);
+            background: var(--dark-gray);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.7rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--lime);
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--lime);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--lime);
+            color: var(--black);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--dark-gray);
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close {
+            color: var(--gray);
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--white);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #333;
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .cart-items {
+            margin-bottom: 1.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--white);
+        }
+
+        .cart-item-price {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 1rem;
+        }
+
+        .quantity-btn {
+            background: var(--light-gray);
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--white);
+        }
+
+        .quantity-btn:hover {
+            background: var(--lime);
+            color: var(--black);
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .cart-item-remove:hover {
+            color: #ff4444;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 1.2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #333;
+            color: var(--white);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--gray);
+            padding: 2rem;
+        }
+
+        /* Search Results */
+        .search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--dark-gray);
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            border: 1px solid #333;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-result-item:hover {
+            background: var(--light-gray);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-name {
+            font-weight: 600;
+        }
+
+        .search-result-price {
+            color: var(--lime);
+            font-weight: 600;
+        }
+
+        .no-results {
+            padding: 1rem;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+        }
+
+        .ai-button {
+            width: 60px;
+            height: 60px;
+            background: var(--lime);
+            color: var(--black);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-hover);
+            transition: all 0.3s ease;
+        }
+
+        .ai-button:hover {
+            transform: scale(1.1);
+            background: var(--lime-dark);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--lime);
+            color: var(--black);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-hover);
+            z-index: 10000;
+            font-weight: 600;
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            .about-content {
+                gap: 3rem;
+            }
+            
+            .contacts-grid {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--dark-gray);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+                box-shadow: var(--shadow-hover);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-link {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #333;
+                width: 100%;
+            }
+            
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .search-input:focus {
+                width: 180px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .contacts-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .cart-actions {
+                flex-direction: column;
+            }
+            
+            .header-carousel {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn-large {
+                padding: 1rem 1.5rem;
+            }
+            
+            .contact-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            
+            .contact-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .ai-assistant {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .header-carousel {
+                height: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -71,7 +1283,7 @@
                     <i class="fas fa-truck"></i>
                     <span>Бесплатная доставка по Пятигорску</span>
                 </div>
-                <h1 class="hero-title">Мебельная фурнитура премиум-качества</h1>
+                <h1 class="hero-title">Мебельная фурнитура высокого качества</h1>
                 <p class="hero-subtitle">
                     Более 5000 наименований фурнитуры от ведущих производителей. 
                     Гарантия качества и доступные цены. Работаем с 2008 года.
@@ -299,7 +1511,7 @@
                         </div>
                         <div>
                             <h3>Адрес магазина</h3>
-                            <p>г. Пятигорск, ул. Промышленная, 15</p>
+                            <p>г. Пятигорск, ул. Черкесское шоссе 54</p>
                             <p><small>Режим работы: Пн-Пт 9:00-18:00, Сб 10:00-16:00</small></p>
                         </div>
                     </div>
@@ -310,7 +1522,7 @@
                         </div>
                         <div>
                             <h3>Телефон</h3>
-                            <p><a href="tel:+79624044323">+7 (962) 404-43-23</a></p>
+                            <p><a href="tel:+79624040568">+7 (962) 404-05-68</a></p>
                             <p><small>Ежедневно с 8:00 до 20:00</small></p>
                         </div>
                     </div>
@@ -375,10 +1587,10 @@
                     </div>
                     <p>Магазин качественной мебельной фурнитуры в Пятигорске. Работаем с 2008 года.</p>
                     <div class="social-links">
-                        <a href="https://t.me/+79624044323" class="social-link" target="_blank">
+                        <a href="https://t.me/+79624040568" class="social-link" target="_blank">
                             <i class="fab fa-telegram"></i>
                         </a>
-                        <a href="https://wa.me/79624044323" class="social-link" target="_blank">
+                        <a href="https://wa.me/79624040568" class="social-link" target="_blank">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                         <a href="https://vk.com" class="social-link" target="_blank">
@@ -405,9 +1617,9 @@
                 
                 <div class="footer-section">
                     <h4>Контакты</h4>
-                    <p><i class="fas fa-phone"></i> +7 (962) 404-43-23</p>
+                    <p><i class="fas fa-phone"></i> +7 (962) 404-05-68</p>
                     <p><i class="fas fa-envelope"></i> vegadar@yandex.ru</p>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, ул. Промышленная, 15</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, ул. Черкесское шоссе 54</p>
                 </div>
             </div>
             
@@ -454,6 +1666,562 @@
         </button>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        // Данные товаров
+        const productsData = [
+            // Мебельные ручки
+            {
+                id: 1,
+                name: "Ручка мебельная 'Престиж' алюминиевая",
+                price: 450,
+                category: "handles",
+                image: "images/handles.jpg",
+                description: "Алюминиевая ручка с матовым покрытием, 128мм. Для современной мебели."
+            },
+            {
+                id: 2,
+                name: "Ручка-кноб 'Элегант' хром",
+                price: 320,
+                category: "handles",
+                image: "images/handles.jpg",
+                description: "Шарообразная ручка, хром покрытие, 32мм. Универсальное решение."
+            },
+            {
+                id: 3,
+                name: "Ручка С-образная 'Модерн'",
+                price: 280,
+                category: "handles",
+                image: "images/handles.jpg",
+                description: "Стальная ручка для современной мебели, 96мм. Стильный дизайн."
+            },
+            {
+                id: 4,
+                name: "Ручка скоба 'Классика' латунь",
+                price: 390,
+                category: "handles",
+                image: "images/handles.jpg",
+                description: "Латунная ручка для классической мебели, 128мм. Премиальное качество."
+            },
+            
+            // Мебельные петли
+            {
+                id: 5,
+                name: "Петля четырехшарнирная с доводчиком",
+                price: 280,
+                category: "hinges",
+                image: "images/hinges.jpg",
+                description: "С доводчиком, регулировка по 3 осям, 110°. Немецкое качество."
+            },
+            {
+                id: 6,
+                name: "Петля скрытая INVISIBLE",
+                price: 390,
+                category: "hinges",
+                image: "images/hinges.jpg",
+                description: "Скрытое крепление, для современных интерьеров. Невидимый монтаж."
+            },
+            {
+                id: 7,
+                name: "Петля накладная 95°",
+                price: 220,
+                category: "hinges",
+                image: "images/hinges.jpg",
+                description: "Для мебельных фасадов, угол открывания 95°. Надежная конструкция."
+            },
+            {
+                id: 8,
+                name: "Петля полного навеса 175°",
+                price: 310,
+                category: "hinges",
+                image: "images/hinges.jpg",
+                description: "Для угловых шкафов, широкий угол открывания. С плавным ходом."
+            },
+            
+            // Системы хранения
+            {
+                id: 9,
+                name: "Направляющая шариковая 400мм",
+                price: 890,
+                category: "systems",
+                image: "images/drawers.jpg",
+                description: "Для выдвижных ящиков, нагрузка до 50кг, 400мм. Плавный ход."
+            },
+            {
+                id: 10,
+                name: "Лифт подъемный механизм газлифт",
+                price: 1250,
+                category: "systems",
+                image: "images/drawers.jpg",
+                description: "Для верхних шкафов, плавное открывание. Gas-lift система."
+            },
+            {
+                id: 11,
+                name: "Направляющая телескопическая 450мм",
+                price: 750,
+                category: "systems",
+                image: "images/drawers.jpg",
+                description: "Полное выдвижение, нагрузка до 35кг, 450мм. Тихая работа."
+            },
+            {
+                id: 12,
+                name: "Система пантограф для верхних шкафов",
+                price: 1850,
+                category: "systems",
+                image: "images/drawers.jpg",
+                description: "Для верхних шкафов, вертикальное открывание. Премиум-класс."
+            },
+            
+            // Крепежные изделия
+            {
+                id: 13,
+                name: "Винт мебельный конфирмат 6.3x50mm",
+                price: 5,
+                category: "hardware",
+                image: "images/hardware.jpg",
+                description: "Для сборки мебели, 6.3x50mm, оцинкованный. Высокая прочность."
+            },
+            {
+                id: 14,
+                name: "Угловая стяжка мебельная",
+                price: 15,
+                category: "hardware",
+                image: "images/hardware.jpg",
+                description: "Для перпендикулярного соединения деталей. Надежная фиксация."
+            },
+            {
+                id: 15,
+                name: "Шуруп мебельный 4x30mm",
+                price: 3,
+                category: "hardware",
+                image: "images/hardware.jpg",
+                description: "Универсальный шуруп для ДСП, 4x30mm. Антикоррозийное покрытие."
+            },
+            {
+                id: 16,
+                name: "Мебельный уголок усиленный",
+                price: 25,
+                category: "hardware",
+                image: "images/hardware.jpg",
+                description: "Усиленный уголок для крепления полок. Грузоподъемность 50кг."
+            }
+        ];
+
+        // Корзина
+        let cart = [];
+        let cartCount = 0;
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            initCart();
+            setupEventListeners();
+            setupMobileMenu();
+            loadAllProducts();
+            setupSearch();
+            
+            console.log('Сайт загружен! Все функции работают корректно!');
+        });
+
+        // Корзина
+        function initCart() {
+            const savedCart = localStorage.getItem('vegadar_cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartCount();
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('vegadar_cart', JSON.stringify(cart));
+        }
+
+        function updateCartCount() {
+            cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElement = document.querySelector('.cart-count');
+            if (cartCountElement) {
+                cartCountElement.textContent = cartCount;
+            }
+        }
+
+        function addToCart(productId, productName, productPrice) {
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            updateCartCount();
+            showNotification(`✅ "${productName}" добавлен в корзину!`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartCount();
+            updateCartModal();
+        }
+
+        function clearCart() {
+            cart = [];
+            saveCart();
+            updateCartCount();
+            updateCartModal();
+            showNotification('🗑️ Корзина очищена');
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    saveCart();
+                    updateCartModal();
+                }
+            }
+        }
+
+        function calculateTotal() {
+            return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        }
+
+        // Модальное окно корзины
+        function setupCartModal() {
+            const modal = document.getElementById('cartModal');
+            const cartButton = document.getElementById('cartButton');
+            const closeButton = document.querySelector('.close');
+            const continueShopping = document.getElementById('continueShopping');
+            const checkoutButton = document.getElementById('checkout');
+            const clearCartButton = document.getElementById('clearCart');
+
+            if (cartButton) {
+                cartButton.addEventListener('click', openCartModal);
+            }
+
+            if (closeButton) {
+                closeButton.addEventListener('click', closeCartModal);
+            }
+
+            if (continueShopping) {
+                continueShopping.addEventListener('click', closeCartModal);
+            }
+
+            if (checkoutButton) {
+                checkoutButton.addEventListener('click', processCheckout);
+            }
+
+            if (clearCartButton) {
+                clearCartButton.addEventListener('click', clearCart);
+            }
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeCartModal();
+                }
+            });
+        }
+
+        function openCartModal() {
+            const modal = document.getElementById('cartModal');
+            updateCartModal();
+            modal.style.display = 'block';
+        }
+
+        function closeCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = 'none';
+        }
+
+        function updateCartModal() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (!cartItems || !cartTotal) return;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price} ₽ × ${item.quantity}</div>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+            
+            cartTotal.textContent = calculateTotal();
+        }
+
+        function processCheckout() {
+            if (cart.length === 0) {
+                showNotification('❌ Корзина пуста!');
+                return;
+            }
+
+            const orderItems = cart.map(item => 
+                `• ${item.name} - ${item.quantity}шт. × ${item.price}₽ = ${item.quantity * item.price}₽`
+            ).join('\n');
+
+            const totalAmount = calculateTotal();
+            const message = `🛒 ЗАКАЗ С САЙТА VEGADAR.RU\n\n${orderItems}\n\n💰 ИТОГО: ${totalAmount}₽\n\n📞 Для подтверждения заказа свяжитесь с клиентом.`;
+
+            const phone = '+79624040568';
+            const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
+            
+            window.open(telegramUrl, '_blank');
+            
+            showNotification('✅ Заказ оформлен! Открываю Telegram для отправки.');
+            
+            cart = [];
+            saveCart();
+            updateCartCount();
+            closeCartModal();
+        }
+
+        // Навигация по категориям
+        function showCategory(category) {
+            // Скрываем все секции
+            document.getElementById('products').style.display = 'none';
+            document.getElementById('handles').style.display = 'none';
+            document.getElementById('hinges').style.display = 'none';
+            document.getElementById('systems').style.display = 'none';
+            document.getElementById('hardware').style.display = 'none';
+            
+            // Показываем выбранную категорию
+            document.getElementById(category).style.display = 'block';
+            
+            // Прокручиваем к категории
+            document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showCategories() {
+            // Скрываем все категории
+            document.getElementById('handles').style.display = 'none';
+            document.getElementById('hinges').style.display = 'none';
+            document.getElementById('systems').style.display = 'none';
+            document.getElementById('hardware').style.display = 'none';
+            
+            // Показываем главную секцию с категориями
+            document.getElementById('products').style.display = 'block';
+            
+            // Прокручиваем к категориям
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Загрузка товаров
+        function loadAllProducts() {
+            const categories = ['handles', 'hinges', 'systems', 'hardware'];
+            
+            categories.forEach(category => {
+                const productsGrid = document.getElementById(category + 'Products');
+                const categoryProducts = productsData.filter(product => product.category === category);
+                
+                productsGrid.innerHTML = categoryProducts.map(product => `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
+                            <div class="product-badge">${getCategoryName(product.category)}</div>
+                        </div>
+                        <div class="product-content">
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <div class="product-price">${product.price} ₽</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" onclick="addToCart(${product.id}, '${product.name.replace(/'/g, "\\'")}', ${product.price})">
+                                    <i class="fas fa-cart-plus"></i>
+                                    В корзину
+                                </button>
+                                <button class="btn btn-secondary" onclick="orderProduct(${product.id})">
+                                    <i class="fab fa-telegram"></i>
+                                    Заказать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                'handles': 'Ручки',
+                'hinges': 'Петли',
+                'systems': 'Системы',
+                'hardware': 'Крепеж'
+            };
+            return names[category] || 'Товар';
+        }
+
+        // Поиск - ИСПРАВЛЕННАЯ ВЕРСИЯ
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            if (!searchInput || !searchResults) {
+                console.error('Элементы поиска не найдены!');
+                return;
+            }
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                const results = productsData.filter(product => 
+                    product.name.toLowerCase().includes(query) || 
+                    product.description.toLowerCase().includes(query)
+                );
+                
+                if (results.length > 0) {
+                    searchResults.innerHTML = results.map(product => `
+                        <div class="search-result-item" onclick="selectSearchResult('${product.category}', ${product.id})">
+                            <div class="search-result-name">${product.name}</div>
+                            <div class="search-result-price">${product.price} ₽</div>
+                        </div>
+                    `).join('');
+                    searchResults.style.display = 'block';
+                } else {
+                    searchResults.innerHTML = '<div class="no-results">Товары не найдены</div>';
+                    searchResults.style.display = 'block';
+                }
+            });
+            
+            // Скрываем результаты при клике вне поиска
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+        }
+
+        function selectSearchResult(category, productId) {
+            showCategory(category);
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResults').style.display = 'none';
+            
+            // Прокручиваем к категории
+            setTimeout(() => {
+                document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        // Заказ товара
+        function orderProduct(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (product) {
+                const message = `Здравствуйте! Хочу заказать товар: ${product.name} - ${product.price}₽`;
+                openTelegramWithMessage(message);
+            }
+        }
+
+        // Открытие Telegram
+        function openTelegram() {
+            const message = 'Здравствуйте! У меня вопрос по мебельной фурнитуре.';
+            openTelegramWithMessage(message);
+        }
+
+        function openTelegramWithMessage(message) {
+            const phone = '+79624040568';
+            const url = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // ИИ-ассистент
+        function openAIAssistant() {
+            showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время');
+            // В будущем здесь будет интеграция с ИИ-ассистентом
+        }
+
+        // Мобильное меню
+        function setupMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Утилиты
+        function showNotification(message) {
+            // Удаляем существующие уведомления
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Настройка всех обработчиков событий
+        function setupEventListeners() {
+            setupCartModal();
+            
+            // Обработчик контактной формы
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const phone = document.getElementById('contactPhone').value;
+                    const message = document.getElementById('contactMessage').value;
+                    
+                    processContactForm(name, phone, message);
+                });
+            }
+        }
+
+        function processContactForm(name, phone, message) {
+            const fullMessage = `📧 НОВАЯ ЗАЯВКА С САЙТА VEGADAR.RU\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Сообщение: ${message || 'Не указано'}`;
+            openTelegramWithMessage(fullMessage);
+            
+            document.getElementById('contactForm').reset();
+            showNotification('✅ Сообщение отправлено! Мы свяжемся с вами в течение 15 минут.');
+        }
+    </script>
 </body>
 </html>

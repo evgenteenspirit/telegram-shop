@@ -1001,6 +1001,182 @@
             padding: 2rem;
         }
 
+        /* Checkout Modal */
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .checkout-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #333;
+            z-index: 1;
+        }
+
+        .checkout-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #333;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        .checkout-step.active .step-number {
+            background: var(--lime);
+            color: var(--black);
+        }
+
+        .checkout-step.active .step-label {
+            color: var(--lime);
+        }
+
+        .checkout-step.completed .step-number {
+            background: var(--lime);
+            color: var(--black);
+        }
+
+        .checkout-step.completed .step-label {
+            color: var(--lime);
+        }
+
+        .checkout-form {
+            display: none;
+        }
+
+        .checkout-form.active {
+            display: block;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: var(--lime);
+        }
+
+        .payment-method.selected {
+            border-color: var(--lime);
+            background: rgba(50, 205, 50, 0.1);
+        }
+
+        .payment-icon {
+            font-size: 1.5rem;
+            color: var(--lime);
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-info h4 {
+            margin-bottom: 0.25rem;
+            color: var(--white);
+        }
+
+        .payment-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .order-summary {
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .order-summary h4 {
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .checkout-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--lime);
+            margin-bottom: 1.5rem;
+        }
+
         /* Search Results */
         .search-results {
             display: none;
@@ -1210,6 +1386,30 @@
             
             .header-carousel {
                 height: 150px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .checkout-steps {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .checkout-steps::before {
+                display: none;
+            }
+            
+            .checkout-step {
+                flex-direction: row;
+                gap: 1rem;
+            }
+            
+            .step-label {
+                text-align: left;
             }
         }
 
@@ -1706,6 +1906,172 @@
         </div>
     </div>
 
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Оформление заказа</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-steps">
+                    <div class="checkout-step active" id="step1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Данные</div>
+                    </div>
+                    <div class="checkout-step" id="step2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Доставка</div>
+                    </div>
+                    <div class="checkout-step" id="step3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Оплата</div>
+                    </div>
+                    <div class="checkout-step" id="step4">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Подтверждение</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Customer Information -->
+                <div class="checkout-form active" id="customerInfoForm">
+                    <h4>Контактная информация</h4>
+                    <div class="form-group">
+                        <input type="text" placeholder="ФИО*" required id="customerName">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="tel" placeholder="Телефон*" required id="customerPhone">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email" id="customerEmail">
+                        </div>
+                    </div>
+                    <div class="checkout-navigation">
+                        <button class="btn btn-outline" onclick="closeCheckoutModal()">Отмена</button>
+                        <button class="btn btn-primary" onclick="goToStep(2)">Продолжить</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Delivery Information -->
+                <div class="checkout-form" id="deliveryForm">
+                    <h4>Способ доставки</h4>
+                    <div class="payment-methods">
+                        <div class="payment-method selected" onclick="selectDelivery('pickup')">
+                            <div class="payment-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="payment-info">
+                                <h4>Самовывоз</h4>
+                                <p>г. Пятигорск, ул. Черкесское шоссе 54</p>
+                                <p><small>Бесплатно</small></p>
+                            </div>
+                        </div>
+                        <div class="payment-method" onclick="selectDelivery('delivery')">
+                            <div class="payment-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="payment-info">
+                                <h4>Доставка по Пятигорску</h4>
+                                <p>Бесплатная доставка в пределах города</p>
+                                <p><small>Бесплатно</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="deliveryAddressGroup" style="display: none;">
+                        <input type="text" placeholder="Адрес доставки*" id="deliveryAddress">
+                    </div>
+                    
+                    <div class="checkout-navigation">
+                        <button class="btn btn-outline" onclick="goToStep(1)">Назад</button>
+                        <button class="btn btn-primary" onclick="goToStep(3)">Продолжить</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Payment Information -->
+                <div class="checkout-form" id="paymentForm">
+                    <h4>Способ оплаты</h4>
+                    <div class="payment-methods">
+                        <div class="payment-method selected" onclick="selectPayment('cash')">
+                            <div class="payment-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="payment-info">
+                                <h4>Наличными при получении</h4>
+                                <p>Оплата наличными при самовывозе или доставке</p>
+                            </div>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('card')">
+                            <div class="payment-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="payment-info">
+                                <h4>Банковской картой онлайн</h4>
+                                <p>Оплата картой Visa, Mastercard, Мир</p>
+                            </div>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('transfer')">
+                            <div class="payment-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="payment-info">
+                                <h4>Банковский перевод</h4>
+                                <p>Оплата по счету для юридических лиц</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h4>Ваш заказ</h4>
+                        <div id="checkoutItems">
+                            <!-- Items will be populated by JavaScript -->
+                        </div>
+                        <div class="summary-total">
+                            <span>Итого:</span>
+                            <span id="checkoutTotal">0 ₽</span>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-navigation">
+                        <button class="btn btn-outline" onclick="goToStep(2)">Назад</button>
+                        <button class="btn btn-primary" onclick="goToStep(4)">Перейти к оплате</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Confirmation -->
+                <div class="checkout-form" id="confirmationForm">
+                    <div class="success-message">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Заказ оформлен!</h3>
+                        <p>Спасибо за ваш заказ. Номер вашего заказа: <strong id="orderNumber">VGD-12345</strong></p>
+                        <p>В ближайшее время с вами свяжется наш менеджер для подтверждения заказа.</p>
+                        
+                        <div class="order-summary" style="margin-top: 2rem;">
+                            <h4>Детали заказа</h4>
+                            <div id="finalOrderItems">
+                                <!-- Final order items will be populated by JavaScript -->
+                            </div>
+                            <div class="summary-total">
+                                <span>Итого:</span>
+                                <span id="finalOrderTotal">0 ₽</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <button class="btn btn-primary" onclick="closeCheckoutModal()">Продолжить покупки</button>
+                            <button class="btn btn-secondary" onclick="printOrder()" style="margin-left: 1rem;">
+                                <i class="fas fa-print"></i> Распечатать заказ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- AI Assistant -->
     <div class="ai-assistant">
         <button class="ai-button" onclick="openAIAssistant()">
@@ -1856,6 +2222,9 @@
         // Корзина
         let cart = [];
         let cartCount = 0;
+        let currentStep = 1;
+        let selectedDelivery = 'pickup';
+        let selectedPayment = 'cash';
 
         // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
@@ -1975,7 +2344,7 @@
             }
 
             if (checkoutButton) {
-                checkoutButton.addEventListener('click', processCheckout);
+                checkoutButton.addEventListener('click', openCheckoutModal);
             }
 
             if (clearCartButton) {
@@ -2030,30 +2399,284 @@
             cartTotal.textContent = calculateTotal();
         }
 
-        function processCheckout() {
+        // Модальное окно оформления заказа
+        function setupCheckoutModal() {
+            const modal = document.getElementById('checkoutModal');
+            const closeButton = modal.querySelector('.close');
+            
+            if (closeButton) {
+                closeButton.addEventListener('click', closeCheckoutModal);
+            }
+            
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeCheckoutModal();
+                }
+            });
+        }
+
+        function openCheckoutModal() {
             if (cart.length === 0) {
                 showNotification('❌ Корзина пуста!');
                 return;
             }
+            
+            closeCartModal();
+            const modal = document.getElementById('checkoutModal');
+            updateCheckoutItems();
+            modal.style.display = 'block';
+        }
 
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkoutModal');
+            modal.style.display = 'none';
+            resetCheckoutForm();
+        }
+
+        function resetCheckoutForm() {
+            currentStep = 1;
+            selectedDelivery = 'pickup';
+            selectedPayment = 'cash';
+            updateCheckoutSteps();
+            
+            // Сброс форм
+            document.getElementById('customerInfoForm').classList.add('active');
+            document.getElementById('deliveryForm').classList.remove('active');
+            document.getElementById('paymentForm').classList.remove('active');
+            document.getElementById('confirmationForm').classList.remove('active');
+            
+            // Сброс выбора доставки
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+            document.querySelector('.payment-method:first-child').classList.add('selected');
+            document.getElementById('deliveryAddressGroup').style.display = 'none';
+            
+            // Сброс выбора оплаты
+            document.querySelectorAll('#paymentForm .payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+            document.querySelector('#paymentForm .payment-method:first-child').classList.add('selected');
+        }
+
+        function updateCheckoutSteps() {
+            // Сброс всех шагов
+            document.querySelectorAll('.checkout-step').forEach(step => {
+                step.classList.remove('active', 'completed');
+            });
+            
+            // Установка активного шага и завершенных шагов
+            for (let i = 1; i <= 4; i++) {
+                const step = document.getElementById(`step${i}`);
+                if (i < currentStep) {
+                    step.classList.add('completed');
+                } else if (i === currentStep) {
+                    step.classList.add('active');
+                }
+            }
+        }
+
+        function goToStep(step) {
+            // Валидация текущего шага перед переходом
+            if (currentStep === 1 && !validateStep1()) return;
+            if (currentStep === 2 && !validateStep2()) return;
+            if (currentStep === 3 && !validateStep3()) return;
+            
+            // Скрыть все формы
+            document.querySelectorAll('.checkout-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            // Показать нужную форму
+            document.getElementById(getFormId(step)).classList.add('active');
+            
+            // Обновить текущий шаг
+            currentStep = step;
+            updateCheckoutSteps();
+            
+            // Обновить элементы заказа на шаге оплаты
+            if (step === 3) {
+                updateCheckoutItems();
+            }
+            
+            // Обновить финальный заказ на шаге подтверждения
+            if (step === 4) {
+                updateFinalOrder();
+                generateOrderNumber();
+                // Очистить корзину после успешного оформления
+                cart = [];
+                saveCart();
+                updateCartCount();
+            }
+        }
+
+        function getFormId(step) {
+            switch(step) {
+                case 1: return 'customerInfoForm';
+                case 2: return 'deliveryForm';
+                case 3: return 'paymentForm';
+                case 4: return 'confirmationForm';
+                default: return 'customerInfoForm';
+            }
+        }
+
+        function validateStep1() {
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            
+            if (!name.trim()) {
+                showNotification('❌ Пожалуйста, введите ваше ФИО');
+                return false;
+            }
+            
+            if (!phone.trim()) {
+                showNotification('❌ Пожалуйста, введите ваш телефон');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function validateStep2() {
+            if (selectedDelivery === 'delivery') {
+                const address = document.getElementById('deliveryAddress').value;
+                if (!address.trim()) {
+                    showNotification('❌ Пожалуйста, введите адрес доставки');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function validateStep3() {
+            // Всегда валидно, так как есть выбор по умолчанию
+            return true;
+        }
+
+        function selectDelivery(type) {
+            selectedDelivery = type;
+            
+            // Обновить визуальный выбор
+            document.querySelectorAll('#deliveryForm .payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Показать/скрыть поле адреса
+            const addressGroup = document.getElementById('deliveryAddressGroup');
+            if (type === 'delivery') {
+                addressGroup.style.display = 'block';
+            } else {
+                addressGroup.style.display = 'none';
+            }
+        }
+
+        function selectPayment(type) {
+            selectedPayment = type;
+            
+            // Обновить визуальный выбор
+            document.querySelectorAll('#paymentForm .payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+        }
+
+        function updateCheckoutItems() {
+            const checkoutItems = document.getElementById('checkoutItems');
+            const checkoutTotal = document.getElementById('checkoutTotal');
+            
+            if (!checkoutItems || !checkoutTotal) return;
+            
+            if (cart.length === 0) {
+                checkoutItems.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
+            } else {
+                checkoutItems.innerHTML = cart.map(item => `
+                    <div class="summary-item">
+                        <span>${item.name} × ${item.quantity}</span>
+                        <span>${item.price * item.quantity} ₽</span>
+                    </div>
+                `).join('');
+            }
+            
+            checkoutTotal.textContent = `${calculateTotal()} ₽`;
+        }
+
+        function updateFinalOrder() {
+            const finalOrderItems = document.getElementById('finalOrderItems');
+            const finalOrderTotal = document.getElementById('finalOrderTotal');
+            
+            if (!finalOrderItems || !finalOrderTotal) return;
+            
+            if (cart.length === 0) {
+                finalOrderItems.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
+            } else {
+                finalOrderItems.innerHTML = cart.map(item => `
+                    <div class="summary-item">
+                        <span>${item.name} × ${item.quantity}</span>
+                        <span>${item.price * item.quantity} ₽</span>
+                    </div>
+                `).join('');
+            }
+            
+            finalOrderTotal.textContent = `${calculateTotal()} ₽`;
+        }
+
+        function generateOrderNumber() {
+            const orderNumber = 'VGD-' + Math.floor(10000 + Math.random() * 90000);
+            document.getElementById('orderNumber').textContent = orderNumber;
+            
+            // Отправить уведомление в Telegram о новом заказе
+            sendOrderToTelegram(orderNumber);
+        }
+
+        function sendOrderToTelegram(orderNumber) {
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const email = document.getElementById('customerEmail').value;
+            
             const orderItems = cart.map(item => 
                 `• ${item.name} - ${item.quantity}шт. × ${item.price}₽ = ${item.quantity * item.price}₽`
             ).join('\n');
 
             const totalAmount = calculateTotal();
-            const message = `🛒 ЗАКАЗ С САЙТА VEGADAR.RU\n\n${orderItems}\n\n💰 ИТОГО: ${totalAmount}₽\n\n📞 Для подтверждения заказа свяжитесь с клиентом.`;
+            
+            let deliveryInfo = '';
+            if (selectedDelivery === 'pickup') {
+                deliveryInfo = 'Самовывоз: г. Пятигорск, ул. Черкесское шоссе 54';
+            } else {
+                const address = document.getElementById('deliveryAddress').value;
+                deliveryInfo = `Доставка по адресу: ${address}`;
+            }
+            
+            let paymentInfo = '';
+            switch(selectedPayment) {
+                case 'cash':
+                    paymentInfo = 'Оплата наличными при получении';
+                    break;
+                case 'card':
+                    paymentInfo = 'Оплата картой онлайн';
+                    break;
+                case 'transfer':
+                    paymentInfo = 'Банковский перевод';
+                    break;
+            }
+            
+            const message = `🛒 НОВЫЙ ЗАКАЗ #${orderNumber}\n\n` +
+                           `👤 КЛИЕНТ:\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email || 'Не указан'}\n\n` +
+                           `📦 ЗАКАЗ:\n${orderItems}\n\n` +
+                           `💰 ИТОГО: ${totalAmount}₽\n\n` +
+                           `🚚 ДОСТАВКА:\n${deliveryInfo}\n\n` +
+                           `💳 ОПЛАТА:\n${paymentInfo}`;
 
-            const phone = '+79624040568';
-            const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
+            const phoneNumber = '+79624040568';
+            const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(phoneNumber)}&text=${encodeURIComponent(message)}`;
             
+            // Открыть Telegram в новом окне
             window.open(telegramUrl, '_blank');
-            
-            showNotification('✅ Заказ оформлен! Открываю Telegram для отправки.');
-            
-            cart = [];
-            saveCart();
-            updateCartCount();
-            closeCartModal();
+        }
+
+        function printOrder() {
+            window.print();
         }
 
         // Навигация по категориям
@@ -2260,6 +2883,7 @@
         // Настройка всех обработчиков событий
         function setupEventListeners() {
             setupCartModal();
+            setupCheckoutModal();
             
             // Обработчик контактной формы
             const contactForm = document.getElementById('contactForm');

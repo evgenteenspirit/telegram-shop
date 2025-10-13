@@ -5,201 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вегадар - Магазин мебельной фурнитуры в Пятигорске</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --lime: #32CD32;
-            --lime-dark: #28a428;
-            --orange: #FF8C00;
-            --black: #000000;
-            --dark-gray: #1a1a1a;
-            --gray: #888;
-            --light-gray: #222;
-            --white: #ffffff;
-            --shadow: 0 4px 12px rgba(0,0,0,0.3);
-            --shadow-hover: 0 8px 24px rgba(0,0,0,0.5);
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.5;
-            color: var(--white);
-            background: var(--black);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* Header - Компактный */
-        .header {
-            background: var(--dark-gray);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 10px 0;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: var(--white);
-        }
-
-        .logo-icon {
-            width: 35px;
-            height: 35px;
-            background: var(--lime);
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .nav-link:hover {
-            color: var(--lime);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* ИЗМЕНЕНИЕ: Кнопка корзины теперь зеленая */
-        .cart-btn {
-            background: var(--lime);
-            color: var(--black);
-            border: none;
-            border-radius: 6px;
-            padding: 0.6rem 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .cart-btn:hover {
-            background: var(--lime-dark);
-            transform: translateY(-2px);
-        }
-
-        .cart-count {
-            background: var(--black);
-            color: var(--white);
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--white);
-            font-size: 1.2rem;
-        }
-
-        /* Карусель - Компактная */
-        .main-carousel {
-            margin-top: 60px;
-            height: 300px;
-            position: relative;
-            overflow: hidden;
-            background: var(--black);
-        }
-
-        .carousel-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .carousel-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .carousel-slide.active {
-            opacity: 1;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .carousel-nav {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-        }
-
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--gray);
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .carousel-dot.active {
-            background: var(--lime);
-        }
-
-        /* Остальные стили остаются без изменений */
-        /* ... (полный CSS из предыдущей версии) ... */
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
@@ -218,10 +24,13 @@
                 </div>
 
                 <div class="nav-actions">
-                    <!-- ИЗМЕНЕНИЕ: Кнопка корзины теперь зеленая -->
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Поиск товаров..." id="searchInput">
+                        <div class="search-results" id="searchResults"></div>
+                    </div>
                     <button class="cart-btn" id="cartButton">
                         <i class="fas fa-shopping-cart"></i>
-                        <span>Корзина</span>
                         <span class="cart-count">0</span>
                     </button>
                 </div>
@@ -231,107 +40,420 @@
                 </button>
             </nav>
         </div>
+        
+        <!-- Header Carousel -->
+        <div class="header-carousel">
+            <div class="carousel-slides">
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&h=200&fit=crop" alt="Современная мебель">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&h=200&fit=crop" alt="Мебельная фурнитура">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1506891536236-3e07892564b7?w=1200&h=200&fit=crop" alt="Ручки и петли">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&h=200&fit=crop" alt="Системы хранения">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1200&h=200&fit=crop" alt="Крепежные изделия">
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Основное содержимое -->
-    <main>
-        <!-- Карусель -->
-        <section class="main-carousel">
-            <div class="carousel-container" id="mainCarousel">
-                <div class="carousel-slide active">
-                    <img src="images/handles.jpg" alt="Мебельные ручки" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=300&fit=crop'">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-truck"></i>
+                    <span>Бесплатная доставка по Пятигорску</span>
                 </div>
-                <div class="carousel-slide">
-                    <img src="images/hinge.jpg" alt="Мебельные петли" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1506891536236-3e07892564b7?w=800&h=300&fit=crop'">
+                <h1 class="hero-title">Мебельная фурнитура премиум-качества</h1>
+                <p class="hero-subtitle">
+                    Более 5000 наименований фурнитуры от ведущих производителей. 
+                    Гарантия качества и доступные цены. Работаем с 2008 года.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large" onclick="scrollToSection('products')">
+                        <i class="fas fa-box-open"></i>
+                        Перейти в каталог
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="openTelegram()">
+                        <i class="fab fa-telegram"></i>
+                        Написать в Telegram
+                    </button>
                 </div>
-                <div class="carousel-slide">
-                    <img src="images/drawers.jpg" alt="Системы хранения" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=300&fit=crop'">
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">5000+</span>
+                        <span class="stat-label">позиций в каталоге</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">лет на рынке</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">гарантия качества</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Категории товаров</h2>
+                <p class="section-subtitle">Широкий ассортимент качественной фурнитуры для профессионалов</p>
+            </div>
+            
+            <div class="categories-grid">
+                <a href="#handles" class="category-card" onclick="showCategory('handles')">
+                    <div class="category-image">
+                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Ручки'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Мебельные ручки</h3>
+                        <p>Широкий выбор ручек для мебели всех стилей и размеров от ведущих производителей</p>
+                        <div class="category-link">
+                            Смотреть товары
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="#hinges" class="category-card" onclick="showCategory('hinges')">
+                    <div class="category-image">
+                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Петли'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Мебельные петли</h3>
+                        <p>Четырехшарнирные и скрытые петли для любой мебели с регулировками</p>
+                        <div class="category-link">
+                            Смотреть товары
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="#systems" class="category-card" onclick="showCategory('systems')">
+                    <div class="category-image">
+                        <img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Системы+Хранения'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Системы хранения</h3>
+                        <p>Направляющие и выдвижные механизмы для ящиков с плавным ходом</p>
+                        <div class="category-link">
+                            Смотреть товары
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#hardware" class="category-card" onclick="showCategory('hardware')">
+                    <div class="category-image">
+                        <img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Крепежные+Изделия'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Крепежные изделия</h3>
+                        <p>Винты, шурупы, стяжки и метизы для профессиональной сборки мебели</p>
+                        <div class="category-link">
+                            Смотреть товары
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Sections -->
+    <section id="handles" class="section section-light" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i>
+                    Назад к категориям
+                </button>
+                <h2 class="section-title">Мебельные ручки</h2>
+                <p class="section-subtitle">Качественные ручки для любой мебели</p>
+            </div>
+            
+            <div class="products-grid" id="handlesProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="hinges" class="section section-light" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i>
+                    Назад к категориям
+                </button>
+                <h2 class="section-title">Мебельные петли</h2>
+                <p class="section-subtitle">Надежные петли для мебельных фасадов</p>
+            </div>
+            
+            <div class="products-grid" id="hingesProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="systems" class="section section-light" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i>
+                    Назад к категориям
+                </button>
+                <h2 class="section-title">Системы хранения</h2>
+                <p class="section-subtitle">Современные системы для организации пространства</p>
+            </div>
+            
+            <div class="products-grid" id="systemsProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="hardware" class="section section-light" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i>
+                    Назад к категориям
+                </button>
+                <h2 class="section-title">Крепежные изделия</h2>
+                <p class="section-subtitle">Профессиональный крепеж для сборки мебели</p>
+            </div>
+            
+            <div class="products-grid" id="hardwareProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">О компании Вегадар</h2>
+                    <p>
+                        Компания "Вегадар" основана в 2008 году и за время работы зарекомендовала себя 
+                        как надежный поставщик качественной мебельной фурнитуры в Пятигорске и 
+                        Ставропольском крае.
+                    </p>
+                    <p>
+                        Мы сотрудничаем с ведущими производителями Европы и России, что позволяет 
+                        предлагать нашим клиентам широкий ассортимент продукции по доступным ценам.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Собственный склад с 5000+ наименований</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Гарантия качества на всю продукцию</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Бесплатная доставка по Пятигорску</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Профессиональные консультации</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=500&fit=crop" alt="Наш магазин фурнитуры">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section id="contacts" class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Контакты</h2>
+                <p class="section-subtitle">Свяжитесь с нами удобным для вас способом</p>
+            </div>
+            
+            <div class="contacts-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Адрес магазина</h3>
+                            <p>г. Пятигорск, ул. Промышленная, 15</p>
+                            <p><small>Режим работы: Пн-Пт 9:00-18:00, Сб 10:00-16:00</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p><a href="tel:+79624044323">+7 (962) 404-43-23</a></p>
+                            <p><small>Ежедневно с 8:00 до 20:00</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:vegadar@yandex.ru">vegadar@yandex.ru</a></p>
+                            <p><small>Отвечаем в течение 24 часов</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div>
+                            <h3>Доставка</h3>
+                            <p>Бесплатная доставка по Пятигорску</p>
+                            <p><small>Доставка по Ставропольскому краю - 1-2 дня</small></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <div class="form-header">
+                        <h3>Остались вопросы?</h3>
+                        <p>Заполните форму и мы свяжемся с вами в течение 15 минут</p>
+                    </div>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required id="contactName">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Ваш телефон" required id="contactPhone">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Ваш вопрос или комментарий" rows="4" id="contactMessage"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i>
+                            Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon"></div>
+                        <span>VEGADAR</span>
+                    </div>
+                    <p>Магазин качественной мебельной фурнитуры в Пятигорске. Работаем с 2008 года.</p>
+                    <div class="social-links">
+                        <a href="https://t.me/+79624044323" class="social-link" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://wa.me/79624044323" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://vk.com" class="social-link" target="_blank">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Категории</h4>
+                    <a href="#handles" onclick="showCategory('handles')">Мебельные ручки</a>
+                    <a href="#hinges" onclick="showCategory('hinges')">Мебельные петли</a>
+                    <a href="#systems" onclick="showCategory('systems')">Системы хранения</a>
+                    <a href="#hardware" onclick="showCategory('hardware')">Крепежные изделия</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Компания</h4>
+                    <a href="#about">О нас</a>
+                    <a href="#contacts">Контакты</a>
+                    <a href="#delivery">Доставка и оплата</a>
+                    <a href="#guarantee">Гарантия</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +7 (962) 404-43-23</p>
+                    <p><i class="fas fa-envelope"></i> vegadar@yandex.ru</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, ул. Промышленная, 15</p>
                 </div>
             </div>
             
-            <div class="carousel-nav" id="carouselNav">
-                <div class="carousel-dot active" onclick="goToSlide(0)"></div>
-                <div class="carousel-dot" onclick="goToSlide(1)"></div>
-                <div class="carousel-dot" onclick="goToSlide(2)"></div>
+            <div class="footer-bottom">
+                <p>© 2024 Вегадар. Все права защищены. ИНН: 1234567890 ОГРН: 1234567890123</p>
             </div>
-        </section>
+        </div>
+    </footer>
 
-        <!-- Остальные секции -->
-        <!-- ... -->
-    </main>
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Корзина</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems" class="cart-items">
+                    <!-- Товары в корзине -->
+                </div>
+                <div class="cart-total">
+                    <strong>Итого: <span id="cartTotal">0</span> ₽</strong>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="cart-actions">
+                    <button class="btn btn-outline" id="clearCart">
+                        <i class="fas fa-trash"></i>
+                        Очистить корзину
+                    </button>
+                </div>
+                <div>
+                    <button class="btn btn-secondary" id="continueShopping">Продолжить покупки</button>
+                    <button class="btn btn-primary" id="checkout">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        // Оптимизированная версия скрипта для быстрой загрузки
-        document.addEventListener('DOMContentLoaded', function() {
-            // Быстрая инициализация основных функций
-            initEssentialFunctions();
-            
-            // Отложенная загрузка остальных функций
-            setTimeout(initSecondaryFunctions, 100);
-        });
+    <!-- AI Assistant -->
+    <div class="ai-assistant">
+        <button class="ai-button" onclick="openAIAssistant()">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
 
-        function initEssentialFunctions() {
-            setupMobileMenu();
-            initCart();
-            setupCartModal();
-        }
-
-        function initSecondaryFunctions() {
-            initCarousel();
-            loadAllProducts();
-            setupEventListeners();
-        }
-
-        // Упрощенная инициализация корзины
-        function initCart() {
-            const savedCart = localStorage.getItem('vegadar_cart');
-            if (savedCart) {
-                window.cart = JSON.parse(savedCart);
-                updateCartCount();
-            } else {
-                window.cart = [];
-            }
-        }
-
-        function updateCartCount() {
-            const cartCount = window.cart.reduce((total, item) => total + item.quantity, 0);
-            document.querySelector('.cart-count').textContent = cartCount;
-        }
-
-        // Оптимизированная карусель
-        function initCarousel() {
-            window.currentSlide = 0;
-            window.slideInterval = setInterval(nextSlide, 4000);
-        }
-
-        function nextSlide() {
-            const slides = document.querySelectorAll('.carousel-slide');
-            const dots = document.querySelectorAll('.carousel-dot');
-            
-            slides[window.currentSlide].classList.remove('active');
-            dots[window.currentSlide].classList.remove('active');
-            
-            window.currentSlide = (window.currentSlide + 1) % slides.length;
-            
-            slides[window.currentSlide].classList.add('active');
-            dots[window.currentSlide].classList.add('active');
-        }
-
-        function goToSlide(n) {
-            const slides = document.querySelectorAll('.carousel-slide');
-            const dots = document.querySelectorAll('.carousel-dot');
-            
-            slides[window.currentSlide].classList.remove('active');
-            dots[window.currentSlide].classList.remove('active');
-            
-            window.currentSlide = n;
-            
-            slides[window.currentSlide].classList.add('active');
-            dots[window.currentSlide].classList.add('active');
-        }
-
-        // Остальные функции остаются похожими, но оптимизированы
-        // ... (остальной JavaScript код)
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>

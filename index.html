@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вегадар - Магазин мебельной фурнитуры в Пятигорске</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -26,7 +27,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
             color: var(--white);
             background: var(--black);
@@ -34,7 +35,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -65,6 +66,7 @@
             font-weight: 700;
             font-size: 1.5rem;
             color: var(--white);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
@@ -108,17 +110,19 @@
 
         /* Header Carousel */
         .header-carousel {
-            height: 200px;
+            height: 300px;
             overflow: hidden;
             position: relative;
             background: var(--black);
+            width: 133%;
+            margin-left: -16.5%;
         }
 
         .carousel-slides {
             display: flex;
             width: 500%;
             height: 100%;
-            animation: slide 20s infinite;
+            animation: slide 25s infinite;
         }
 
         .carousel-slide {
@@ -154,10 +158,11 @@
         .nav-link {
             color: var(--white);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.3s ease;
             padding: 0.5rem 0;
             position: relative;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .nav-link:hover {
@@ -198,6 +203,7 @@
             transition: all 0.3s ease;
             background: var(--dark-gray);
             color: var(--white);
+            font-family: 'Open Sans', sans-serif;
         }
 
         .search-input:focus {
@@ -223,7 +229,6 @@
             padding: 0.5rem;
             color: var(--white);
             transition: color 0.3s ease;
-            font-size: 1.2rem;
         }
 
         .cart-btn:hover {
@@ -237,14 +242,13 @@
             background: var(--lime);
             color: var(--black);
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 0.75rem;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .mobile-menu-btn {
@@ -254,7 +258,6 @@
             cursor: pointer;
             padding: 0.5rem;
             color: var(--white);
-            font-size: 1.2rem;
         }
 
         /* Buttons */
@@ -270,6 +273,7 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-primary {
@@ -312,7 +316,7 @@
 
         /* Hero Section */
         .hero {
-            padding: 140px 0 80px;
+            padding: 180px 0 80px;
             background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
             position: relative;
         }
@@ -334,6 +338,7 @@
             font-size: 0.9rem;
             font-weight: 500;
             margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .hero-title {
@@ -342,6 +347,7 @@
             line-height: 1.1;
             margin-bottom: 1.5rem;
             color: var(--white);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .hero-subtitle {
@@ -349,6 +355,7 @@
             color: var(--gray);
             margin-bottom: 2.5rem;
             line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .hero-actions {
@@ -356,47 +363,7 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-cart-container {
-            margin-top: 1rem;
             margin-bottom: 3rem;
-        }
-
-        .hero-cart-btn {
-            background: rgba(50, 205, 50, 0.1);
-            color: var(--lime);
-            border: 2px solid var(--lime);
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1rem;
-        }
-
-        .hero-cart-btn:hover {
-            background: var(--lime);
-            color: var(--black);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .hero-cart-count {
-            background: var(--lime);
-            color: var(--black);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 700;
         }
 
         .hero-stats {
@@ -412,16 +379,18 @@
 
         .stat-number {
             display: block;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--lime);
             margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--gray);
             font-weight: 500;
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* Sections */
@@ -443,6 +412,7 @@
             font-weight: 800;
             margin-bottom: 1rem;
             color: var(--white);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .section-subtitle {
@@ -451,6 +421,7 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* Categories */
@@ -501,12 +472,14 @@
             margin-bottom: 0.5rem;
             color: var(--white);
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .category-card p {
             color: var(--gray);
             line-height: 1.5;
             margin-bottom: 1rem;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .category-link {
@@ -516,6 +489,7 @@
             align-items: center;
             gap: 0.5rem;
             transition: gap 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .category-card:hover .category-link {
@@ -564,6 +538,7 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .product-content {
@@ -576,6 +551,7 @@
             color: var(--white);
             font-weight: 600;
             line-height: 1.3;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .product-card p {
@@ -583,6 +559,7 @@
             margin-bottom: 1rem;
             font-size: 0.9rem;
             line-height: 1.4;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .product-price {
@@ -590,6 +567,7 @@
             font-weight: 700;
             color: var(--lime);
             margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .product-actions {
@@ -617,6 +595,7 @@
             line-height: 1.7;
             color: var(--gray);
             margin-bottom: 2rem;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .about-features {
@@ -634,6 +613,10 @@
         .about-feature i {
             color: var(--lime);
             font-size: 1.2rem;
+        }
+
+        .about-feature span {
+            font-family: 'Open Sans', sans-serif;
         }
 
         .about-image {
@@ -687,17 +670,20 @@
             margin-bottom: 0.5rem;
             color: var(--white);
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .contact-card p {
             color: var(--gray);
             line-height: 1.5;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .contact-card a {
             color: var(--gray);
             text-decoration: none;
             transition: color 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .contact-card a:hover {
@@ -720,10 +706,12 @@
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
             color: var(--white);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .form-header p {
             color: var(--gray);
+            font-family: 'Open Sans', sans-serif;
         }
 
         .form-group {
@@ -740,6 +728,7 @@
             color: var(--white);
             font-family: inherit;
             transition: all 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .form-group input:focus,
@@ -776,6 +765,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--white);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section h4 {
@@ -783,6 +773,7 @@
             margin-bottom: 1.25rem;
             font-size: 1.1rem;
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section a {
@@ -791,6 +782,7 @@
             display: block;
             margin-bottom: 0.7rem;
             transition: color 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .footer-section a:hover {
@@ -803,6 +795,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .social-links {
@@ -834,6 +827,7 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* Cart Modal */
@@ -884,6 +878,7 @@
             color: var(--white);
             font-size: 1.5rem;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .close {
@@ -941,11 +936,13 @@
             font-weight: 600;
             margin-bottom: 0.25rem;
             color: var(--white);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .cart-item-price {
             color: var(--gray);
             font-size: 0.9rem;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .cart-item-quantity {
@@ -993,188 +990,14 @@
             padding-top: 1rem;
             border-top: 2px solid #333;
             color: var(--white);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .empty-cart {
             text-align: center;
             color: var(--gray);
             padding: 2rem;
-        }
-
-        /* Checkout Modal */
-        .checkout-steps {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .checkout-steps::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #333;
-            z-index: 1;
-        }
-
-        .checkout-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-number {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #333;
-            color: var(--gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .step-label {
-            font-size: 0.8rem;
-            color: var(--gray);
-            text-align: center;
-        }
-
-        .checkout-step.active .step-number {
-            background: var(--lime);
-            color: var(--black);
-        }
-
-        .checkout-step.active .step-label {
-            color: var(--lime);
-        }
-
-        .checkout-step.completed .step-number {
-            background: var(--lime);
-            color: var(--black);
-        }
-
-        .checkout-step.completed .step-label {
-            color: var(--lime);
-        }
-
-        .checkout-form {
-            display: none;
-        }
-
-        .checkout-form.active {
-            display: block;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-            margin-bottom: 0;
-        }
-
-        .payment-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .payment-method {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border: 1px solid #333;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .payment-method:hover {
-            border-color: var(--lime);
-        }
-
-        .payment-method.selected {
-            border-color: var(--lime);
-            background: rgba(50, 205, 50, 0.1);
-        }
-
-        .payment-icon {
-            font-size: 1.5rem;
-            color: var(--lime);
-        }
-
-        .payment-info {
-            flex: 1;
-        }
-
-        .payment-info h4 {
-            margin-bottom: 0.25rem;
-            color: var(--white);
-        }
-
-        .payment-info p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .order-summary {
-            background: var(--light-gray);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .order-summary h4 {
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            color: var(--gray);
-        }
-
-        .summary-total {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #333;
-            font-weight: 600;
-            color: var(--white);
-        }
-
-        .checkout-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
-        }
-
-        .success-message {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .success-icon {
-            font-size: 4rem;
-            color: var(--lime);
-            margin-bottom: 1.5rem;
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* Search Results */
@@ -1214,17 +1037,20 @@
 
         .search-result-name {
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .search-result-price {
             color: var(--lime);
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .no-results {
             padding: 1rem;
             text-align: center;
             color: var(--gray);
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* AI Assistant */
@@ -1269,6 +1095,7 @@
             z-index: 10000;
             font-weight: 600;
             animation: slideInRight 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
         }
 
         @keyframes slideInRight {
@@ -1295,6 +1122,12 @@
             
             .contacts-grid {
                 gap: 3rem;
+            }
+            
+            .header-carousel {
+                width: 100%;
+                margin-left: 0;
+                height: 250px;
             }
         }
 
@@ -1385,31 +1218,11 @@
             }
             
             .header-carousel {
-                height: 150px;
+                height: 200px;
             }
             
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            .checkout-steps {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-            
-            .checkout-steps::before {
-                display: none;
-            }
-            
-            .checkout-step {
-                flex-direction: row;
-                gap: 1rem;
-            }
-            
-            .step-label {
-                text-align: left;
+            .hero {
+                padding: 160px 0 60px;
             }
         }
 
@@ -1419,7 +1232,7 @@
             }
             
             .hero {
-                padding: 120px 0 60px;
+                padding: 140px 0 60px;
             }
             
             .hero-title {
@@ -1454,7 +1267,15 @@
             }
             
             .header-carousel {
-                height: 120px;
+                height: 150px;
+            }
+            
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            
+            .stat-label {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -1493,23 +1314,24 @@
             </nav>
         </div>
         
-        <!-- Header Carousel -->
+        <!-- Header Carousel - ТВОИ ФОТО -->
         <div class="header-carousel">
             <div class="carousel-slides">
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&h=200&fit=crop" alt="Современная мебель">
+                    <img src="images/carousel/facade1.jpg" alt="Мебельные фасады с ручками" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельные+Фасады'">
                 </div>
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&h=200&fit=crop" alt="Мебельная фурнитура">
+                    <img src="images/carousel/kitchen1.jpg" alt="Кухонная мебель" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Кухонная+Мебель'">
                 </div>
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1506891536236-3e07892564b7?w=1200&h=200&fit=crop" alt="Ручки и петли">
+                    <img src="images/carousel/hardware1.jpg" alt="Мебельная фурнитура" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельная+Фурнитура'">
                 </div>
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&h=200&fit=crop" alt="Системы хранения">
+                    <img src="images/carousel/storage1.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Системы+Хранения'">
                 </div>
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1200&h=200&fit=crop" alt="Крепежные изделия">
+                    <!-- КОТ ОСТАЕТСЯ! -->
+                    <img src="images/carousel/cat.jpg" alt="Рыжий кот - наш талисман" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=300&fit=crop'">
                 </div>
             </div>
         </div>
@@ -1523,7 +1345,7 @@
                     <i class="fas fa-truck"></i>
                     <span>Бесплатная доставка по Пятигорску</span>
                 </div>
-                <h1 class="hero-title">Мебельная фурнитура высокого качества</h1>
+                <h1 class="hero-title">Мебельная фурнитура премиум-качества</h1>
                 <p class="hero-subtitle">
                     Более 5000 наименований фурнитуры от ведущих производителей. 
                     Гарантия качества и доступные цены. Работаем с 2008 года.
@@ -1536,13 +1358,6 @@
                     <button class="btn btn-secondary btn-large" onclick="openTelegram()">
                         <i class="fab fa-telegram"></i>
                         Написать в Telegram
-                    </button>
-                </div>
-                <div class="hero-cart-container">
-                    <button class="hero-cart-btn" onclick="openCartModal()">
-                        <i class="fas fa-shopping-cart"></i>
-                        Корзина
-                        <span class="hero-cart-count">0</span>
                     </button>
                 </div>
                 <div class="hero-stats">
@@ -1758,8 +1573,8 @@
                         </div>
                         <div>
                             <h3>Адрес магазина</h3>
-                            <p>г. Пятигорск, ул. Черкесское шоссе 54</p>
-                            <p><small>Режим работы: Пн-Пт 9:00-18:00, Сб 10:00-16:00</small></p>
+                            <p>г. Пятигорск, Черкесское шоссе 54</p>
+                            <p><small>Режим работы: Пн-Пт 9:00-18:00, Сб 9:00-18:00, Вс 9:00-15:00</small></p>
                         </div>
                     </div>
                     
@@ -1769,7 +1584,7 @@
                         </div>
                         <div>
                             <h3>Телефон</h3>
-                            <p><a href="tel:+79624040568">+7 (962) 404-05-68</a></p>
+                            <p><a href="tel:+79054040568">+7 (905) 404-05-68</a></p>
                             <p><small>Ежедневно с 8:00 до 20:00</small></p>
                         </div>
                     </div>
@@ -1791,8 +1606,8 @@
                         </div>
                         <div>
                             <h3>Доставка</h3>
-                            <p>Бесплатная доставка по Пятигорску</p>
-                            <p><small>Доставка по Ставропольскому краю - 1-2 дня</small></p>
+                            <p>Доставка по Пятигорску</p>
+                            <p><small>Доставка от 3 тысяч бесплатно</small></p>
                         </div>
                     </div>
                 </div>
@@ -1834,10 +1649,10 @@
                     </div>
                     <p>Магазин качественной мебельной фурнитуры в Пятигорске. Работаем с 2008 года.</p>
                     <div class="social-links">
-                        <a href="https://t.me/+79624040568" class="social-link" target="_blank">
+                        <a href="https://t.me/+79624044323" class="social-link" target="_blank">
                             <i class="fab fa-telegram"></i>
                         </a>
-                        <a href="https://wa.me/79624040568" class="social-link" target="_blank">
+                        <a href="https://wa.me/79624044323" class="social-link" target="_blank">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                         <a href="https://vk.com" class="social-link" target="_blank">
@@ -1864,9 +1679,9 @@
                 
                 <div class="footer-section">
                     <h4>Контакты</h4>
-                    <p><i class="fas fa-phone"></i> +7 (962) 404-05-68</p>
+                    <p><i class="fas fa-phone"></i> +7 (962) 404-43-23</p>
                     <p><i class="fas fa-envelope"></i> vegadar@yandex.ru</p>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, ул. Черкесское шоссе 54</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, ул. Промышленная, 15</p>
                 </div>
             </div>
             
@@ -1901,172 +1716,6 @@
                 <div>
                     <button class="btn btn-secondary" id="continueShopping">Продолжить покупки</button>
                     <button class="btn btn-primary" id="checkout">Оформить заказ</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Checkout Modal -->
-    <div id="checkoutModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Оформление заказа</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="checkout-steps">
-                    <div class="checkout-step active" id="step1">
-                        <div class="step-number">1</div>
-                        <div class="step-label">Данные</div>
-                    </div>
-                    <div class="checkout-step" id="step2">
-                        <div class="step-number">2</div>
-                        <div class="step-label">Доставка</div>
-                    </div>
-                    <div class="checkout-step" id="step3">
-                        <div class="step-number">3</div>
-                        <div class="step-label">Оплата</div>
-                    </div>
-                    <div class="checkout-step" id="step4">
-                        <div class="step-number">4</div>
-                        <div class="step-label">Подтверждение</div>
-                    </div>
-                </div>
-
-                <!-- Step 1: Customer Information -->
-                <div class="checkout-form active" id="customerInfoForm">
-                    <h4>Контактная информация</h4>
-                    <div class="form-group">
-                        <input type="text" placeholder="ФИО*" required id="customerName">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="tel" placeholder="Телефон*" required id="customerPhone">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Email" id="customerEmail">
-                        </div>
-                    </div>
-                    <div class="checkout-navigation">
-                        <button class="btn btn-outline" onclick="closeCheckoutModal()">Отмена</button>
-                        <button class="btn btn-primary" onclick="goToStep(2)">Продолжить</button>
-                    </div>
-                </div>
-
-                <!-- Step 2: Delivery Information -->
-                <div class="checkout-form" id="deliveryForm">
-                    <h4>Способ доставки</h4>
-                    <div class="payment-methods">
-                        <div class="payment-method selected" onclick="selectDelivery('pickup')">
-                            <div class="payment-icon">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <div class="payment-info">
-                                <h4>Самовывоз</h4>
-                                <p>г. Пятигорск, ул. Черкесское шоссе 54</p>
-                                <p><small>Бесплатно</small></p>
-                            </div>
-                        </div>
-                        <div class="payment-method" onclick="selectDelivery('delivery')">
-                            <div class="payment-icon">
-                                <i class="fas fa-truck"></i>
-                            </div>
-                            <div class="payment-info">
-                                <h4>Доставка по Пятигорску</h4>
-                                <p>Бесплатная доставка в пределах города</p>
-                                <p><small>Бесплатно</small></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" id="deliveryAddressGroup" style="display: none;">
-                        <input type="text" placeholder="Адрес доставки*" id="deliveryAddress">
-                    </div>
-                    
-                    <div class="checkout-navigation">
-                        <button class="btn btn-outline" onclick="goToStep(1)">Назад</button>
-                        <button class="btn btn-primary" onclick="goToStep(3)">Продолжить</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Payment Information -->
-                <div class="checkout-form" id="paymentForm">
-                    <h4>Способ оплаты</h4>
-                    <div class="payment-methods">
-                        <div class="payment-method selected" onclick="selectPayment('cash')">
-                            <div class="payment-icon">
-                                <i class="fas fa-money-bill-wave"></i>
-                            </div>
-                            <div class="payment-info">
-                                <h4>Наличными при получении</h4>
-                                <p>Оплата наличными при самовывозе или доставке</p>
-                            </div>
-                        </div>
-                        <div class="payment-method" onclick="selectPayment('card')">
-                            <div class="payment-icon">
-                                <i class="fas fa-credit-card"></i>
-                            </div>
-                            <div class="payment-info">
-                                <h4>Банковской картой онлайн</h4>
-                                <p>Оплата картой Visa, Mastercard, Мир</p>
-                            </div>
-                        </div>
-                        <div class="payment-method" onclick="selectPayment('transfer')">
-                            <div class="payment-icon">
-                                <i class="fas fa-university"></i>
-                            </div>
-                            <div class="payment-info">
-                                <h4>Банковский перевод</h4>
-                                <p>Оплата по счету для юридических лиц</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="order-summary">
-                        <h4>Ваш заказ</h4>
-                        <div id="checkoutItems">
-                            <!-- Items will be populated by JavaScript -->
-                        </div>
-                        <div class="summary-total">
-                            <span>Итого:</span>
-                            <span id="checkoutTotal">0 ₽</span>
-                        </div>
-                    </div>
-                    
-                    <div class="checkout-navigation">
-                        <button class="btn btn-outline" onclick="goToStep(2)">Назад</button>
-                        <button class="btn btn-primary" onclick="goToStep(4)">Перейти к оплате</button>
-                    </div>
-                </div>
-
-                <!-- Step 4: Confirmation -->
-                <div class="checkout-form" id="confirmationForm">
-                    <div class="success-message">
-                        <div class="success-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <h3>Заказ оформлен!</h3>
-                        <p>Спасибо за ваш заказ. Номер вашего заказа: <strong id="orderNumber">VGD-12345</strong></p>
-                        <p>В ближайшее время с вами свяжется наш менеджер для подтверждения заказа.</p>
-                        
-                        <div class="order-summary" style="margin-top: 2rem;">
-                            <h4>Детали заказа</h4>
-                            <div id="finalOrderItems">
-                                <!-- Final order items will be populated by JavaScript -->
-                            </div>
-                            <div class="summary-total">
-                                <span>Итого:</span>
-                                <span id="finalOrderTotal">0 ₽</span>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-top: 2rem;">
-                            <button class="btn btn-primary" onclick="closeCheckoutModal()">Продолжить покупки</button>
-                            <button class="btn btn-secondary" onclick="printOrder()" style="margin-left: 1rem;">
-                                <i class="fas fa-print"></i> Распечатать заказ
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -2222,9 +1871,6 @@
         // Корзина
         let cart = [];
         let cartCount = 0;
-        let currentStep = 1;
-        let selectedDelivery = 'pickup';
-        let selectedPayment = 'cash';
 
         // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
@@ -2234,7 +1880,7 @@
             loadAllProducts();
             setupSearch();
             
-            console.log('Сайт загружен! Все функции работают корректно!');
+            console.log('Сайт загружен! Твои фото в карусели!');
         });
 
         // Корзина
@@ -2252,17 +1898,9 @@
 
         function updateCartCount() {
             cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-            
-            // Обновляем счетчик в шапке
             const cartCountElement = document.querySelector('.cart-count');
             if (cartCountElement) {
                 cartCountElement.textContent = cartCount;
-            }
-            
-            // Обновляем счетчик в hero-секции
-            const heroCartCount = document.querySelector('.hero-cart-count');
-            if (heroCartCount) {
-                heroCartCount.textContent = cartCount;
             }
         }
 
@@ -2321,7 +1959,6 @@
         function setupCartModal() {
             const modal = document.getElementById('cartModal');
             const cartButton = document.getElementById('cartButton');
-            const heroCartButton = document.querySelector('.hero-cart-btn');
             const closeButton = document.querySelector('.close');
             const continueShopping = document.getElementById('continueShopping');
             const checkoutButton = document.getElementById('checkout');
@@ -2329,10 +1966,6 @@
 
             if (cartButton) {
                 cartButton.addEventListener('click', openCartModal);
-            }
-
-            if (heroCartButton) {
-                heroCartButton.addEventListener('click', openCartModal);
             }
 
             if (closeButton) {
@@ -2344,7 +1977,7 @@
             }
 
             if (checkoutButton) {
-                checkoutButton.addEventListener('click', openCheckoutModal);
+                checkoutButton.addEventListener('click', processCheckout);
             }
 
             if (clearCartButton) {
@@ -2399,284 +2032,30 @@
             cartTotal.textContent = calculateTotal();
         }
 
-        // Модальное окно оформления заказа
-        function setupCheckoutModal() {
-            const modal = document.getElementById('checkoutModal');
-            const closeButton = modal.querySelector('.close');
-            
-            if (closeButton) {
-                closeButton.addEventListener('click', closeCheckoutModal);
-            }
-            
-            window.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    closeCheckoutModal();
-                }
-            });
-        }
-
-        function openCheckoutModal() {
+        function processCheckout() {
             if (cart.length === 0) {
                 showNotification('❌ Корзина пуста!');
                 return;
             }
-            
-            closeCartModal();
-            const modal = document.getElementById('checkoutModal');
-            updateCheckoutItems();
-            modal.style.display = 'block';
-        }
 
-        function closeCheckoutModal() {
-            const modal = document.getElementById('checkoutModal');
-            modal.style.display = 'none';
-            resetCheckoutForm();
-        }
-
-        function resetCheckoutForm() {
-            currentStep = 1;
-            selectedDelivery = 'pickup';
-            selectedPayment = 'cash';
-            updateCheckoutSteps();
-            
-            // Сброс форм
-            document.getElementById('customerInfoForm').classList.add('active');
-            document.getElementById('deliveryForm').classList.remove('active');
-            document.getElementById('paymentForm').classList.remove('active');
-            document.getElementById('confirmationForm').classList.remove('active');
-            
-            // Сброс выбора доставки
-            document.querySelectorAll('.payment-method').forEach(method => {
-                method.classList.remove('selected');
-            });
-            document.querySelector('.payment-method:first-child').classList.add('selected');
-            document.getElementById('deliveryAddressGroup').style.display = 'none';
-            
-            // Сброс выбора оплаты
-            document.querySelectorAll('#paymentForm .payment-method').forEach(method => {
-                method.classList.remove('selected');
-            });
-            document.querySelector('#paymentForm .payment-method:first-child').classList.add('selected');
-        }
-
-        function updateCheckoutSteps() {
-            // Сброс всех шагов
-            document.querySelectorAll('.checkout-step').forEach(step => {
-                step.classList.remove('active', 'completed');
-            });
-            
-            // Установка активного шага и завершенных шагов
-            for (let i = 1; i <= 4; i++) {
-                const step = document.getElementById(`step${i}`);
-                if (i < currentStep) {
-                    step.classList.add('completed');
-                } else if (i === currentStep) {
-                    step.classList.add('active');
-                }
-            }
-        }
-
-        function goToStep(step) {
-            // Валидация текущего шага перед переходом
-            if (currentStep === 1 && !validateStep1()) return;
-            if (currentStep === 2 && !validateStep2()) return;
-            if (currentStep === 3 && !validateStep3()) return;
-            
-            // Скрыть все формы
-            document.querySelectorAll('.checkout-form').forEach(form => {
-                form.classList.remove('active');
-            });
-            
-            // Показать нужную форму
-            document.getElementById(getFormId(step)).classList.add('active');
-            
-            // Обновить текущий шаг
-            currentStep = step;
-            updateCheckoutSteps();
-            
-            // Обновить элементы заказа на шаге оплаты
-            if (step === 3) {
-                updateCheckoutItems();
-            }
-            
-            // Обновить финальный заказ на шаге подтверждения
-            if (step === 4) {
-                updateFinalOrder();
-                generateOrderNumber();
-                // Очистить корзину после успешного оформления
-                cart = [];
-                saveCart();
-                updateCartCount();
-            }
-        }
-
-        function getFormId(step) {
-            switch(step) {
-                case 1: return 'customerInfoForm';
-                case 2: return 'deliveryForm';
-                case 3: return 'paymentForm';
-                case 4: return 'confirmationForm';
-                default: return 'customerInfoForm';
-            }
-        }
-
-        function validateStep1() {
-            const name = document.getElementById('customerName').value;
-            const phone = document.getElementById('customerPhone').value;
-            
-            if (!name.trim()) {
-                showNotification('❌ Пожалуйста, введите ваше ФИО');
-                return false;
-            }
-            
-            if (!phone.trim()) {
-                showNotification('❌ Пожалуйста, введите ваш телефон');
-                return false;
-            }
-            
-            return true;
-        }
-
-        function validateStep2() {
-            if (selectedDelivery === 'delivery') {
-                const address = document.getElementById('deliveryAddress').value;
-                if (!address.trim()) {
-                    showNotification('❌ Пожалуйста, введите адрес доставки');
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        function validateStep3() {
-            // Всегда валидно, так как есть выбор по умолчанию
-            return true;
-        }
-
-        function selectDelivery(type) {
-            selectedDelivery = type;
-            
-            // Обновить визуальный выбор
-            document.querySelectorAll('#deliveryForm .payment-method').forEach(method => {
-                method.classList.remove('selected');
-            });
-            event.currentTarget.classList.add('selected');
-            
-            // Показать/скрыть поле адреса
-            const addressGroup = document.getElementById('deliveryAddressGroup');
-            if (type === 'delivery') {
-                addressGroup.style.display = 'block';
-            } else {
-                addressGroup.style.display = 'none';
-            }
-        }
-
-        function selectPayment(type) {
-            selectedPayment = type;
-            
-            // Обновить визуальный выбор
-            document.querySelectorAll('#paymentForm .payment-method').forEach(method => {
-                method.classList.remove('selected');
-            });
-            event.currentTarget.classList.add('selected');
-        }
-
-        function updateCheckoutItems() {
-            const checkoutItems = document.getElementById('checkoutItems');
-            const checkoutTotal = document.getElementById('checkoutTotal');
-            
-            if (!checkoutItems || !checkoutTotal) return;
-            
-            if (cart.length === 0) {
-                checkoutItems.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
-            } else {
-                checkoutItems.innerHTML = cart.map(item => `
-                    <div class="summary-item">
-                        <span>${item.name} × ${item.quantity}</span>
-                        <span>${item.price * item.quantity} ₽</span>
-                    </div>
-                `).join('');
-            }
-            
-            checkoutTotal.textContent = `${calculateTotal()} ₽`;
-        }
-
-        function updateFinalOrder() {
-            const finalOrderItems = document.getElementById('finalOrderItems');
-            const finalOrderTotal = document.getElementById('finalOrderTotal');
-            
-            if (!finalOrderItems || !finalOrderTotal) return;
-            
-            if (cart.length === 0) {
-                finalOrderItems.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
-            } else {
-                finalOrderItems.innerHTML = cart.map(item => `
-                    <div class="summary-item">
-                        <span>${item.name} × ${item.quantity}</span>
-                        <span>${item.price * item.quantity} ₽</span>
-                    </div>
-                `).join('');
-            }
-            
-            finalOrderTotal.textContent = `${calculateTotal()} ₽`;
-        }
-
-        function generateOrderNumber() {
-            const orderNumber = 'VGD-' + Math.floor(10000 + Math.random() * 90000);
-            document.getElementById('orderNumber').textContent = orderNumber;
-            
-            // Отправить уведомление в Telegram о новом заказе
-            sendOrderToTelegram(orderNumber);
-        }
-
-        function sendOrderToTelegram(orderNumber) {
-            const name = document.getElementById('customerName').value;
-            const phone = document.getElementById('customerPhone').value;
-            const email = document.getElementById('customerEmail').value;
-            
             const orderItems = cart.map(item => 
                 `• ${item.name} - ${item.quantity}шт. × ${item.price}₽ = ${item.quantity * item.price}₽`
             ).join('\n');
 
             const totalAmount = calculateTotal();
-            
-            let deliveryInfo = '';
-            if (selectedDelivery === 'pickup') {
-                deliveryInfo = 'Самовывоз: г. Пятигорск, ул. Черкесское шоссе 54';
-            } else {
-                const address = document.getElementById('deliveryAddress').value;
-                deliveryInfo = `Доставка по адресу: ${address}`;
-            }
-            
-            let paymentInfo = '';
-            switch(selectedPayment) {
-                case 'cash':
-                    paymentInfo = 'Оплата наличными при получении';
-                    break;
-                case 'card':
-                    paymentInfo = 'Оплата картой онлайн';
-                    break;
-                case 'transfer':
-                    paymentInfo = 'Банковский перевод';
-                    break;
-            }
-            
-            const message = `🛒 НОВЫЙ ЗАКАЗ #${orderNumber}\n\n` +
-                           `👤 КЛИЕНТ:\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email || 'Не указан'}\n\n` +
-                           `📦 ЗАКАЗ:\n${orderItems}\n\n` +
-                           `💰 ИТОГО: ${totalAmount}₽\n\n` +
-                           `🚚 ДОСТАВКА:\n${deliveryInfo}\n\n` +
-                           `💳 ОПЛАТА:\n${paymentInfo}`;
+            const message = `🛒 ЗАКАЗ С САЙТА VEGADAR.RU\n\n${orderItems}\n\n💰 ИТОГО: ${totalAmount}₽\n\n📞 Для подтверждения заказа свяжитесь с клиентом.`;
 
-            const phoneNumber = '+79624040568';
-            const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(phoneNumber)}&text=${encodeURIComponent(message)}`;
+            const phone = '+79624044323';
+            const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
             
-            // Открыть Telegram в новом окне
             window.open(telegramUrl, '_blank');
-        }
-
-        function printOrder() {
-            window.print();
+            
+            showNotification('✅ Заказ оформлен! Открываю Telegram для отправки.');
+            
+            cart = [];
+            saveCart();
+            updateCartCount();
+            closeCartModal();
         }
 
         // Навигация по категориям
@@ -2760,7 +2139,7 @@
             return names[category] || 'Товар';
         }
 
-        // Поиск - ИСПРАВЛЕННАЯ ВЕРСИЯ
+        // Поиск
         function setupSearch() {
             const searchInput = document.getElementById('searchInput');
             const searchResults = document.getElementById('searchResults');
@@ -2832,7 +2211,7 @@
         }
 
         function openTelegramWithMessage(message) {
-            const phone = '+79624040568';
+            const phone = '+79624044323';
             const url = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
@@ -2840,7 +2219,6 @@
         // ИИ-ассистент
         function openAIAssistant() {
             showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время');
-            // В будущем здесь будет интеграция с ИИ-ассистентом
         }
 
         // Мобильное меню
@@ -2883,7 +2261,6 @@
         // Настройка всех обработчиков событий
         function setupEventListeners() {
             setupCartModal();
-            setupCheckoutModal();
             
             // Обработчик контактной формы
             const contactForm = document.getElementById('contactForm');

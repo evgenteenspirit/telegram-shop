@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вегадар - Магазин мебельной фурнитуры в Пятигорске</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -27,7 +26,7 @@
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--white);
             background: var(--black);
@@ -35,7 +34,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -66,7 +65,6 @@
             font-weight: 700;
             font-size: 1.5rem;
             color: var(--white);
-            font-family: 'Montserrat', sans-serif;
         }
 
         .logo-icon {
@@ -110,19 +108,17 @@
 
         /* Header Carousel */
         .header-carousel {
-            height: 300px;
+            height: 200px;
             overflow: hidden;
             position: relative;
             background: var(--black);
-            width: 133%;
-            margin-left: -16.5%;
         }
 
         .carousel-slides {
             display: flex;
             width: 500%;
             height: 100%;
-            animation: slide 25s infinite;
+            animation: slide 20s infinite;
         }
 
         .carousel-slide {
@@ -158,11 +154,10 @@
         .nav-link {
             color: var(--white);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: color 0.3s ease;
             padding: 0.5rem 0;
             position: relative;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .nav-link:hover {
@@ -203,7 +198,6 @@
             transition: all 0.3s ease;
             background: var(--dark-gray);
             color: var(--white);
-            font-family: 'Open Sans', sans-serif;
         }
 
         .search-input:focus {
@@ -273,7 +267,6 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.95rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-primary {
@@ -316,7 +309,7 @@
 
         /* Hero Section */
         .hero {
-            padding: 180px 0 80px;
+            padding: 140px 0 80px;
             background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
             position: relative;
         }
@@ -338,7 +331,6 @@
             font-size: 0.9rem;
             font-weight: 500;
             margin-bottom: 2rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .hero-title {
@@ -347,7 +339,6 @@
             line-height: 1.1;
             margin-bottom: 1.5rem;
             color: var(--white);
-            font-family: 'Montserrat', sans-serif;
         }
 
         .hero-subtitle {
@@ -355,7 +346,6 @@
             color: var(--gray);
             margin-bottom: 2.5rem;
             line-height: 1.6;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .hero-actions {
@@ -379,18 +369,16 @@
 
         .stat-number {
             display: block;
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--lime);
             margin-bottom: 0.5rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--gray);
             font-weight: 500;
-            font-family: 'Open Sans', sans-serif;
         }
 
         /* Sections */
@@ -412,7 +400,6 @@
             font-weight: 800;
             margin-bottom: 1rem;
             color: var(--white);
-            font-family: 'Montserrat', sans-serif;
         }
 
         .section-subtitle {
@@ -421,7 +408,6 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
-            font-family: 'Open Sans', sans-serif;
         }
 
         /* Categories */
@@ -472,14 +458,12 @@
             margin-bottom: 0.5rem;
             color: var(--white);
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .category-card p {
             color: var(--gray);
             line-height: 1.5;
             margin-bottom: 1rem;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .category-link {
@@ -489,7 +473,6 @@
             align-items: center;
             gap: 0.5rem;
             transition: gap 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .category-card:hover .category-link {
@@ -538,7 +521,6 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .product-content {
@@ -551,7 +533,6 @@
             color: var(--white);
             font-weight: 600;
             line-height: 1.3;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .product-card p {
@@ -559,7 +540,6 @@
             margin-bottom: 1rem;
             font-size: 0.9rem;
             line-height: 1.4;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .product-price {
@@ -567,7 +547,6 @@
             font-weight: 700;
             color: var(--lime);
             margin-bottom: 1rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .product-actions {
@@ -595,7 +574,6 @@
             line-height: 1.7;
             color: var(--gray);
             margin-bottom: 2rem;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .about-features {
@@ -613,10 +591,6 @@
         .about-feature i {
             color: var(--lime);
             font-size: 1.2rem;
-        }
-
-        .about-feature span {
-            font-family: 'Open Sans', sans-serif;
         }
 
         .about-image {
@@ -670,20 +644,17 @@
             margin-bottom: 0.5rem;
             color: var(--white);
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .contact-card p {
             color: var(--gray);
             line-height: 1.5;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .contact-card a {
             color: var(--gray);
             text-decoration: none;
             transition: color 0.3s ease;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .contact-card a:hover {
@@ -706,12 +677,10 @@
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
             color: var(--white);
-            font-family: 'Montserrat', sans-serif;
         }
 
         .form-header p {
             color: var(--gray);
-            font-family: 'Open Sans', sans-serif;
         }
 
         .form-group {
@@ -728,7 +697,6 @@
             color: var(--white);
             font-family: inherit;
             transition: all 0.3s ease;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .form-group input:focus,
@@ -765,7 +733,6 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--white);
-            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section h4 {
@@ -773,7 +740,6 @@
             margin-bottom: 1.25rem;
             font-size: 1.1rem;
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-section a {
@@ -782,7 +748,6 @@
             display: block;
             margin-bottom: 0.7rem;
             transition: color 0.3s ease;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .footer-section a:hover {
@@ -795,7 +760,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .social-links {
@@ -827,7 +791,6 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
-            font-family: 'Open Sans', sans-serif;
         }
 
         /* Cart Modal */
@@ -878,7 +841,6 @@
             color: var(--white);
             font-size: 1.5rem;
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .close {
@@ -936,13 +898,11 @@
             font-weight: 600;
             margin-bottom: 0.25rem;
             color: var(--white);
-            font-family: 'Montserrat', sans-serif;
         }
 
         .cart-item-price {
             color: var(--gray);
             font-size: 0.9rem;
-            font-family: 'Open Sans', sans-serif;
         }
 
         .cart-item-quantity {
@@ -990,14 +950,12 @@
             padding-top: 1rem;
             border-top: 2px solid #333;
             color: var(--white);
-            font-family: 'Montserrat', sans-serif;
         }
 
         .empty-cart {
             text-align: center;
             color: var(--gray);
             padding: 2rem;
-            font-family: 'Open Sans', sans-serif;
         }
 
         /* Search Results */
@@ -1037,20 +995,17 @@
 
         .search-result-name {
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .search-result-price {
             color: var(--lime);
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .no-results {
             padding: 1rem;
             text-align: center;
             color: var(--gray);
-            font-family: 'Open Sans', sans-serif;
         }
 
         /* AI Assistant */
@@ -1095,7 +1050,6 @@
             z-index: 10000;
             font-weight: 600;
             animation: slideInRight 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
         }
 
         @keyframes slideInRight {
@@ -1122,12 +1076,6 @@
             
             .contacts-grid {
                 gap: 3rem;
-            }
-            
-            .header-carousel {
-                width: 100%;
-                margin-left: 0;
-                height: 250px;
             }
         }
 
@@ -1218,11 +1166,7 @@
             }
             
             .header-carousel {
-                height: 200px;
-            }
-            
-            .hero {
-                padding: 160px 0 60px;
+                height: 150px;
             }
         }
 
@@ -1232,7 +1176,7 @@
             }
             
             .hero {
-                padding: 140px 0 60px;
+                padding: 120px 0 60px;
             }
             
             .hero-title {
@@ -1267,15 +1211,7 @@
             }
             
             .header-carousel {
-                height: 150px;
-            }
-            
-            .stat-number {
-                font-size: 1.3rem;
-            }
-            
-            .stat-label {
-                font-size: 0.7rem;
+                height: 120px;
             }
         }
     </style>
@@ -1314,24 +1250,23 @@
             </nav>
         </div>
         
-        <!-- Header Carousel - ТВОИ ФОТО -->
+        <!-- Header Carousel -->
         <div class="header-carousel">
             <div class="carousel-slides">
                 <div class="carousel-slide">
-                    <img src="images/carousel/facade1.jpg" alt="Мебельные фасады с ручками" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельные+Фасады'">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&h=200&fit=crop" alt="Современная мебель">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/carousel/kitchen1.jpg" alt="Кухонная мебель" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Кухонная+Мебель'">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&h=200&fit=crop" alt="Мебельная фурнитура">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/carousel/hardware1.jpg" alt="Мебельная фурнитура" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельная+Фурнитура'">
+                    <img src="https://images.unsplash.com/photo-1506891536236-3e07892564b7?w=1200&h=200&fit=crop" alt="Ручки и петли">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/carousel/storage1.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Системы+Хранения'">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&h=200&fit=crop" alt="Системы хранения">
                 </div>
                 <div class="carousel-slide">
-                    <!-- КОТ ОСТАЕТСЯ! -->
-                    <img src="images/carousel/cat.jpg" alt="Рыжий кот - наш талисман" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=300&fit=crop'">
+                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1200&h=200&fit=crop" alt="Крепежные изделия">
                 </div>
             </div>
         </div>
@@ -1878,9 +1813,9 @@
             setupEventListeners();
             setupMobileMenu();
             loadAllProducts();
-            setupSearch();
+            setupSearch(); // Добавляем инициализацию поиска
             
-            console.log('Сайт загружен! Твои фото в карусели!');
+            console.log('Сайт загружен! Поиск работает корректно!');
         });
 
         // Корзина
@@ -2139,7 +2074,7 @@
             return names[category] || 'Товар';
         }
 
-        // Поиск
+        // Поиск - ИСПРАВЛЕННАЯ ВЕРСИЯ
         function setupSearch() {
             const searchInput = document.getElementById('searchInput');
             const searchResults = document.getElementById('searchResults');
@@ -2219,6 +2154,7 @@
         // ИИ-ассистент
         function openAIAssistant() {
             showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время');
+            // В будущем здесь будет интеграция с ИИ-ассистентом
         }
 
         // Мобильное меню

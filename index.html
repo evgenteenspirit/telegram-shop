@@ -40,7 +40,6 @@
             padding: 0 20px;
         }
 
-        /* Header */
         .header {
             background: var(--dark-gray);
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
@@ -108,13 +107,13 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Header Carousel - ИСПРАВЛЕНО */
         .header-carousel {
             height: 300px;
             overflow: hidden;
             position: relative;
             background: var(--black);
-            width: 100%;
+            width: 133%;
+            margin-left: -16.5%;
         }
 
         .carousel-slides {
@@ -259,7 +258,6 @@
             color: var(--white);
         }
 
-        /* Buttons */
         .btn {
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
@@ -313,7 +311,6 @@
             font-size: 1.05rem;
         }
 
-        /* Hero Section */
         .hero {
             padding: 180px 0 80px;
             background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
@@ -392,7 +389,6 @@
             font-family: 'Open Sans', sans-serif;
         }
 
-        /* Sections */
         .section {
             padding: 80px 0;
         }
@@ -423,7 +419,6 @@
             font-family: 'Open Sans', sans-serif;
         }
 
-        /* Categories */
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -495,7 +490,6 @@
             gap: 0.75rem;
         }
 
-        /* Products */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -581,7 +575,6 @@
             padding: 0.6rem 1rem;
         }
 
-        /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -630,7 +623,6 @@
             object-fit: cover;
         }
 
-        /* Contacts */
         .contacts-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -689,7 +681,6 @@
             color: var(--lime);
         }
 
-        /* Contact Form */
         .contact-form {
             background: var(--dark-gray);
             padding: 2rem;
@@ -742,7 +733,6 @@
             min-height: 120px;
         }
 
-        /* Footer */
         .footer {
             background: var(--dark-gray);
             color: var(--white);
@@ -829,7 +819,6 @@
             font-family: 'Open Sans', sans-serif;
         }
 
-        /* Cart Modal */
         .modal {
             display: none;
             position: fixed;
@@ -999,7 +988,6 @@
             font-family: 'Open Sans', sans-serif;
         }
 
-        /* Search Results */
         .search-results {
             display: none;
             position: absolute;
@@ -1052,7 +1040,6 @@
             font-family: 'Open Sans', sans-serif;
         }
 
-        /* AI Assistant */
         .ai-assistant {
             position: fixed;
             bottom: 2rem;
@@ -1081,7 +1068,6 @@
             background: var(--lime-dark);
         }
 
-        /* Notification */
         .notification {
             position: fixed;
             top: 100px;
@@ -1108,60 +1094,6 @@
             }
         }
 
-        /* Loading Animation */
-        .loading {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(50, 205, 50, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--lime);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Scroll to Top Button */
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--lime);
-            color: var(--black);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            z-index: 998;
-        }
-
-        .scroll-top:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Responsive */
         @media (max-width: 1024px) {
             .footer-content {
                 grid-template-columns: 1fr 1fr;
@@ -1177,6 +1109,8 @@
             }
             
             .header-carousel {
+                width: 100%;
+                margin-left: 0;
                 height: 250px;
             }
         }
@@ -1274,16 +1208,6 @@
             .hero {
                 padding: 160px 0 60px;
             }
-            
-            .ai-assistant {
-                bottom: 1rem;
-                right: 1rem;
-            }
-            
-            .scroll-top {
-                bottom: 1rem;
-                right: 1rem;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1321,6 +1245,11 @@
                 padding: 1.5rem;
             }
             
+            .ai-assistant {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
             .header-carousel {
                 height: 150px;
             }
@@ -1336,17 +1265,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading" id="loading">
-        <div class="loading-spinner"></div>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <nav class="nav">
@@ -1379,7 +1297,6 @@
             </nav>
         </div>
         
-        <!-- Header Carousel - ИСПРАВЛЕНО -->
         <div class="header-carousel">
             <div class="carousel-slides">
                 <div class="carousel-slide">
@@ -1395,14 +1312,12 @@
                     <img src="images/carousel/storage1.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Системы+Хранения'">
                 </div>
                 <div class="carousel-slide">
-                    <!-- КОТ ОСТАЕТСЯ! -->
                     <img src="images/carousel/cat.jpg" alt="Рыжий кот - наш талисман" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=300&fit=crop'">
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -1443,7 +1358,6 @@
         </div>
     </section>
 
-    <!-- Products Section -->
     <section id="products" class="section">
         <div class="container">
             <div class="section-header">
@@ -1511,7 +1425,6 @@
         </div>
     </section>
 
-    <!-- Category Sections -->
     <section id="handles" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
@@ -1524,7 +1437,6 @@
             </div>
             
             <div class="products-grid" id="handlesProducts">
-                <!-- Товары будут загружены через JavaScript -->
             </div>
         </div>
     </section>
@@ -1541,7 +1453,6 @@
             </div>
             
             <div class="products-grid" id="hingesProducts">
-                <!-- Товары будут загружены через JavaScript -->
             </div>
         </div>
     </section>
@@ -1558,7 +1469,6 @@
             </div>
             
             <div class="products-grid" id="systemsProducts">
-                <!-- Товары будут загружены через JavaScript -->
             </div>
         </div>
     </section>
@@ -1575,12 +1485,10 @@
             </div>
             
             <div class="products-grid" id="hardwareProducts">
-                <!-- Товары будут загружены через JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
             <div class="about-content">
@@ -1622,7 +1530,6 @@
         </div>
     </section>
 
-    <!-- Contacts Section -->
     <section id="contacts" class="section section-light">
         <div class="container">
             <div class="section-header">
@@ -1703,7 +1610,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -1756,7 +1662,6 @@
         </div>
     </footer>
 
-    <!-- Cart Modal -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1765,7 +1670,6 @@
             </div>
             <div class="modal-body">
                 <div id="cartItems" class="cart-items">
-                    <!-- Товары в корзине -->
                 </div>
                 <div class="cart-total">
                     <strong>Итого: <span id="cartTotal">0</span> ₽</strong>
@@ -1786,7 +1690,6 @@
         </div>
     </div>
 
-    <!-- AI Assistant -->
     <div class="ai-assistant">
         <button class="ai-button" onclick="openAIAssistant()">
             <i class="fas fa-robot"></i>
@@ -1794,9 +1697,7 @@
     </div>
 
     <script>
-        // Данные товаров
         const productsData = [
-            // Мебельные ручки
             {
                 id: 1,
                 name: "Ручка мебельная 'Престиж' алюминиевая",
@@ -1829,8 +1730,6 @@
                 image: "images/handles.jpg",
                 description: "Латунная ручка для классической мебели, 128мм. Премиальное качество."
             },
-            
-            // Мебельные петли
             {
                 id: 5,
                 name: "Петля четырехшарнирная с доводчиком",
@@ -1863,8 +1762,6 @@
                 image: "images/hinges.jpg",
                 description: "Для угловых шкафов, широкий угол открывания. С плавным ходом."
             },
-            
-            // Системы хранения
             {
                 id: 9,
                 name: "Направляющая шариковая 400мм",
@@ -1897,8 +1794,6 @@
                 image: "images/drawers.jpg",
                 description: "Для верхних шкафов, вертикальное открывание. Премиум-класс."
             },
-            
-            // Крепежные изделия
             {
                 id: 13,
                 name: "Винт мебельный конфирмат 6.3x50mm",
@@ -1933,26 +1828,17 @@
             }
         ];
 
-        // Корзина
         let cart = [];
         let cartCount = 0;
 
-        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             initCart();
             setupEventListeners();
             setupMobileMenu();
             loadAllProducts();
             setupSearch();
-            setupScrollTop();
-            
-            // Показываем загрузку на 1 секунду для лучшего UX
-            showLoading(1000);
-            
-            console.log('Сайт загружен! Твои фото в карусели!');
         });
 
-        // Корзина
         function initCart() {
             const savedCart = localStorage.getItem('vegadar_cart');
             if (savedCart) {
@@ -2024,7 +1910,6 @@
             return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
         }
 
-        // Модальное окно корзины
         function setupCartModal() {
             const modal = document.getElementById('cartModal');
             const cartButton = document.getElementById('cartButton');
@@ -2127,33 +2012,26 @@
             closeCartModal();
         }
 
-        // Навигация по категориям
         function showCategory(category) {
-            // Скрываем все секции
             document.getElementById('products').style.display = 'none';
             document.getElementById('handles').style.display = 'none';
             document.getElementById('hinges').style.display = 'none';
             document.getElementById('systems').style.display = 'none';
             document.getElementById('hardware').style.display = 'none';
             
-            // Показываем выбранную категорию
             document.getElementById(category).style.display = 'block';
             
-            // Прокручиваем к категории
             document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
         }
 
         function showCategories() {
-            // Скрываем все категории
             document.getElementById('handles').style.display = 'none';
             document.getElementById('hinges').style.display = 'none';
             document.getElementById('systems').style.display = 'none';
             document.getElementById('hardware').style.display = 'none';
             
-            // Показываем главную секцию с категориями
             document.getElementById('products').style.display = 'block';
             
-            // Прокручиваем к категориям
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -2164,7 +2042,6 @@
             }
         }
 
-        // Загрузка товаров
         function loadAllProducts() {
             const categories = ['handles', 'hinges', 'systems', 'hardware'];
             
@@ -2208,15 +2085,11 @@
             return names[category] || 'Товар';
         }
 
-        // Поиск
         function setupSearch() {
             const searchInput = document.getElementById('searchInput');
             const searchResults = document.getElementById('searchResults');
             
-            if (!searchInput || !searchResults) {
-                console.error('Элементы поиска не найдены!');
-                return;
-            }
+            if (!searchInput || !searchResults) return;
             
             searchInput.addEventListener('input', function() {
                 const query = this.value.toLowerCase().trim();
@@ -2245,7 +2118,6 @@
                 }
             });
             
-            // Скрываем результаты при клике вне поиска
             document.addEventListener('click', function(e) {
                 if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
                     searchResults.style.display = 'none';
@@ -2258,13 +2130,11 @@
             document.getElementById('searchInput').value = '';
             document.getElementById('searchResults').style.display = 'none';
             
-            // Прокручиваем к категории
             setTimeout(() => {
                 document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
             }, 100);
         }
 
-        // Заказ товара
         function orderProduct(productId) {
             const product = productsData.find(p => p.id === productId);
             if (product) {
@@ -2273,7 +2143,6 @@
             }
         }
 
-        // Открытие Telegram
         function openTelegram() {
             const message = 'Здравствуйте! У меня вопрос по мебельной фурнитуре.';
             openTelegramWithMessage(message);
@@ -2285,12 +2154,10 @@
             window.open(url, '_blank');
         }
 
-        // ИИ-ассистент
         function openAIAssistant() {
             showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время');
         }
 
-        // Мобильное меню
         function setupMobileMenu() {
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
@@ -2309,39 +2176,7 @@
             });
         }
 
-        // Кнопка прокрутки наверх
-        function setupScrollTop() {
-            const scrollTopBtn = document.getElementById('scrollTop');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    scrollTopBtn.style.display = 'flex';
-                } else {
-                    scrollTopBtn.style.display = 'none';
-                }
-            });
-            
-            scrollTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-
-        // Индикатор загрузки
-        function showLoading(duration = 1000) {
-            const loading = document.getElementById('loading');
-            loading.style.display = 'flex';
-            
-            setTimeout(() => {
-                loading.style.display = 'none';
-            }, duration);
-        }
-
-        // Утилиты
         function showNotification(message) {
-            // Удаляем существующие уведомления
             const existingNotification = document.querySelector('.notification');
             if (existingNotification) {
                 existingNotification.remove();
@@ -2357,11 +2192,9 @@
             }, 3000);
         }
 
-        // Настройка всех обработчиков событий
         function setupEventListeners() {
             setupCartModal();
             
-            // Обработчик контактной формы
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {

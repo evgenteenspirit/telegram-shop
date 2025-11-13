@@ -108,14 +108,13 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Header Carousel */
+        /* Header Carousel - ИСПРАВЛЕНО */
         .header-carousel {
             height: 300px;
             overflow: hidden;
             position: relative;
             background: var(--black);
-            width: 133%;
-            margin-left: -16.5%;
+            width: 100%;
         }
 
         .carousel-slides {
@@ -1109,6 +1108,59 @@
             }
         }
 
+        /* Loading Animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(50, 205, 50, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--lime);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--lime);
+            color: var(--black);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .footer-content {
@@ -1125,8 +1177,6 @@
             }
             
             .header-carousel {
-                width: 100%;
-                margin-left: 0;
                 height: 250px;
             }
         }
@@ -1224,6 +1274,16 @@
             .hero {
                 padding: 160px 0 60px;
             }
+            
+            .ai-assistant {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .scroll-top {
+                bottom: 1rem;
+                right: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1261,11 +1321,6 @@
                 padding: 1.5rem;
             }
             
-            .ai-assistant {
-                bottom: 1rem;
-                right: 1rem;
-            }
-            
             .header-carousel {
                 height: 150px;
             }
@@ -1281,6 +1336,16 @@
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -1314,7 +1379,7 @@
             </nav>
         </div>
         
-        <!-- Header Carousel - ТВОИ ФОТО -->
+        <!-- Header Carousel - ИСПРАВЛЕНО -->
         <div class="header-carousel">
             <div class="carousel-slides">
                 <div class="carousel-slide">
@@ -1879,6 +1944,10 @@
             setupMobileMenu();
             loadAllProducts();
             setupSearch();
+            setupScrollTop();
+            
+            // Показываем загрузку на 1 секунду для лучшего UX
+            showLoading(1000);
             
             console.log('Сайт загружен! Твои фото в карусели!');
         });
@@ -2238,6 +2307,36 @@
                     navMenu.classList.remove('active');
                 });
             });
+        }
+
+        // Кнопка прокрутки наверх
+        function setupScrollTop() {
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.style.display = 'flex';
+                } else {
+                    scrollTopBtn.style.display = 'none';
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Индикатор загрузки
+        function showLoading(duration = 1000) {
+            const loading = document.getElementById('loading');
+            loading.style.display = 'flex';
+            
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, duration);
         }
 
         // Утилиты

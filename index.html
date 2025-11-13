@@ -35,7 +35,7 @@
         }
 
         .container {
-            max-width: 1400px; /* Увеличили ширину контейнера */
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -108,14 +108,14 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Header Carousel - УВЕЛИЧИЛИ ШИРИНУ */
+        /* Header Carousel */
         .header-carousel {
-            height: 300px; /* Увеличили высоту */
+            height: 300px;
             overflow: hidden;
             position: relative;
             background: var(--black);
-            width: 133%; /* Увеличили ширину на 1/3 */
-            margin-left: -16.5%; /* Центрируем увеличенную карусель */
+            width: 133%;
+            margin-left: -16.5%;
         }
 
         .carousel-slides {
@@ -316,7 +316,7 @@
 
         /* Hero Section */
         .hero {
-            padding: 180px 0 80px; /* Увеличили отступ сверху из-за увеличенной карусели */
+            padding: 180px 0 80px;
             background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
             position: relative;
         }
@@ -347,7 +347,7 @@
             line-height: 1.1;
             margin-bottom: 1.5rem;
             color: var(--white);
-            font-family: 'Montserrat', sans-serif; /* Новый шрифт для заголовка */
+            font-family: 'Montserrat', sans-serif;
         }
 
         .hero-subtitle {
@@ -355,7 +355,7 @@
             color: var(--gray);
             margin-bottom: 2.5rem;
             line-height: 1.6;
-            font-family: 'Open Sans', sans-serif; /* Новый шрифт для подзаголовка */
+            font-family: 'Open Sans', sans-serif;
         }
 
         .hero-actions {
@@ -379,7 +379,7 @@
 
         .stat-number {
             display: block;
-            font-size: 1.5rem; /* УМЕНЬШИЛИ размер шрифта */
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--lime);
             margin-bottom: 0.5rem;
@@ -387,7 +387,7 @@
         }
 
         .stat-label {
-            font-size: 0.8rem; /* УМЕНЬШИЛИ размер шрифта */
+            font-size: 0.8rem;
             color: var(--gray);
             font-weight: 500;
             font-family: 'Open Sans', sans-serif;
@@ -412,7 +412,7 @@
             font-weight: 800;
             margin-bottom: 1rem;
             color: var(--white);
-            font-family: 'Montserrat', sans-serif; /* Новый шрифт */
+            font-family: 'Montserrat', sans-serif;
         }
 
         .section-subtitle {
@@ -421,7 +421,7 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
-            font-family: 'Open Sans', sans-serif; /* Новый шрифт */
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* Categories */
@@ -1314,30 +1314,29 @@
             </nav>
         </div>
         
-        <!-- Header Carousel - ОБНОВЛЕННЫЕ ИЗОБРАЖЕНИЯ -->
+        <!-- Header Carousel - ТВОИ ФОТО -->
         <div class="header-carousel">
             <div class="carousel-slides">
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&h=300&fit=crop" alt="Мебельные фасады с ручками">
+                    <img src="images/carousel/facade1.jpg" alt="Мебельные фасады с ручками" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельные+Фасады'">
                 </div>
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1200&h=300&fit=crop" alt="Кухонная мебель">
+                    <img src="images/carousel/kitchen1.jpg" alt="Кухонная мебель" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Кухонная+Мебель'">
                 </div>
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1506891536236-3e07892564b7?w=1200&h=300&fit=crop" alt="Мебельная фурнитура">
+                    <img src="images/carousel/hardware1.jpg" alt="Мебельная фурнитура" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельная+Фурнитура'">
                 </div>
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&h=300&fit=crop" alt="Системы хранения">
+                    <img src="images/carousel/storage1.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Системы+Хранения'">
                 </div>
                 <div class="carousel-slide">
-                    <!-- КОТ ОСТАЕТСЯ - ОН КЛАССНЫЙ! -->
-                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=300&fit=crop" alt="Рыжий кот - наш талисман">
+                    <!-- КОТ ОСТАЕТСЯ! -->
+                    <img src="images/carousel/cat.jpg" alt="Рыжий кот - наш талисман" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=300&fit=crop'">
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Остальной код без изменений (hero section, products, about, contacts, footer, cart modal, etc.) -->
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -1879,9 +1878,9 @@
             setupEventListeners();
             setupMobileMenu();
             loadAllProducts();
-            setupSearch(); // Добавляем инициализацию поиска
+            setupSearch();
             
-            console.log('Сайт загружен! Все обновления применены!');
+            console.log('Сайт загружен! Твои фото в карусели!');
         });
 
         // Корзина
@@ -2140,7 +2139,7 @@
             return names[category] || 'Товар';
         }
 
-        // Поиск - ИСПРАВЛЕННАЯ ВЕРСИЯ
+        // Поиск
         function setupSearch() {
             const searchInput = document.getElementById('searchInput');
             const searchResults = document.getElementById('searchResults');
@@ -2220,7 +2219,6 @@
         // ИИ-ассистент
         function openAIAssistant() {
             showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время');
-            // В будущем здесь будет интеграция с ИИ-ассистентом
         }
 
         // Мобильное меню

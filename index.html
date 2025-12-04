@@ -12,7 +12,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --lime: #32CD32;
             --lime-dark: #28a428;
@@ -25,21 +24,20 @@
             --shadow: 0 4px 12px rgba(0,0,0,0.3);
             --shadow-hover: 0 8px 24px rgba(0,0,0,0.5);
         }
-
         body {
             font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
             color: var(--white);
             background: var(--black);
             overflow-x: hidden;
+            scroll-padding-top: 160px; /* Для корректной прокрутки к якорям */
         }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
+        /* Header */
         .header {
             background: var(--dark-gray);
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
@@ -48,7 +46,6 @@
             width: 100%;
             z-index: 1000;
         }
-
         .nav {
             display: flex;
             justify-content: space-between;
@@ -56,7 +53,6 @@
             gap: 2rem;
             padding: 1rem 0;
         }
-
         .logo {
             display: flex;
             align-items: center;
@@ -67,7 +63,6 @@
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
         }
-
         .logo-icon {
             width: 40px;
             height: 40px;
@@ -78,7 +73,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .logo-icon::before,
         .logo-icon::after {
             content: '';
@@ -87,54 +81,47 @@
             border-radius: 50%;
             animation: spiral 3s linear infinite;
         }
-
         .logo-icon::before {
             width: 24px;
             height: 24px;
             border-top-color: transparent;
             animation-delay: 0s;
         }
-
         .logo-icon::after {
             width: 16px;
             height: 16px;
             border-bottom-color: transparent;
             animation-delay: 0.5s;
         }
-
         @keyframes spiral {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
+        /* Header Carousel */
         .header-carousel {
             height: 300px;
             overflow: hidden;
             position: relative;
             background: var(--black);
-            width: 133%;
-            margin-left: -16.5%;
+            width: 100%; /* Исправлено: убрано 133% */
+            margin-left: 0; /* Исправлено: убран отрицательный отступ */
         }
-
         .carousel-slides {
             display: flex;
             width: 500%;
             height: 100%;
             animation: slide 25s infinite;
         }
-
         .carousel-slide {
             width: 20%;
             height: 100%;
             flex-shrink: 0;
         }
-
         .carousel-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         @keyframes slide {
             0% { transform: translateX(0); }
             20% { transform: translateX(0); }
@@ -146,13 +133,11 @@
             95% { transform: translateX(-60%); }
             100% { transform: translateX(-80%); }
         }
-
         .nav-menu {
             display: flex;
             gap: 2rem;
             align-items: center;
         }
-
         .nav-link {
             color: var(--white);
             text-decoration: none;
@@ -162,11 +147,9 @@
             position: relative;
             font-family: 'Montserrat', sans-serif;
         }
-
         .nav-link:hover {
             color: var(--lime);
         }
-
         .nav-link::after {
             content: '';
             position: absolute;
@@ -177,21 +160,17 @@
             background: var(--lime);
             transition: width 0.3s ease;
         }
-
         .nav-link:hover::after {
             width: 100%;
         }
-
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
-
         .search-container {
             position: relative;
         }
-
         .search-input {
             padding: 0.5rem 1rem 0.5rem 2.5rem;
             border: 1px solid #333;
@@ -203,14 +182,12 @@
             color: var(--white);
             font-family: 'Open Sans', sans-serif;
         }
-
         .search-input:focus {
             outline: none;
             border-color: var(--lime);
             box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.2);
             width: 250px;
         }
-
         .search-icon {
             position: absolute;
             left: 0.75rem;
@@ -218,7 +195,6 @@
             transform: translateY(-50%);
             color: var(--gray);
         }
-
         .cart-btn {
             background: none;
             border: none;
@@ -228,11 +204,9 @@
             color: var(--white);
             transition: color 0.3s ease;
         }
-
         .cart-btn:hover {
             color: var(--lime);
         }
-
         .cart-count {
             position: absolute;
             top: -5px;
@@ -248,7 +222,6 @@
             justify-content: center;
             font-weight: 600;
         }
-
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -257,7 +230,7 @@
             padding: 0.5rem;
             color: var(--white);
         }
-
+        /* Buttons */
         .btn {
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
@@ -272,57 +245,48 @@
             font-size: 0.95rem;
             font-family: 'Montserrat', sans-serif;
         }
-
         .btn-primary {
             background: var(--lime);
             color: var(--black);
         }
-
         .btn-primary:hover {
             background: var(--lime-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow-hover);
         }
-
         .btn-secondary {
             background: transparent;
             color: var(--lime);
             border: 2px solid var(--lime);
         }
-
         .btn-secondary:hover {
             background: var(--lime);
             color: var(--black);
         }
-
         .btn-outline {
             background: transparent;
             color: var(--gray);
             border: 1px solid #333;
         }
-
         .btn-outline:hover {
             border-color: var(--lime);
             color: var(--lime);
         }
-
         .btn-large {
             padding: 1rem 2rem;
             font-size: 1.05rem;
         }
-
+        /* Hero Section */
         .hero {
             padding: 180px 0 80px;
             background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
             position: relative;
         }
-
         .hero-content {
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
         }
-
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -336,7 +300,6 @@
             margin-bottom: 2rem;
             font-family: 'Montserrat', sans-serif;
         }
-
         .hero-title {
             font-size: 3rem;
             font-weight: 800;
@@ -345,7 +308,6 @@
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
         }
-
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--gray);
@@ -353,7 +315,6 @@
             line-height: 1.6;
             font-family: 'Open Sans', sans-serif;
         }
-
         .hero-actions {
             display: flex;
             gap: 1rem;
@@ -361,18 +322,15 @@
             flex-wrap: wrap;
             margin-bottom: 3rem;
         }
-
         .hero-stats {
             display: flex;
             gap: 3rem;
             justify-content: center;
             flex-wrap: wrap;
         }
-
         .stat {
             text-align: center;
         }
-
         .stat-number {
             display: block;
             font-size: 1.5rem;
@@ -381,27 +339,23 @@
             margin-bottom: 0.5rem;
             font-family: 'Montserrat', sans-serif;
         }
-
         .stat-label {
             font-size: 0.8rem;
             color: var(--gray);
             font-weight: 500;
             font-family: 'Open Sans', sans-serif;
         }
-
+        /* Sections */
         .section {
             padding: 80px 0;
         }
-
         .section-light {
             background: var(--dark-gray);
         }
-
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
         }
-
         .section-title {
             font-size: 2.5rem;
             font-weight: 800;
@@ -409,7 +363,6 @@
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
         }
-
         .section-subtitle {
             font-size: 1.1rem;
             color: var(--gray);
@@ -418,13 +371,12 @@
             line-height: 1.6;
             font-family: 'Open Sans', sans-serif;
         }
-
+        /* Categories */
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
-
         .category-card {
             background: var(--dark-gray);
             border-radius: 12px;
@@ -435,32 +387,26 @@
             text-decoration: none;
             color: inherit;
         }
-
         .category-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
-
         .category-image {
             height: 200px;
             overflow: hidden;
         }
-
         .category-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
-
         .category-card:hover .category-image img {
             transform: scale(1.05);
         }
-
         .category-content {
             padding: 1.5rem;
         }
-
         .category-card h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
@@ -468,14 +414,12 @@
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
-
         .category-card p {
             color: var(--gray);
             line-height: 1.5;
             margin-bottom: 1rem;
             font-family: 'Open Sans', sans-serif;
         }
-
         .category-link {
             color: var(--lime);
             font-weight: 600;
@@ -485,17 +429,15 @@
             transition: gap 0.3s ease;
             font-family: 'Montserrat', sans-serif;
         }
-
         .category-card:hover .category-link {
             gap: 0.75rem;
         }
-
+        /* Products */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
-
         .product-card {
             background: var(--dark-gray);
             border-radius: 12px;
@@ -503,24 +445,20 @@
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
         }
-
         .product-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
-
         .product-image {
             height: 200px;
             overflow: hidden;
             position: relative;
         }
-
         .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .product-badge {
             position: absolute;
             top: 1rem;
@@ -533,11 +471,9 @@
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
-
         .product-content {
             padding: 1.5rem;
         }
-
         .product-card h3 {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
@@ -546,7 +482,6 @@
             line-height: 1.3;
             font-family: 'Montserrat', sans-serif;
         }
-
         .product-card p {
             color: var(--gray);
             margin-bottom: 1rem;
@@ -554,7 +489,6 @@
             line-height: 1.4;
             font-family: 'Open Sans', sans-serif;
         }
-
         .product-price {
             font-size: 1.3rem;
             font-weight: 700;
@@ -562,26 +496,23 @@
             margin-bottom: 1rem;
             font-family: 'Montserrat', sans-serif;
         }
-
         .product-actions {
             display: flex;
             gap: 0.5rem;
         }
-
         .product-actions .btn {
             flex: 1;
             justify-content: center;
             font-size: 0.85rem;
             padding: 0.6rem 1rem;
         }
-
+        /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
-
         .about-text p {
             font-size: 1.1rem;
             line-height: 1.7;
@@ -589,52 +520,44 @@
             margin-bottom: 2rem;
             font-family: 'Open Sans', sans-serif;
         }
-
         .about-features {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-
         .about-feature {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
-
         .about-feature i {
             color: var(--lime);
             font-size: 1.2rem;
         }
-
         .about-feature span {
             font-family: 'Open Sans', sans-serif;
         }
-
         .about-image {
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
         }
-
         .about-image img {
             width: 100%;
             height: 400px;
             object-fit: cover;
         }
-
+        /* Contacts */
         .contacts-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
         }
-
         .contact-info {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
-
         .contact-card {
             display: flex;
             align-items: start;
@@ -645,17 +568,14 @@
             box-shadow: var(--shadow);
             transition: transform 0.3s ease;
         }
-
         .contact-card:hover {
             transform: translateX(5px);
         }
-
         .contact-icon {
             font-size: 1.5rem;
             color: var(--lime);
             flex-shrink: 0;
         }
-
         .contact-card h3 {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
@@ -663,51 +583,43 @@
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
-
         .contact-card p {
             color: var(--gray);
             line-height: 1.5;
             font-family: 'Open Sans', sans-serif;
         }
-
         .contact-card a {
             color: var(--gray);
             text-decoration: none;
             transition: color 0.3s ease;
             font-family: 'Open Sans', sans-serif;
         }
-
         .contact-card a:hover {
             color: var(--lime);
         }
-
+        /* Contact Form */
         .contact-form {
             background: var(--dark-gray);
             padding: 2rem;
             border-radius: 12px;
             box-shadow: var(--shadow);
         }
-
         .form-header {
             margin-bottom: 2rem;
         }
-
         .form-header h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
         }
-
         .form-header p {
             color: var(--gray);
             font-family: 'Open Sans', sans-serif;
         }
-
         .form-group {
             margin-bottom: 1.25rem;
         }
-
         .form-group input,
         .form-group textarea {
             width: 100%;
@@ -720,32 +632,28 @@
             transition: all 0.3s ease;
             font-family: 'Open Sans', sans-serif;
         }
-
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--lime);
             background: var(--dark-gray);
         }
-
         .form-group textarea {
             resize: vertical;
             min-height: 120px;
         }
-
+        /* Footer */
         .footer {
             background: var(--dark-gray);
             color: var(--white);
             padding: 60px 0 20px;
         }
-
         .footer-content {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1.5fr;
             gap: 2.5rem;
             margin-bottom: 3rem;
         }
-
         .footer-logo {
             display: flex;
             align-items: center;
@@ -756,7 +664,6 @@
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
         }
-
         .footer-section h4 {
             color: var(--white);
             margin-bottom: 1.25rem;
@@ -764,7 +671,6 @@
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
-
         .footer-section a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
@@ -773,11 +679,9 @@
             transition: color 0.3s ease;
             font-family: 'Open Sans', sans-serif;
         }
-
         .footer-section a:hover {
             color: var(--lime);
         }
-
         .footer-section p {
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 0.7rem;
@@ -786,13 +690,11 @@
             gap: 0.5rem;
             font-family: 'Open Sans', sans-serif;
         }
-
         .social-links {
             display: flex;
             gap: 0.75rem;
             margin-top: 1.25rem;
         }
-
         .social-link {
             width: 40px;
             height: 40px;
@@ -805,12 +707,10 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
-
         .social-link:hover {
             background: var(--lime);
             color: var(--black);
         }
-
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
@@ -818,7 +718,7 @@
             color: rgba(255, 255, 255, 0.5);
             font-family: 'Open Sans', sans-serif;
         }
-
+        /* Cart Modal */
         .modal {
             display: none;
             position: fixed;
@@ -830,7 +730,6 @@
             background-color: rgba(0,0,0,0.7);
             backdrop-filter: blur(5px);
         }
-
         .modal-content {
             background-color: var(--dark-gray);
             margin: 5% auto;
@@ -841,7 +740,6 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             animation: modalSlideIn 0.3s ease;
         }
-
         @keyframes modalSlideIn {
             from {
                 opacity: 0;
@@ -852,7 +750,6 @@
                 transform: translateY(0);
             }
         }
-
         .modal-header {
             padding: 1.5rem 2rem;
             border-bottom: 1px solid #333;
@@ -860,7 +757,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .modal-header h3 {
             margin: 0;
             color: var(--white);
@@ -868,7 +764,6 @@
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
         }
-
         .close {
             color: var(--gray);
             font-size: 1.5rem;
@@ -876,17 +771,14 @@
             cursor: pointer;
             transition: color 0.3s ease;
         }
-
         .close:hover {
             color: var(--white);
         }
-
         .modal-body {
             padding: 2rem;
             max-height: 400px;
             overflow-y: auto;
         }
-
         .modal-footer {
             padding: 1.5rem 2rem;
             border-top: 1px solid #333;
@@ -894,16 +786,13 @@
             gap: 1rem;
             justify-content: space-between;
         }
-
         .cart-actions {
             display: flex;
             gap: 1rem;
         }
-
         .cart-items {
             margin-bottom: 1.5rem;
         }
-
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -911,35 +800,29 @@
             padding: 1rem 0;
             border-bottom: 1px solid #333;
         }
-
         .cart-item:last-child {
             border-bottom: none;
         }
-
         .cart-item-info {
             flex: 1;
         }
-
         .cart-item-name {
             font-weight: 600;
             margin-bottom: 0.25rem;
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
         }
-
         .cart-item-price {
             color: var(--gray);
             font-size: 0.9rem;
             font-family: 'Open Sans', sans-serif;
         }
-
         .cart-item-quantity {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             margin: 0 1rem;
         }
-
         .quantity-btn {
             background: var(--light-gray);
             border: none;
@@ -953,12 +836,10 @@
             transition: all 0.3s ease;
             color: var(--white);
         }
-
         .quantity-btn:hover {
             background: var(--lime);
             color: var(--black);
         }
-
         .cart-item-remove {
             background: none;
             border: none;
@@ -967,11 +848,9 @@
             padding: 0.5rem;
             transition: color 0.3s ease;
         }
-
         .cart-item-remove:hover {
             color: #ff4444;
         }
-
         .cart-total {
             text-align: right;
             font-size: 1.2rem;
@@ -980,14 +859,13 @@
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
         }
-
         .empty-cart {
             text-align: center;
             color: var(--gray);
             padding: 2rem;
             font-family: 'Open Sans', sans-serif;
         }
-
+        /* Search Results */
         .search-results {
             display: none;
             position: absolute;
@@ -1002,7 +880,6 @@
             z-index: 1000;
             border: 1px solid #333;
         }
-
         .search-result-item {
             padding: 1rem;
             border-bottom: 1px solid #333;
@@ -1013,40 +890,34 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .search-result-item:hover {
             background: var(--light-gray);
         }
-
         .search-result-item:last-child {
             border-bottom: none;
         }
-
         .search-result-name {
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
-
         .search-result-price {
             color: var(--lime);
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
-
         .no-results {
             padding: 1rem;
             text-align: center;
             color: var(--gray);
             font-family: 'Open Sans', sans-serif;
         }
-
+        /* AI Assistant */
         .ai-assistant {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
             z-index: 999;
         }
-
         .ai-button {
             width: 60px;
             height: 60px;
@@ -1062,12 +933,11 @@
             box-shadow: var(--shadow-hover);
             transition: all 0.3s ease;
         }
-
         .ai-button:hover {
             transform: scale(1.1);
             background: var(--lime-dark);
         }
-
+        /* Notification */
         .notification {
             position: fixed;
             top: 100px;
@@ -1082,7 +952,6 @@
             animation: slideInRight 0.3s ease;
             font-family: 'Montserrat', sans-serif;
         }
-
         @keyframes slideInRight {
             from {
                 transform: translateX(100%);
@@ -1093,28 +962,22 @@
                 opacity: 1;
             }
         }
-
+        /* Responsive */
         @media (max-width: 1024px) {
             .footer-content {
                 grid-template-columns: 1fr 1fr;
                 gap: 2rem;
             }
-            
             .about-content {
                 gap: 3rem;
             }
-            
             .contacts-grid {
                 gap: 3rem;
             }
-            
             .header-carousel {
-                width: 100%;
-                margin-left: 0;
                 height: 250px;
             }
         }
-
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -1128,136 +991,106 @@
                 gap: 0;
                 box-shadow: var(--shadow-hover);
             }
-            
             .nav-menu.active {
                 display: flex;
             }
-            
             .nav-link {
                 padding: 0.75rem 1rem;
                 border-bottom: 1px solid #333;
                 width: 100%;
             }
-            
             .nav-link:last-child {
                 border-bottom: none;
             }
-            
             .mobile-menu-btn {
                 display: block;
             }
-            
             .search-input {
                 width: 150px;
             }
-            
             .search-input:focus {
                 width: 180px;
             }
-            
             .hero-title {
                 font-size: 2rem;
             }
-            
             .section-title {
                 font-size: 2rem;
             }
-            
             .categories-grid,
             .products-grid {
                 grid-template-columns: 1fr;
             }
-            
             .hero-actions {
                 flex-direction: column;
                 align-items: center;
             }
-            
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
-            
             .contacts-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
-            
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
             .modal-content {
                 width: 95%;
                 margin: 10% auto;
             }
-            
             .modal-footer {
                 flex-direction: column;
             }
-            
             .cart-actions {
                 flex-direction: column;
             }
-            
             .header-carousel {
                 height: 200px;
             }
-            
             .hero {
                 padding: 160px 0 60px;
             }
         }
-
         @media (max-width: 480px) {
             .container {
                 padding: 0 15px;
             }
-            
             .hero {
                 padding: 140px 0 60px;
             }
-            
             .hero-title {
                 font-size: 1.8rem;
             }
-            
             .section-title {
                 font-size: 1.8rem;
             }
-            
             .btn-large {
                 padding: 1rem 1.5rem;
             }
-            
             .contact-card {
                 flex-direction: column;
                 text-align: center;
                 padding: 1.5rem;
             }
-            
             .contact-icon {
                 margin-bottom: 0.5rem;
             }
-            
             .contact-form {
                 padding: 1.5rem;
             }
-            
             .ai-assistant {
                 bottom: 1rem;
                 right: 1rem;
             }
-            
             .header-carousel {
                 height: 150px;
             }
-            
             .stat-number {
                 font-size: 1.3rem;
             }
-            
             .stat-label {
                 font-size: 0.7rem;
             }
@@ -1265,6 +1098,7 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <nav class="nav">
@@ -1272,13 +1106,11 @@
                     <div class="logo-icon"></div>
                     <span>VEGADAR</span>
                 </a>
-                
                 <div class="nav-menu" id="navMenu">
                     <a href="#products" class="nav-link">Каталог</a>
                     <a href="#about" class="nav-link">О компании</a>
                     <a href="#contacts" class="nav-link">Контакты</a>
                 </div>
-
                 <div class="nav-actions">
                     <div class="search-container">
                         <i class="fas fa-search search-icon"></i>
@@ -1290,13 +1122,12 @@
                         <span class="cart-count">0</span>
                     </button>
                 </div>
-
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
         </div>
-        
+        <!-- Header Carousel -->
         <div class="header-carousel">
             <div class="carousel-slides">
                 <div class="carousel-slide">
@@ -1312,12 +1143,13 @@
                     <img src="images/carousel/storage1.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Системы+Хранения'">
                 </div>
                 <div class="carousel-slide">
+                    <!-- КОТ ОСТАЕТСЯ! -->
                     <img src="images/carousel/cat.jpg" alt="Рыжий кот - наш талисман" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=300&fit=crop'">
                 </div>
             </div>
         </div>
     </header>
-
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -1331,11 +1163,11 @@
                     Гарантия качества и доступные цены. Работаем с 2008 года.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary btn-large" onclick="scrollToSection('products')">
+                    <button class="btn btn-primary btn-large" id="gotoCatalog">
                         <i class="fas fa-box-open"></i>
                         Перейти в каталог
                     </button>
-                    <button class="btn btn-secondary btn-large" onclick="openTelegram()">
+                    <button class="btn btn-secondary btn-large" id="openTelegramHero">
                         <i class="fab fa-telegram"></i>
                         Написать в Telegram
                     </button>
@@ -1357,138 +1189,72 @@
             </div>
         </div>
     </section>
-
+    <!-- Products Section -->
     <section id="products" class="section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Категории товаров</h2>
                 <p class="section-subtitle">Широкий ассортимент качественной фурнитуры для профессионалов</p>
             </div>
-            
-            <div class="categories-grid">
-                <a href="#handles" class="category-card" onclick="showCategory('handles')">
-                    <div class="category-image">
-                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Ручки'">
-                    </div>
-                    <div class="category-content">
-                        <h3>Мебельные ручки</h3>
-                        <p>Широкий выбор ручек для мебели всех стилей и размеров от ведущих производителей</p>
-                        <div class="category-link">
-                            Смотреть товары
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="#hinges" class="category-card" onclick="showCategory('hinges')">
-                    <div class="category-image">
-                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Петли'">
-                    </div>
-                    <div class="category-content">
-                        <h3>Мебельные петли</h3>
-                        <p>Четырехшарнирные и скрытые петли для любой мебели с регулировками</p>
-                        <div class="category-link">
-                            Смотреть товары
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="#systems" class="category-card" onclick="showCategory('systems')">
-                    <div class="category-image">
-                        <img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Системы+Хранения'">
-                    </div>
-                    <div class="category-content">
-                        <h3>Системы хранения</h3>
-                        <p>Направляющие и выдвижные механизмы для ящиков с плавным ходом</p>
-                        <div class="category-link">
-                            Смотреть товары
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#hardware" class="category-card" onclick="showCategory('hardware')">
-                    <div class="category-image">
-                        <img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Крепежные+Изделия'">
-                    </div>
-                    <div class="category-content">
-                        <h3>Крепежные изделия</h3>
-                        <p>Винты, шурупы, стяжки и метизы для профессиональной сборки мебели</p>
-                        <div class="category-link">
-                            Смотреть товары
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </a>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Будет заполнено динамически -->
             </div>
         </div>
     </section>
-
+    <!-- Category Sections -->
     <section id="handles" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" id="backToCategories" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
                 <h2 class="section-title">Мебельные ручки</h2>
                 <p class="section-subtitle">Качественные ручки для любой мебели</p>
             </div>
-            
-            <div class="products-grid" id="handlesProducts">
-            </div>
+            <div class="products-grid" id="handlesProducts"></div>
         </div>
     </section>
-
     <section id="hinges" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" id="backToCategories2" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
                 <h2 class="section-title">Мебельные петли</h2>
                 <p class="section-subtitle">Надежные петли для мебельных фасадов</p>
             </div>
-            
-            <div class="products-grid" id="hingesProducts">
-            </div>
+            <div class="products-grid" id="hingesProducts"></div>
         </div>
     </section>
-
     <section id="systems" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" id="backToCategories3" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
                 <h2 class="section-title">Системы хранения</h2>
                 <p class="section-subtitle">Современные системы для организации пространства</p>
             </div>
-            
-            <div class="products-grid" id="systemsProducts">
-            </div>
+            <div class="products-grid" id="systemsProducts"></div>
         </div>
     </section>
-
     <section id="hardware" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" id="backToCategories4" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
                 <h2 class="section-title">Крепежные изделия</h2>
                 <p class="section-subtitle">Профессиональный крепеж для сборки мебели</p>
             </div>
-            
-            <div class="products-grid" id="hardwareProducts">
-            </div>
+            <div class="products-grid" id="hardwareProducts"></div>
         </div>
     </section>
-
+    <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
             <div class="about-content">
@@ -1522,21 +1288,19 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=500&fit=crop" alt="Наш магазин фурнитуры">
                 </div>
             </div>
         </div>
     </section>
-
+    <!-- Contacts Section -->
     <section id="contacts" class="section section-light">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Контакты</h2>
                 <p class="section-subtitle">Свяжитесь с нами удобным для вас способом</p>
             </div>
-            
             <div class="contacts-grid">
                 <div class="contact-info">
                     <div class="contact-card">
@@ -1549,7 +1313,6 @@
                             <p><small>Режим работы: Пн-Пт 9:00-18:00, Сб 10:00-16:00</small></p>
                         </div>
                     </div>
-                    
                     <div class="contact-card">
                         <div class="contact-icon">
                             <i class="fas fa-phone"></i>
@@ -1560,7 +1323,6 @@
                             <p><small>Ежедневно с 8:00 до 20:00</small></p>
                         </div>
                     </div>
-                    
                     <div class="contact-card">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
@@ -1571,7 +1333,6 @@
                             <p><small>Отвечаем в течение 24 часов</small></p>
                         </div>
                     </div>
-                    
                     <div class="contact-card">
                         <div class="contact-icon">
                             <i class="fas fa-truck"></i>
@@ -1583,13 +1344,11 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="contact-form">
                     <div class="form-header">
                         <h3>Остались вопросы?</h3>
                         <p>Заполните форму и мы свяжемся с вами в течение 15 минут</p>
                     </div>
-                    
                     <form id="contactForm">
                         <div class="form-group">
                             <input type="text" placeholder="Ваше имя" required id="contactName">
@@ -1609,7 +1368,7 @@
             </div>
         </div>
     </section>
-
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -1631,15 +1390,13 @@
                         </a>
                     </div>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Категории</h4>
-                    <a href="#handles" onclick="showCategory('handles')">Мебельные ручки</a>
-                    <a href="#hinges" onclick="showCategory('hinges')">Мебельные петли</a>
-                    <a href="#systems" onclick="showCategory('systems')">Системы хранения</a>
-                    <a href="#hardware" onclick="showCategory('hardware')">Крепежные изделия</a>
+                    <a href="#handles" data-category="handles">Мебельные ручки</a>
+                    <a href="#hinges" data-category="hinges">Мебельные петли</a>
+                    <a href="#systems" data-category="systems">Системы хранения</a>
+                    <a href="#hardware" data-category="hardware">Крепежные изделия</a>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Компания</h4>
                     <a href="#about">О нас</a>
@@ -1647,7 +1404,6 @@
                     <a href="#delivery">Доставка и оплата</a>
                     <a href="#guarantee">Гарантия</a>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Контакты</h4>
                     <p><i class="fas fa-phone"></i> +7 (962) 404-43-23</p>
@@ -1655,13 +1411,12 @@
                     <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, ул. Промышленная, 15</p>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>© 2024 Вегадар. Все права защищены. ИНН: 1234567890 ОГРН: 1234567890123</p>
+                <p>© 2025 Вегадар. Все права защищены.</p>
             </div>
         </div>
     </footer>
-
+    <!-- Cart Modal -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1669,8 +1424,7 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <div id="cartItems" class="cart-items">
-                </div>
+                <div id="cartItems" class="cart-items"></div>
                 <div class="cart-total">
                     <strong>Итого: <span id="cartTotal">0</span> ₽</strong>
                 </div>
@@ -1689,216 +1443,98 @@
             </div>
         </div>
     </div>
-
+    <!-- AI Assistant -->
     <div class="ai-assistant">
-        <button class="ai-button" onclick="openAIAssistant()">
+        <button class="ai-button" id="openAI">
             <i class="fas fa-robot"></i>
         </button>
     </div>
-
     <script>
+        // === ДАННЫЕ ===
         const productsData = [
-            {
-                id: 1,
-                name: "Ручка мебельная 'Престиж' алюминиевая",
-                price: 450,
-                category: "handles",
-                image: "images/handles.jpg",
-                description: "Алюминиевая ручка с матовым покрытием, 128мм. Для современной мебели."
-            },
-            {
-                id: 2,
-                name: "Ручка-кноб 'Элегант' хром",
-                price: 320,
-                category: "handles",
-                image: "images/handles.jpg",
-                description: "Шарообразная ручка, хром покрытие, 32мм. Универсальное решение."
-            },
-            {
-                id: 3,
-                name: "Ручка С-образная 'Модерн'",
-                price: 280,
-                category: "handles",
-                image: "images/handles.jpg",
-                description: "Стальная ручка для современной мебели, 96мм. Стильный дизайн."
-            },
-            {
-                id: 4,
-                name: "Ручка скоба 'Классика' латунь",
-                price: 390,
-                category: "handles",
-                image: "images/handles.jpg",
-                description: "Латунная ручка для классической мебели, 128мм. Премиальное качество."
-            },
-            {
-                id: 5,
-                name: "Петля четырехшарнирная с доводчиком",
-                price: 280,
-                category: "hinges",
-                image: "images/hinges.jpg",
-                description: "С доводчиком, регулировка по 3 осям, 110°. Немецкое качество."
-            },
-            {
-                id: 6,
-                name: "Петля скрытая INVISIBLE",
-                price: 390,
-                category: "hinges",
-                image: "images/hinges.jpg",
-                description: "Скрытое крепление, для современных интерьеров. Невидимый монтаж."
-            },
-            {
-                id: 7,
-                name: "Петля накладная 95°",
-                price: 220,
-                category: "hinges",
-                image: "images/hinges.jpg",
-                description: "Для мебельных фасадов, угол открывания 95°. Надежная конструкция."
-            },
-            {
-                id: 8,
-                name: "Петля полного навеса 175°",
-                price: 310,
-                category: "hinges",
-                image: "images/hinges.jpg",
-                description: "Для угловых шкафов, широкий угол открывания. С плавным ходом."
-            },
-            {
-                id: 9,
-                name: "Направляющая шариковая 400мм",
-                price: 890,
-                category: "systems",
-                image: "images/drawers.jpg",
-                description: "Для выдвижных ящиков, нагрузка до 50кг, 400мм. Плавный ход."
-            },
-            {
-                id: 10,
-                name: "Лифт подъемный механизм газлифт",
-                price: 1250,
-                category: "systems",
-                image: "images/drawers.jpg",
-                description: "Для верхних шкафов, плавное открывание. Gas-lift система."
-            },
-            {
-                id: 11,
-                name: "Направляющая телескопическая 450мм",
-                price: 750,
-                category: "systems",
-                image: "images/drawers.jpg",
-                description: "Полное выдвижение, нагрузка до 35кг, 450мм. Тихая работа."
-            },
-            {
-                id: 12,
-                name: "Система пантограф для верхних шкафов",
-                price: 1850,
-                category: "systems",
-                image: "images/drawers.jpg",
-                description: "Для верхних шкафов, вертикальное открывание. Премиум-класс."
-            },
-            {
-                id: 13,
-                name: "Винт мебельный конфирмат 6.3x50mm",
-                price: 5,
-                category: "hardware",
-                image: "images/hardware.jpg",
-                description: "Для сборки мебели, 6.3x50mm, оцинкованный. Высокая прочность."
-            },
-            {
-                id: 14,
-                name: "Угловая стяжка мебельная",
-                price: 15,
-                category: "hardware",
-                image: "images/hardware.jpg",
-                description: "Для перпендикулярного соединения деталей. Надежная фиксация."
-            },
-            {
-                id: 15,
-                name: "Шуруп мебельный 4x30mm",
-                price: 3,
-                category: "hardware",
-                image: "images/hardware.jpg",
-                description: "Универсальный шуруп для ДСП, 4x30mm. Антикоррозийное покрытие."
-            },
-            {
-                id: 16,
-                name: "Мебельный уголок усиленный",
-                price: 25,
-                category: "hardware",
-                image: "images/hardware.jpg",
-                description: "Усиленный уголок для крепления полок. Грузоподъемность 50кг."
-            }
+            // ... (оставлены те же товары, что и в оригинале — 16 шт.)
+            { id: 1, name: "Ручка мебельная 'Престиж' алюминиевая", price: 450, category: "handles", image: "images/handles.jpg", description: "Алюминиевая ручка с матовым покрытием, 128мм. Для современной мебели." },
+            { id: 2, name: "Ручка-кноб 'Элегант' хром", price: 320, category: "handles", image: "images/handles.jpg", description: "Шарообразная ручка, хром покрытие, 32мм. Универсальное решение." },
+            { id: 3, name: "Ручка С-образная 'Модерн'", price: 280, category: "handles", image: "images/handles.jpg", description: "Стальная ручка для современной мебели, 96мм. Стильный дизайн." },
+            { id: 4, name: "Ручка скоба 'Классика' латунь", price: 390, category: "handles", image: "images/handles.jpg", description: "Латунная ручка для классической мебели, 128мм. Премиальное качество." },
+            { id: 5, name: "Петля четырехшарнирная с доводчиком", price: 280, category: "hinges", image: "images/hinges.jpg", description: "С доводчиком, регулировка по 3 осям, 110°. Немецкое качество." },
+            { id: 6, name: "Петля скрытая INVISIBLE", price: 390, category: "hinges", image: "images/hinges.jpg", description: "Скрытое крепление, для современных интерьеров. Невидимый монтаж." },
+            { id: 7, name: "Петля накладная 95°", price: 220, category: "hinges", image: "images/hinges.jpg", description: "Для мебельных фасадов, угол открывания 95°. Надежная конструкция." },
+            { id: 8, name: "Петля полного навеса 175°", price: 310, category: "hinges", image: "images/hinges.jpg", description: "Для угловых шкафов, широкий угол открывания. С плавным ходом." },
+            { id: 9, name: "Направляющая шариковая 400мм", price: 890, category: "systems", image: "images/drawers.jpg", description: "Для выдвижных ящиков, нагрузка до 50кг, 400мм. Плавный ход." },
+            { id: 10, name: "Лифт подъемный механизм газлифт", price: 1250, category: "systems", image: "images/drawers.jpg", description: "Для верхних шкафов, плавное открывание. Gas-lift система." },
+            { id: 11, name: "Направляющая телескопическая 450мм", price: 750, category: "systems", image: "images/drawers.jpg", description: "Полное выдвижение, нагрузка до 35кг, 450мм. Тихая работа." },
+            { id: 12, name: "Система пантограф для верхних шкафов", price: 1850, category: "systems", image: "images/drawers.jpg", description: "Для верхних шкафов, вертикальное открывание. Премиум-класс." },
+            { id: 13, name: "Винт мебельный конфирмат 6.3x50mm", price: 5, category: "hardware", image: "images/hardware.jpg", description: "Для сборки мебели, 6.3x50mm, оцинкованный. Высокая прочность." },
+            { id: 14, name: "Угловая стяжка мебельная", price: 15, category: "hardware", image: "images/hardware.jpg", description: "Для перпендикулярного соединения деталей. Надежная фиксация." },
+            { id: 15, name: "Шуруп мебельный 4x30mm", price: 3, category: "hardware", image: "images/hardware.jpg", description: "Универсальный шуруп для ДСП, 4x30mm. Антикоррозийное покрытие." },
+            { id: 16, name: "Мебельный уголок усиленный", price: 25, category: "hardware", image: "images/hardware.jpg", description: "Усиленный уголок для крепления полок. Грузоподъемность 50кг." }
         ];
 
-        let cart = [];
-        let cartCount = 0;
+        // === ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===
+        let cart = JSON.parse(localStorage.getItem('vegadar_cart') || '[]');
 
-        document.addEventListener('DOMContentLoaded', function() {
-            initCart();
-            setupEventListeners();
-            setupMobileMenu();
-            loadAllProducts();
-            setupSearch();
-        });
-
-        function initCart() {
-            const savedCart = localStorage.getItem('vegadar_cart');
-            if (savedCart) {
-                cart = JSON.parse(savedCart);
-                updateCartCount();
-            }
+        // === ФУНКЦИИ ===
+        function getCategoryName(cat) {
+            const map = { handles: 'Ручки', hinges: 'Петли', systems: 'Системы', hardware: 'Крепеж' };
+            return map[cat] || 'Товар';
         }
 
         function saveCart() {
             localStorage.setItem('vegadar_cart', JSON.stringify(cart));
+            updateCartCount();
         }
 
         function updateCartCount() {
-            cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-            const cartCountElement = document.querySelector('.cart-count');
-            if (cartCountElement) {
-                cartCountElement.textContent = cartCount;
-            }
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = count;
         }
 
-        function addToCart(productId, productName, productPrice) {
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
+        function showNotification(msg) {
+            const notif = document.createElement('div');
+            notif.className = 'notification';
+            notif.textContent = msg;
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 3000);
+        }
+
+        // === НАВИГАЦИЯ ===
+        function showCategory(cat) {
+            document.querySelectorAll('#products, #handles, #hinges, #systems, #hardware').forEach(el => el.style.display = 'none');
+            document.getElementById(cat).style.display = 'block';
+            document.getElementById(cat).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showCategories() {
+            document.querySelectorAll('#handles, #hinges, #systems, #hardware').forEach(el => el.style.display = 'none');
+            document.getElementById('products').style.display = 'block';
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // === КОРЗИНА ===
+        function addToCart(id, name, price) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity++;
             } else {
-                cart.push({
-                    id: productId,
-                    name: productName,
-                    price: productPrice,
-                    quantity: 1
-                });
+                cart.push({ id, name, price, quantity: 1 });
             }
-            
             saveCart();
-            updateCartCount();
-            showNotification(`✅ "${productName}" добавлен в корзину!`);
+            showNotification(`✅ "${name}" добавлен в корзину!`);
         }
 
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
             saveCart();
-            updateCartCount();
             updateCartModal();
         }
 
-        function clearCart() {
-            cart = [];
-            saveCart();
-            updateCartCount();
-            updateCartModal();
-            showNotification('🗑️ Корзина очищена');
-        }
-
-        function updateQuantity(productId, change) {
-            const item = cart.find(item => item.id === productId);
+        function updateQuantity(id, change) {
+            const item = cart.find(i => i.id === id);
             if (item) {
                 item.quantity += change;
                 if (item.quantity <= 0) {
-                    removeFromCart(productId);
+                    removeFromCart(id);
                 } else {
                     saveCart();
                     updateCartModal();
@@ -1907,83 +1543,34 @@
         }
 
         function calculateTotal() {
-            return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-        }
-
-        function setupCartModal() {
-            const modal = document.getElementById('cartModal');
-            const cartButton = document.getElementById('cartButton');
-            const closeButton = document.querySelector('.close');
-            const continueShopping = document.getElementById('continueShopping');
-            const checkoutButton = document.getElementById('checkout');
-            const clearCartButton = document.getElementById('clearCart');
-
-            if (cartButton) {
-                cartButton.addEventListener('click', openCartModal);
-            }
-
-            if (closeButton) {
-                closeButton.addEventListener('click', closeCartModal);
-            }
-
-            if (continueShopping) {
-                continueShopping.addEventListener('click', closeCartModal);
-            }
-
-            if (checkoutButton) {
-                checkoutButton.addEventListener('click', processCheckout);
-            }
-
-            if (clearCartButton) {
-                clearCartButton.addEventListener('click', clearCart);
-            }
-
-            window.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    closeCartModal();
-                }
-            });
-        }
-
-        function openCartModal() {
-            const modal = document.getElementById('cartModal');
-            updateCartModal();
-            modal.style.display = 'block';
-        }
-
-        function closeCartModal() {
-            const modal = document.getElementById('cartModal');
-            modal.style.display = 'none';
+            return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
         }
 
         function updateCartModal() {
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            
-            if (!cartItems || !cartTotal) return;
-            
+            const itemsEl = document.getElementById('cartItems');
+            const totalEl = document.getElementById('cartTotal');
             if (cart.length === 0) {
-                cartItems.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
+                itemsEl.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
+                totalEl.textContent = '0';
             } else {
-                cartItems.innerHTML = cart.map(item => `
+                itemsEl.innerHTML = cart.map(item => `
                     <div class="cart-item">
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-price">${item.price} ₽ × ${item.quantity}</div>
                         </div>
                         <div class="cart-item-quantity">
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <button class="quantity-btn dec" data-id="${item.id}">-</button>
                             <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            <button class="quantity-btn inc" data-id="${item.id}">+</button>
                         </div>
-                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                        <button class="cart-item-remove" data-id="${item.id}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 `).join('');
+                totalEl.textContent = calculateTotal();
             }
-            
-            cartTotal.textContent = calculateTotal();
         }
 
         function processCheckout() {
@@ -1991,230 +1578,252 @@
                 showNotification('❌ Корзина пуста!');
                 return;
             }
-
-            const orderItems = cart.map(item => 
+            const itemsText = cart.map(item => 
                 `• ${item.name} - ${item.quantity}шт. × ${item.price}₽ = ${item.quantity * item.price}₽`
             ).join('\n');
-
-            const totalAmount = calculateTotal();
-            const message = `🛒 ЗАКАЗ С САЙТА VEGADAR.RU\n\n${orderItems}\n\n💰 ИТОГО: ${totalAmount}₽\n\n📞 Для подтверждения заказа свяжитесь с клиентом.`;
-
-            const phone = '+79624044323';
-            const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
-            
-            window.open(telegramUrl, '_blank');
-            
-            showNotification('✅ Заказ оформлен! Открываю Telegram для отправки.');
-            
+            const total = calculateTotal();
+            const message = `🛒 ЗАКАЗ С САЙТА VEGADAR.RU\n${itemsText}\n💰 ИТОГО: ${total}₽\n📞 Пожалуйста, свяжитесь с клиентом.`;
+            const url = `https://t.me/+79624044323?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
             cart = [];
             saveCart();
-            updateCartCount();
-            closeCartModal();
+            updateCartModal();
+            showNotification('✅ Заказ отправлен в Telegram! Ожидайте звонка.');
         }
 
-        function showCategory(category) {
-            document.getElementById('products').style.display = 'none';
-            document.getElementById('handles').style.display = 'none';
-            document.getElementById('hinges').style.display = 'none';
-            document.getElementById('systems').style.display = 'none';
-            document.getElementById('hardware').style.display = 'none';
-            
-            document.getElementById(category).style.display = 'block';
-            
-            document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showCategories() {
-            document.getElementById('handles').style.display = 'none';
-            document.getElementById('hinges').style.display = 'none';
-            document.getElementById('systems').style.display = 'none';
-            document.getElementById('hardware').style.display = 'none';
-            
-            document.getElementById('products').style.display = 'block';
-            
-            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        function loadAllProducts() {
-            const categories = ['handles', 'hinges', 'systems', 'hardware'];
-            
-            categories.forEach(category => {
-                const productsGrid = document.getElementById(category + 'Products');
-                const categoryProducts = productsData.filter(product => product.category === category);
-                
-                productsGrid.innerHTML = categoryProducts.map(product => `
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
-                            <div class="product-badge">${getCategoryName(product.category)}</div>
-                        </div>
-                        <div class="product-content">
-                            <h3>${product.name}</h3>
-                            <p>${product.description}</p>
-                            <div class="product-price">${product.price} ₽</div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" onclick="addToCart(${product.id}, '${product.name.replace(/'/g, "\\'")}', ${product.price})">
-                                    <i class="fas fa-cart-plus"></i>
-                                    В корзину
-                                </button>
-                                <button class="btn btn-secondary" onclick="orderProduct(${product.id})">
-                                    <i class="fab fa-telegram"></i>
-                                    Заказать
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-            });
-        }
-
-        function getCategoryName(category) {
-            const names = {
-                'handles': 'Ручки',
-                'hinges': 'Петли',
-                'systems': 'Системы',
-                'hardware': 'Крепеж'
-            };
-            return names[category] || 'Товар';
-        }
-
-        function setupSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
-            
-            if (!searchInput || !searchResults) return;
-            
-            searchInput.addEventListener('input', function() {
-                const query = this.value.toLowerCase().trim();
-                
-                if (query.length < 2) {
-                    searchResults.style.display = 'none';
-                    return;
-                }
-                
-                const results = productsData.filter(product => 
-                    product.name.toLowerCase().includes(query) || 
-                    product.description.toLowerCase().includes(query)
-                );
-                
-                if (results.length > 0) {
-                    searchResults.innerHTML = results.map(product => `
-                        <div class="search-result-item" onclick="selectSearchResult('${product.category}', ${product.id})">
-                            <div class="search-result-name">${product.name}</div>
-                            <div class="search-result-price">${product.price} ₽</div>
-                        </div>
-                    `).join('');
-                    searchResults.style.display = 'block';
-                } else {
-                    searchResults.innerHTML = '<div class="no-results">Товары не найдены</div>';
-                    searchResults.style.display = 'block';
-                }
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                    searchResults.style.display = 'none';
-                }
-            });
-        }
-
-        function selectSearchResult(category, productId) {
-            showCategory(category);
-            document.getElementById('searchInput').value = '';
-            document.getElementById('searchResults').style.display = 'none';
-            
-            setTimeout(() => {
-                document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
-
-        function orderProduct(productId) {
-            const product = productsData.find(p => p.id === productId);
-            if (product) {
-                const message = `Здравствуйте! Хочу заказать товар: ${product.name} - ${product.price}₽`;
-                openTelegramWithMessage(message);
-            }
-        }
-
-        function openTelegram() {
-            const message = 'Здравствуйте! У меня вопрос по мебельной фурнитуре.';
-            openTelegramWithMessage(message);
-        }
-
-        function openTelegramWithMessage(message) {
-            const phone = '+79624044323';
-            const url = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
+        // === TELEGRAM ===
+        function openTelegramWithMessage(msg) {
+            const url = `https://t.me/+79624044323?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         }
 
-        function openAIAssistant() {
-            showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время');
-        }
+        // === ПОИСК ===
+        function setupSearch() {
+            const input = document.getElementById('searchInput');
+            const results = document.getElementById('searchResults');
+            if (!input || !results) return;
 
-        function setupMobileMenu() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const navMenu = document.getElementById('navMenu');
+            input.addEventListener('input', () => {
+                const q = input.value.trim().toLowerCase();
+                results.style.display = q.length < 2 ? 'none' : 'block';
+                if (q.length < 2) return;
 
-            if (mobileMenuBtn && navMenu) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                });
-            }
+                const found = productsData.filter(p => 
+                    p.name.toLowerCase().includes(q) || 
+                    p.description.toLowerCase().includes(q)
+                );
 
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('active');
-                });
+                results.innerHTML = found.length 
+                    ? found.map(p => `
+                        <div class="search-result-item" data-category="${p.category}" data-id="${p.id}">
+                            <div class="search-result-name">${p.name}</div>
+                            <div class="search-result-price">${p.price} ₽</div>
+                        </div>
+                      `).join('')
+                    : '<div class="no-results">Товары не найдены</div>';
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!input.contains(e.target) && !results.contains(e.target)) {
+                    results.style.display = 'none';
+                }
             });
         }
 
-        function showNotification(message) {
-            const existingNotification = document.querySelector('.notification');
-            if (existingNotification) {
-                existingNotification.remove();
-            }
-
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
+        // === ЗАГРУЗКА ТОВАРОВ ===
+        function loadCategories() {
+            const grid = document.getElementById('categoriesGrid');
+            if (!grid) return;
+            grid.innerHTML = `
+                <div class="category-card" data-category="handles">
+                    <div class="category-image"><img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Ручки'"></div>
+                    <div class="category-content">
+                        <h3>Мебельные ручки</h3>
+                        <p>Широкий выбор ручек для мебели всех стилей и размеров от ведущих производителей</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="hinges">
+                    <div class="category-image"><img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Петли'"></div>
+                    <div class="category-content">
+                        <h3>Мебельные петли</h3>
+                        <p>Четырехшарнирные и скрытые петли для любой мебели с регулировками</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="systems">
+                    <div class="category-image"><img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Системы+Хранения'"></div>
+                    <div class="category-content">
+                        <h3>Системы хранения</h3>
+                        <p>Направляющие и выдвижные механизмы для ящиков с плавным ходом</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="hardware">
+                    <div class="category-image"><img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Крепежные+Изделия'"></div>
+                    <div class="category-content">
+                        <h3>Крепежные изделия</h3>
+                        <p>Винты, шурупы, стяжки и метизы для профессиональной сборки мебели</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            `;
         }
 
-        function setupEventListeners() {
-            setupCartModal();
-            
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+        function loadAllProducts() {
+            ['handles', 'hinges', 'systems', 'hardware'].forEach(cat => {
+                const container = document.getElementById(cat + 'Products');
+                if (container) {
+                    const items = productsData.filter(p => p.category === cat);
+                    container.innerHTML = items.map(p => `
+                        <div class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-category="${p.category}">
+                            <div class="product-image">
+                                <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
+                                <div class="product-badge">${getCategoryName(p.category)}</div>
+                            </div>
+                            <div class="product-content">
+                                <h3>${p.name}</h3>
+                                <p>${p.description}</p>
+                                <div class="product-price">${p.price} ₽</div>
+                                <div class="product-actions">
+                                    <button class="btn btn-primary add-to-cart">В корзину</button>
+                                    <button class="btn btn-secondary order-product">Заказать</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            });
+        }
+
+        // === ОБРАБОТКА СОБЫТИЙ (ДЕЛЕГИРОВАНИЕ) ===
+        function setupEventDelegation() {
+            document.addEventListener('click', (e) => {
+                // Категории
+                if (e.target.closest('.category-card')) {
+                    const cat = e.target.closest('.category-card').dataset.category;
+                    showCategory(cat);
+                }
+                // Возврат к категориям
+                if (e.target.closest('[id^="backToCategories"]')) {
+                    showCategories();
+                }
+                // Добавление в корзину
+                if (e.target.classList.contains('add-to-cart')) {
+                    const card = e.target.closest('.product-card');
+                    addToCart(
+                        +card.dataset.id,
+                        card.dataset.name,
+                        +card.dataset.price
+                    );
+                }
+                // Быстрый заказ
+                if (e.target.classList.contains('order-product')) {
+                    const card = e.target.closest('.product-card');
+                    openTelegramWithMessage(`Здравствуйте! Хочу заказать: ${card.dataset.name} - ${card.dataset.price}₽`);
+                }
+                // Удаление из корзины
+                if (e.target.classList.contains('cart-item-remove') || e.target.closest('.cart-item-remove')) {
+                    const id = +e.target.closest('.cart-item-remove').dataset.id;
+                    removeFromCart(id);
+                }
+                // Изменение количества
+                if (e.target.classList.contains('quantity-btn')) {
+                    const id = +e.target.dataset.id;
+                    const change = e.target.classList.contains('inc') ? 1 : -1;
+                    updateQuantity(id, change);
+                }
+                // Поиск
+                if (e.target.classList.contains('search-result-item')) {
+                    const cat = e.target.dataset.category;
+                    showCategory(cat);
+                    document.getElementById('searchInput').value = '';
+                    document.getElementById('searchResults').style.display = 'none';
+                }
+            });
+
+            // Кнопки
+            document.getElementById('gotoCatalog')?.addEventListener('click', () => scrollToSection('products'));
+            document.getElementById('openTelegramHero')?.addEventListener('click', () => openTelegramWithMessage('Здравствуйте! У меня вопрос по мебельной фурнитуре.'));
+            document.getElementById('openAI')?.addEventListener('click', () => showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время'));
+
+            // Форма обратной связи
+            document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('contactName').value;
+                const phone = document.getElementById('contactPhone').value;
+                const msg = document.getElementById('contactMessage').value;
+                const text = `📧 НОВАЯ ЗАЯВКА С САЙТА\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Сообщение: ${msg || '—'}`;
+                openTelegramWithMessage(text);
+                e.target.reset();
+                showNotification('✅ Сообщение отправлено! Ожидайте звонка.');
+            });
+
+            // Мобильное меню
+            document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.toggle('active');
+            });
+        }
+
+        // Модальное окно корзины
+        function setupCartModal() {
+            const modal = document.getElementById('cartModal');
+            document.getElementById('cartButton')?.addEventListener('click', () => {
+                updateCartModal();
+                modal.style.display = 'block';
+            });
+            document.querySelector('.close, #continueShopping')?.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            document.getElementById('clearCart')?.addEventListener('click', () => {
+                cart = [];
+                saveCart();
+                updateCartModal();
+                showNotification('🗑️ Корзина очищена');
+            });
+            document.getElementById('checkout')?.addEventListener('click', processCheckout);
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) modal.style.display = 'none';
+            });
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // === ИНИЦИАЛИЗАЦИЯ ===
+        // Инициализация происходит сразу (не в DOMContentLoaded!), чтобы работало при открытии из Telegram
+        updateCartCount();
+        loadCategories();
+        loadAllProducts();
+        setupEventDelegation();
+        setupCartModal();
+        setupSearch();
+
+        // Дополнительно — после загрузки DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            // Навигация по якорям
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const name = document.getElementById('contactName').value;
-                    const phone = document.getElementById('contactPhone').value;
-                    const message = document.getElementById('contactMessage').value;
-                    
-                    processContactForm(name, phone, message);
+                    const targetId = link.getAttribute('href').substring(1);
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        if (['handles','hinges','systems','hardware'].includes(targetId)) {
+                            showCategory(targetId);
+                        }
+                    }
                 });
-            }
-        }
-
-        function processContactForm(name, phone, message) {
-            const fullMessage = `📧 НОВАЯ ЗАЯВКА С САЙТА VEGADAR.RU\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Сообщение: ${message || 'Не указано'}`;
-            openTelegramWithMessage(fullMessage);
-            
-            document.getElementById('contactForm').reset();
-            showNotification('✅ Сообщение отправлено! Мы свяжемся с вами в течение 15 минут.');
-        }
+            });
+            // Footer категории
+            document.querySelectorAll('[data-category]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showCategory(link.dataset.category);
+                });
+            });
+        });
     </script>
 </body>
 </html>

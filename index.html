@@ -7,36 +7,1189 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* ... ваш CSS без изменений ... */
-        /* Оставлен как в оригинале, включая стили карусели, модалки и т.д. */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --lime: #32CD32;
+            --lime-dark: #28a428;
+            --lime-light: #90EE90;
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --gray: #888;
+            --light-gray: #222;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.5);
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--white);
+            background: var(--black);
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        .header {
+            background: var(--dark-gray);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--lime);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-icon::before,
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            animation: spiral 3s linear infinite;
+        }
+        .logo-icon::before {
+            width: 24px;
+            height: 24px;
+            border-top-color: transparent;
+            animation-delay: 0s;
+        }
+        .logo-icon::after {
+            width: 16px;
+            height: 16px;
+            border-bottom-color: transparent;
+            animation-delay: 0.5s;
+        }
+        @keyframes spiral {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Header Carousel */
+        .header-carousel {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            background: var(--black);
+            width: 133%;
+            margin-left: -16.5%;
+        }
+        .carousel-slides {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            animation: slide 25s infinite;
+        }
+        .carousel-slide {
+            width: 20%;
+            height: 100%;
+            flex-shrink: 0;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(0); }
+            25% { transform: translateX(-20%); }
+            45% { transform: translateX(-20%); }
+            50% { transform: translateX(-40%); }
+            70% { transform: translateX(-40%); }
+            75% { transform: translateX(-60%); }
+            95% { transform: translateX(-60%); }
+            100% { transform: translateX(-80%); }
+        }
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .nav-link:hover {
+            color: var(--lime);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--lime);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .search-container {
+            position: relative;
+        }
+        .search-input {
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #333;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            width: 200px;
+            transition: all 0.3s ease;
+            background: var(--dark-gray);
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--lime);
+            box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.2);
+            width: 250px;
+        }
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        .cart-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem;
+            color: var(--white);
+            transition: color 0.3s ease;
+        }
+        .cart-btn:hover {
+            color: var(--lime);
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--lime);
+            color: var(--black);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--white);
+        }
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-primary {
+            background: var(--lime);
+            color: var(--black);
+        }
+        .btn-primary:hover {
+            background: var(--lime-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--lime);
+            border: 2px solid var(--lime);
+        }
+        .btn-secondary:hover {
+            background: var(--lime);
+            color: var(--black);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--gray);
+            border: 1px solid #333;
+        }
+        .btn-outline:hover {
+            border-color: var(--lime);
+            color: var(--lime);
+        }
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.05rem;
+        }
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 80px;
+            background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
+            position: relative;
+        }
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(50, 205, 50, 0.2);
+            color: var(--lime);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--lime);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 500;
+            font-family: 'Open Sans', sans-serif;
+        }
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        .section-light {
+            background: var(--dark-gray);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
+        }
+        /* Categories */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .category-card {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .category-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .category-card:hover .category-image img {
+            transform: scale(1.05);
+        }
+        .category-content {
+            padding: 1.5rem;
+        }
+        .category-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .category-card p {
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .category-link {
+            color: var(--lime);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .category-card:hover .category-link {
+            gap: 0.75rem;
+        }
+        /* Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--lime);
+            color: var(--black);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .product-content {
+            padding: 1.5rem;
+        }
+        .product-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 600;
+            line-height: 1.3;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .product-card p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--lime);
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .product-actions .btn {
+            flex: 1;
+            justify-content: center;
+            font-size: 0.85rem;
+            padding: 0.6rem 1rem;
+        }
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .about-feature i {
+            color: var(--lime);
+            font-size: 1.2rem;
+        }
+        .about-feature span {
+            font-family: 'Open Sans', sans-serif;
+        }
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        /* Contacts */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .contact-card {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--dark-gray);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateX(5px);
+        }
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--lime);
+            flex-shrink: 0;
+        }
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .contact-card p {
+            color: var(--gray);
+            line-height: 1.5;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .contact-card a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .contact-card a:hover {
+            color: var(--lime);
+        }
+        /* Contact Form */
+        .contact-form {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        .form-header {
+            margin-bottom: 2rem;
+        }
+        .form-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .form-header p {
+            color: var(--gray);
+            font-family: 'Open Sans', sans-serif;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: var(--light-gray);
+            color: var(--white);
+            font-family: inherit;
+            transition: all 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--lime);
+            background: var(--dark-gray);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.7rem;
+            transition: color 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .footer-section a:hover {
+            color: var(--lime);
+        }
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--lime);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: var(--lime);
+            color: var(--black);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Open Sans', sans-serif;
+        }
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: var(--dark-gray);
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 {
+            margin: 0;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .close {
+            color: var(--gray);
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close:hover {
+            color: var(--white);
+        }
+        .modal-body {
+            padding: 2rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .modal-footer {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #333;
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+        .cart-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        .cart-items {
+            margin-bottom: 1.5rem;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .cart-item-price {
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 1rem;
+        }
+        .quantity-btn {
+            background: var(--light-gray);
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--white);
+        }
+        .quantity-btn:hover {
+            background: var(--lime);
+            color: var(--black);
+        }
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        .cart-item-remove:hover {
+            color: #ff4444;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 1.2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #333;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .empty-cart {
+            text-align: center;
+            color: var(--gray);
+            padding: 2rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        /* Search Results */
+        .search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--dark-gray);
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            border: 1px solid #333;
+        }
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .search-result-item:hover {
+            background: var(--light-gray);
+        }
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        .search-result-name {
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .search-result-price {
+            color: var(--lime);
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .no-results {
+            padding: 1rem;
+            text-align: center;
+            color: var(--gray);
+            font-family: 'Open Sans', sans-serif;
+        }
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+        }
+        .ai-button {
+            width: 60px;
+            height: 60px;
+            background: var(--lime);
+            color: var(--black);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-hover);
+            transition: all 0.3s ease;
+        }
+        .ai-button:hover {
+            transform: scale(1.1);
+            background: var(--lime-dark);
+        }
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--lime);
+            color: var(--black);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-hover);
+            z-index: 10000;
+            font-weight: 600;
+            animation: slideInRight 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            .about-content {
+                gap: 3rem;
+            }
+            .contacts-grid {
+                gap: 3rem;
+            }
+            .header-carousel {
+                width: 100%;
+                margin-left: 0;
+                height: 250px;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--dark-gray);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+                box-shadow: var(--shadow-hover);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-link {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #333;
+                width: 100%;
+            }
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .search-input {
+                width: 150px;
+            }
+            .search-input:focus {
+                width: 180px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .contacts-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            .modal-footer {
+                flex-direction: column;
+            }
+            .cart-actions {
+                flex-direction: column;
+            }
+            .header-carousel {
+                height: 200px;
+            }
+            .hero {
+                padding: 160px 0 60px;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            .hero {
+                padding: 140px 0 60px;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .btn-large {
+                padding: 1rem 1.5rem;
+            }
+            .contact-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            .contact-icon {
+                margin-bottom: 0.5rem;
+            }
+            .contact-form {
+                padding: 1.5rem;
+            }
+            .ai-assistant {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            .header-carousel {
+                height: 150px;
+            }
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            .stat-label {
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- ... ВСЁ ТЕЛО HTML БЕЗ ИЗМЕНЕНИЙ ... -->
-    <!-- Единственное: УДАЛЕНЫ ВСЕ onclick из HTML -->
-    
-    <!-- Пример: было <button onclick="addToCart(...)" → стало просто <button class="add-to-cart"> -->
-
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <div class="logo-icon"></div>
+                    <span>VEGADAR</span>
+                </a>
+                <div class="nav-menu" id="navMenu">
+                    <a href="#products" class="nav-link">Каталог</a>
+                    <a href="#about" class="nav-link">О компании</a>
+                    <a href="#contacts" class="nav-link">Контакты</a>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Поиск товаров..." id="searchInput">
+                        <div class="search-results" id="searchResults"></div>
+                    </div>
+                    <button class="cart-btn" id="cartButton">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Header Carousel - ТВОИ ФОТО -->
+        <div class="header-carousel">
+            <div class="carousel-slides">
+                <div class="carousel-slide">
+                    <img src="images/carousel/facade1.jpg" alt="Мебельные фасады с ручками" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельные+Фасады'">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/carousel/kitchen1.jpg" alt="Кухонная мебель" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Кухонная+Мебель'">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/carousel/hardware1.jpg" alt="Мебельная фурнитура" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельная+Фурнитура'">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/carousel/storage1.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Системы+Хранения'">
+                </div>
+                <div class="carousel-slide">
+                    <!-- КОТ ОСТАЕТСЯ! -->
+                    <img src="images/carousel/cat.jpg" alt="Рыжий кот - наш талисман" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=300&fit=crop'">
+                </div>
+            </div>
+        </div>
+    </header>
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <!-- ... -->
+                <div class="hero-badge">
+                    <i class="fas fa-truck"></i>
+                    <span>Бесплатная доставка по Пятигорску</span>
+                </div>
+                <h1 class="hero-title">Мебельная фурнитура премиум-качества</h1>
+                <p class="hero-subtitle">
+                    Более 5000 наименований фурнитуры от ведущих производителей. 
+                    Гарантия качества и доступные цены. Работаем с 2008 года.
+                </p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary btn-large" id="gotoCatalog">
+                    <button class="btn btn-primary btn-large" onclick="scrollToSection('products')">
                         <i class="fas fa-box-open"></i>
                         Перейти в каталог
                     </button>
-                    <button class="btn btn-secondary btn-large" id="openTelegramHero">
+                    <button class="btn btn-secondary btn-large" onclick="openTelegram()">
                         <i class="fab fa-telegram"></i>
                         Написать в Telegram
                     </button>
                 </div>
-                <!-- ... -->
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">5000+</span>
+                        <span class="stat-label">позиций в каталоге</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">лет на рынке</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">гарантия качества</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
     <!-- Products Section -->
     <section id="products" class="section">
         <div class="container">
@@ -45,7 +1198,7 @@
                 <p class="section-subtitle">Широкий ассортимент качественной фурнитуры для профессионалов</p>
             </div>
             <div class="categories-grid">
-                <a href="#handles" class="category-card" data-category="handles">
+                <a href="#handles" class="category-card" onclick="showCategory('handles')">
                     <div class="category-image">
                         <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Ручки'">
                     </div>
@@ -58,8 +1211,7 @@
                         </div>
                     </div>
                 </a>
-                <!-- ... остальные категории аналогично ... -->
-                <a href="#hinges" class="category-card" data-category="hinges">
+                <a href="#hinges" class="category-card" onclick="showCategory('hinges')">
                     <div class="category-image">
                         <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Петли'">
                     </div>
@@ -72,7 +1224,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="#systems" class="category-card" data-category="systems">
+                <a href="#systems" class="category-card" onclick="showCategory('systems')">
                     <div class="category-image">
                         <img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Системы+Хранения'">
                     </div>
@@ -85,7 +1237,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="#hardware" class="category-card" data-category="hardware">
+                <a href="#hardware" class="category-card" onclick="showCategory('hardware')">
                     <div class="category-image">
                         <img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Крепежные+Изделия'">
                     </div>
@@ -101,64 +1253,229 @@
             </div>
         </div>
     </section>
-
     <!-- Category Sections -->
     <section id="handles" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" data-action="back-to-categories" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
                 <h2 class="section-title">Мебельные ручки</h2>
                 <p class="section-subtitle">Качественные ручки для любой мебели</p>
             </div>
-            <div class="products-grid" id="handlesProducts"></div>
+            <div class="products-grid" id="handlesProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
         </div>
     </section>
-    <!-- ... остальные секции аналогично ... -->
     <section id="hinges" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" data-action="back-to-categories" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
                 <h2 class="section-title">Мебельные петли</h2>
                 <p class="section-subtitle">Надежные петли для мебельных фасадов</p>
             </div>
-            <div class="products-grid" id="hingesProducts"></div>
+            <div class="products-grid" id="hingesProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
         </div>
     </section>
     <section id="systems" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" data-action="back-to-categories" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
                 <h2 class="section-title">Системы хранения</h2>
                 <p class="section-subtitle">Современные системы для организации пространства</p>
             </div>
-            <div class="products-grid" id="systemsProducts"></div>
+            <div class="products-grid" id="systemsProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
         </div>
     </section>
     <section id="hardware" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" data-action="back-to-categories" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
                 <h2 class="section-title">Крепежные изделия</h2>
                 <p class="section-subtitle">Профессиональный крепеж для сборки мебели</p>
             </div>
-            <div class="products-grid" id="hardwareProducts"></div>
+            <div class="products-grid" id="hardwareProducts">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
         </div>
     </section>
-
-    <!-- ... остальной HTML (About, Contacts, Footer) без изменений ... -->
-
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">О компании Вегадар</h2>
+                    <p>
+                        Компания "Вегадар" основана в 2008 году и за время работы зарекомендовала себя 
+                        как надежный поставщик качественной мебельной фурнитуры в Пятигорске и 
+                        Ставропольском крае.
+                    </p>
+                    <p>
+                        Мы сотрудничаем с ведущими производителями Европы и России, что позволяет 
+                        предлагать нашим клиентам широкий ассортимент продукции по доступным ценам.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Собственный склад с 5000+ наименований</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Гарантия качества на всю продукцию</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Бесплатная доставка по Пятигорску</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Профессиональные консультации</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=500&fit=crop" alt="Наш магазин фурнитуры">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contacts Section -->
+    <section id="contacts" class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Контакты</h2>
+                <p class="section-subtitle">Свяжитесь с нами удобным для вас способом</p>
+            </div>
+            <div class="contacts-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Адрес магазина</h3>
+                            <p>г. Пятигорск, ул. Промышленная, 15</p>
+                            <p><small>Режим работы: Пн-Пт 9:00-18:00, Сб 10:00-16:00</small></p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p><a href="tel:+79624044323">+7 (962) 404-43-23</a></p>
+                            <p><small>Ежедневно с 8:00 до 20:00</small></p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:vegadar@yandex.ru">vegadar@yandex.ru</a></p>
+                            <p><small>Отвечаем в течение 24 часов</small></p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div>
+                            <h3>Доставка</h3>
+                            <p>Бесплатная доставка по Пятигорску</p>
+                            <p><small>Доставка по Ставропольскому краю - 1-2 дня</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <div class="form-header">
+                        <h3>Остались вопросы?</h3>
+                        <p>Заполните форму и мы свяжемся с вами в течение 15 минут</p>
+                    </div>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required id="contactName">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Ваш телефон" required id="contactPhone">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Ваш вопрос или комментарий" rows="4" id="contactMessage"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i>
+                            Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon"></div>
+                        <span>VEGADAR</span>
+                    </div>
+                    <p>Магазин качественной мебельной фурнитуры в Пятигорске. Работаем с 2008 года.</p>
+                    <div class="social-links">
+                        <a href="https://t.me/+79624044323" class="social-link" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://wa.me/79624044323" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://vk.com" class="social-link" target="_blank">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Категории</h4>
+                    <a href="#handles" onclick="showCategory('handles')">Мебельные ручки</a>
+                    <a href="#hinges" onclick="showCategory('hinges')">Мебельные петли</a>
+                    <a href="#systems" onclick="showCategory('systems')">Системы хранения</a>
+                    <a href="#hardware" onclick="showCategory('hardware')">Крепежные изделия</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Компания</h4>
+                    <a href="#about">О нас</a>
+                    <a href="#contacts">Контакты</a>
+                    <a href="#delivery">Доставка и оплата</a>
+                    <a href="#guarantee">Гарантия</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +7 (962) 404-43-23</p>
+                    <p><i class="fas fa-envelope"></i> vegadar@yandex.ru</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Пятигорск, ул. Промышленная, 15</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Вегадар. Все права защищены. ИНН: 1234567890 ОГРН: 1234567890123</p>
+            </div>
+        </div>
+    </footer>
     <!-- Cart Modal -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
@@ -167,7 +1484,9 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <div id="cartItems" class="cart-items"></div>
+                <div id="cartItems" class="cart-items">
+                    <!-- Товары в корзине -->
+                </div>
                 <div class="cart-total">
                     <strong>Итого: <span id="cartTotal">0</span> ₽</strong>
                 </div>
@@ -186,78 +1505,178 @@
             </div>
         </div>
     </div>
-
-    <!-- ... AI Assistant без изменений ... -->
-
+    <!-- AI Assistant -->
+    <div class="ai-assistant">
+        <button class="ai-button" onclick="openAIAssistant()">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
     <script>
+        // Данные товаров
         const productsData = [
-            // ... ваш массив товаров без изменений ...
-            { id: 1, name: "Ручка мебельная 'Престиж' алюминиевая", price: 450, category: "handles", image: "images/handles.jpg", description: "Алюминиевая ручка с матовым покрытием, 128мм. Для современной мебели." },
-            { id: 2, name: "Ручка-кноб 'Элегант' хром", price: 320, category: "handles", image: "images/handles.jpg", description: "Шарообразная ручка, хром покрытие, 32мм. Универсальное решение." },
-            // ... остальные 14 товаров ...
-            { id: 16, name: "Мебельный уголок усиленный", price: 25, category: "hardware", image: "images/hardware.jpg", description: "Усиленный уголок для крепления полок. Грузоподъемность 50кг." }
+            // ... ваш массив без изменений ...
+            {
+                id: 1,
+                name: "Ручка мебельная 'Престиж' алюминиевая",
+                price: 450,
+                category: "handles",
+                image: "images/handles.jpg",
+                description: "Алюминиевая ручка с матовым покрытием, 128мм. Для современной мебели."
+            },
+            {
+                id: 2,
+                name: "Ручка-кноб 'Элегант' хром",
+                price: 320,
+                category: "handles",
+                image: "images/handles.jpg",
+                description: "Шарообразная ручка, хром покрытие, 32мм. Универсальное решение."
+            },
+            {
+                id: 3,
+                name: "Ручка С-образная 'Модерн'",
+                price: 280,
+                category: "handles",
+                image: "images/handles.jpg",
+                description: "Стальная ручка для современной мебели, 96мм. Стильный дизайн."
+            },
+            {
+                id: 4,
+                name: "Ручка скоба 'Классика' латунь",
+                price: 390,
+                category: "handles",
+                image: "images/handles.jpg",
+                description: "Латунная ручка для классической мебели, 128мм. Премиальное качество."
+            },
+            {
+                id: 5,
+                name: "Петля четырехшарнирная с доводчиком",
+                price: 280,
+                category: "hinges",
+                image: "images/hinges.jpg",
+                description: "С доводчиком, регулировка по 3 осям, 110°. Немецкое качество."
+            },
+            {
+                id: 6,
+                name: "Петля скрытая INVISIBLE",
+                price: 390,
+                category: "hinges",
+                image: "images/hinges.jpg",
+                description: "Скрытое крепление, для современных интерьеров. Невидимый монтаж."
+            },
+            {
+                id: 7,
+                name: "Петля накладная 95°",
+                price: 220,
+                category: "hinges",
+                image: "images/hinges.jpg",
+                description: "Для мебельных фасадов, угол открывания 95°. Надежная конструкция."
+            },
+            {
+                id: 8,
+                name: "Петля полного навеса 175°",
+                price: 310,
+                category: "hinges",
+                image: "images/hinges.jpg",
+                description: "Для угловых шкафов, широкий угол открывания. С плавным ходом."
+            },
+            {
+                id: 9,
+                name: "Направляющая шариковая 400мм",
+                price: 890,
+                category: "systems",
+                image: "images/drawers.jpg",
+                description: "Для выдвижных ящиков, нагрузка до 50кг, 400мм. Плавный ход."
+            },
+            {
+                id: 10,
+                name: "Лифт подъемный механизм газлифт",
+                price: 1250,
+                category: "systems",
+                image: "images/drawers.jpg",
+                description: "Для верхних шкафов, плавное открывание. Gas-lift система."
+            },
+            {
+                id: 11,
+                name: "Направляющая телескопическая 450мм",
+                price: 750,
+                category: "systems",
+                image: "images/drawers.jpg",
+                description: "Полное выдвижение, нагрузка до 35кг, 450мм. Тихая работа."
+            },
+            {
+                id: 12,
+                name: "Система пантограф для верхних шкафов",
+                price: 1850,
+                category: "systems",
+                image: "images/drawers.jpg",
+                description: "Для верхних шкафов, вертикальное открывание. Премиум-класс."
+            },
+            {
+                id: 13,
+                name: "Винт мебельный конфирмат 6.3x50mm",
+                price: 5,
+                category: "hardware",
+                image: "images/hardware.jpg",
+                description: "Для сборки мебели, 6.3x50mm, оцинкованный. Высокая прочность."
+            },
+            {
+                id: 14,
+                name: "Угловая стяжка мебельная",
+                price: 15,
+                category: "hardware",
+                image: "images/hardware.jpg",
+                description: "Для перпендикулярного соединения деталей. Надежная фиксация."
+            },
+            {
+                id: 15,
+                name: "Шуруп мебельный 4x30mm",
+                price: 3,
+                category: "hardware",
+                image: "images/hardware.jpg",
+                description: "Универсальный шуруп для ДСП, 4x30mm. Антикоррозийное покрытие."
+            },
+            {
+                id: 16,
+                name: "Мебельный уголок усиленный",
+                price: 25,
+                category: "hardware",
+                image: "images/hardware.jpg",
+                description: "Усиленный уголок для крепления полок. Грузоподъемность 50кг."
+            }
         ];
 
+        // === КЛЮЧЕВЫЕ ИЗМЕНЕНИЯ ===
         let cart = [];
-        let productsLoaded = false; // ← ключевой флаг
+        let productsLoaded = false; // ← предотвращает повторную загрузку
 
-        // === ИНИЦИАЛИЗАЦИЯ ===
-        function initApp() {
-            if (!document.getElementById('cartButton')) {
-                setTimeout(initApp, 50);
-                return;
-            }
-            initCart();
-            setupEventListeners();
-            setupMobileMenu();
-            if (!productsLoaded) {
-                loadCategories();
-                loadAllProducts();
-                productsLoaded = true;
-            }
-            setupSearch();
-        }
-
-        function initCart() {
-            const saved = localStorage.getItem('vegadar_cart');
-            cart = saved ? JSON.parse(saved) : [];
-            updateCartCount();
-        }
-
-        function saveCart() {
-            localStorage.setItem('vegadar_cart', JSON.stringify(cart));
-            updateCartCount();
-        }
-
-        function updateCartCount() {
-            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const el = document.querySelector('.cart-count');
-            if (el) el.textContent = count;
-        }
-
-        // === ЗАГРУЗКА ТОВАРОВ ===
-        function loadCategories() {
-            // ... ваш код без изменений ...
-        }
-
+        // Загрузка товаров только один раз
         function loadAllProducts() {
-            ['handles', 'hinges', 'systems', 'hardware'].forEach(cat => {
-                const container = document.getElementById(cat + 'Products');
-                if (!container) return;
-                const items = productsData.filter(p => p.category === cat);
-                container.innerHTML = items.map(p => `
-                    <div class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-category="${p.category}">
+            if (productsLoaded) return; // ← защита от дублирования
+            productsLoaded = true;
+
+            const categories = ['handles', 'hinges', 'systems', 'hardware'];
+            categories.forEach(category => {
+                const productsGrid = document.getElementById(category + 'Products');
+                const categoryProducts = productsData.filter(product => product.category === category);
+                productsGrid.innerHTML = categoryProducts.map(product => `
+                    <div class="product-card">
                         <div class="product-image">
-                            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
-                            <div class="product-badge">${getCategoryName(p.category)}</div>
+                            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
+                            <div class="product-badge">${getCategoryName(product.category)}</div>
                         </div>
                         <div class="product-content">
-                            <h3>${p.name}</h3>
-                            <p>${p.description}</p>
-                            <div class="product-price">${p.price} ₽</div>
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <div class="product-price">${product.price} ₽</div>
                             <div class="product-actions">
-                                <button class="btn btn-primary add-to-cart">В корзину</button>
-                                <button class="btn btn-secondary order-product">Заказать</button>
+                                <button class="btn btn-primary" onclick="addToCart(${product.id}, '${product.name.replace(/'/g, "\\'")}', ${product.price})">
+                                    <i class="fas fa-cart-plus"></i>
+                                    В корзину
+                                </button>
+                                <button class="btn btn-secondary" onclick="orderProduct(${product.id})">
+                                    <i class="fab fa-telegram"></i>
+                                    Заказать
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -265,243 +1684,306 @@
             });
         }
 
-        function getCategoryName(cat) {
-            const map = { handles: 'Ручки', hinges: 'Петли', systems: 'Системы', hardware: 'Крепеж' };
-            return map[cat] || 'Товар';
+        function initCart() {
+            const savedCart = localStorage.getItem('vegadar_cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartCount();
+            }
         }
 
-        // === КОРЗИНА ===
-        function addToCart(id, name, price) {
-            const item = cart.find(i => i.id === id);
-            if (item) {
-                item.quantity++;
+        function saveCart() {
+            localStorage.setItem('vegadar_cart', JSON.stringify(cart));
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElement = document.querySelector('.cart-count');
+            if (cartCountElement) {
+                cartCountElement.textContent = count;
+            }
+        }
+
+        // === ИСПРАВЛЕНА ФУНКЦИЯ ДОБАВЛЕНИЯ ===
+        function addToCart(productId, productName, productPrice) {
+            // Убедимся, что cart инициализирован
+            if (!Array.isArray(cart)) cart = [];
+            
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
             } else {
-                cart.push({ id, name, price, quantity: 1 });
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
             }
             saveCart();
-            showNotification(`✅ "${name}" добавлен в корзину!`);
+            updateCartCount();
+            showNotification(`✅ "${productName}" добавлен в корзину!`);
         }
 
-        function removeFromCart(id) {
-            cart = cart.filter(i => i.id !== id);
+        // ... ОСТАЛЬНЫЕ ФУНКЦИИ БЕЗ ИЗМЕНЕНИЙ ...
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
             saveCart();
+            updateCartCount();
             updateCartModal();
         }
-
-        function updateQuantity(id, change) {
-            const item = cart.find(i => i.id === id);
+        function clearCart() {
+            cart = [];
+            saveCart();
+            updateCartCount();
+            updateCartModal();
+            showNotification('🗑️ Корзина очищена');
+        }
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
             if (item) {
                 item.quantity += change;
                 if (item.quantity <= 0) {
-                    removeFromCart(id);
+                    removeFromCart(productId);
                 } else {
                     saveCart();
                     updateCartModal();
                 }
             }
         }
-
         function calculateTotal() {
-            return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
         }
-
+        function setupCartModal() {
+            const modal = document.getElementById('cartModal');
+            const cartButton = document.getElementById('cartButton');
+            const closeButton = document.querySelector('.close');
+            const continueShopping = document.getElementById('continueShopping');
+            const checkoutButton = document.getElementById('checkout');
+            const clearCartButton = document.getElementById('clearCart');
+            if (cartButton) {
+                cartButton.addEventListener('click', openCartModal);
+            }
+            if (closeButton) {
+                closeButton.addEventListener('click', closeCartModal);
+            }
+            if (continueShopping) {
+                continueShopping.addEventListener('click', closeCartModal);
+            }
+            if (checkoutButton) {
+                checkoutButton.addEventListener('click', processCheckout);
+            }
+            if (clearCartButton) {
+                clearCartButton.addEventListener('click', clearCart);
+            }
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeCartModal();
+                }
+            });
+        }
+        function openCartModal() {
+            const modal = document.getElementById('cartModal');
+            updateCartModal();
+            modal.style.display = 'block';
+        }
+        function closeCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = 'none';
+        }
         function updateCartModal() {
-            const itemsEl = document.getElementById('cartItems');
-            const totalEl = document.getElementById('cartTotal');
-            if (!itemsEl || !totalEl) return;
-
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            if (!cartItems || !cartTotal) return;
             if (cart.length === 0) {
-                itemsEl.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
+                cartItems.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
             } else {
-                itemsEl.innerHTML = cart.map(item => `
+                cartItems.innerHTML = cart.map(item => `
                     <div class="cart-item">
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-price">${item.price} ₽ × ${item.quantity}</div>
                         </div>
                         <div class="cart-item-quantity">
-                            <button class="quantity-btn dec" data-id="${item.id}">-</button>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
                             <span>${item.quantity}</span>
-                            <button class="quantity-btn inc" data-id="${item.id}">+</button>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
                         </div>
-                        <button class="cart-item-remove" data-id="${item.id}">
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 `).join('');
             }
-            totalEl.textContent = calculateTotal();
+            cartTotal.textContent = calculateTotal();
         }
-
         function processCheckout() {
             if (cart.length === 0) {
                 showNotification('❌ Корзина пуста!');
                 return;
             }
-            const itemsText = cart.map(item => 
+            const orderItems = cart.map(item => 
                 `• ${item.name} - ${item.quantity}шт. × ${item.price}₽ = ${item.quantity * item.price}₽`
             ).join('\n');
-            const total = calculateTotal();
-            const message = `🛒 ЗАКАЗ С САЙТА VEGADAR.RU\n${itemsText}\n💰 ИТОГО: ${total}₽\n📞 Пожалуйста, свяжитесь с клиентом.`;
-            // ИСПРАВЛЕНО: прямая ссылка на чат
-            const url = `https://t.me/+79624044323?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            const totalAmount = calculateTotal();
+            const message = `🛒 ЗАКАЗ С САЙТА VEGADAR.RU\n${orderItems}\n💰 ИТОГО: ${totalAmount}₽\n📞 Для подтверждения заказа свяжитесь с клиентом.`;
+            const phone = '+79624044323';
+            const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
+            window.open(telegramUrl, '_blank');
+            showNotification('✅ Заказ оформлен! Открываю Telegram для отправки.');
             cart = [];
             saveCart();
-            updateCartModal();
-            showNotification('✅ Заказ отправлен в Telegram! Ожидайте звонка.');
+            updateCartCount();
+            closeCartModal();
         }
-
-        // === НАВИГАЦИЯ ===
+        function showCategory(category) {
+            document.getElementById('products').style.display = 'none';
+            document.getElementById('handles').style.display = 'none';
+            document.getElementById('hinges').style.display = 'none';
+            document.getElementById('systems').style.display = 'none';
+            document.getElementById('hardware').style.display = 'none';
+            document.getElementById(category).style.display = 'block';
+            document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
+        }
         function showCategories() {
-            ['handles', 'hinges', 'systems', 'hardware'].forEach(id => {
-                document.getElementById(id).style.display = 'none';
-            });
+            document.getElementById('handles').style.display = 'none';
+            document.getElementById('hinges').style.display = 'none';
+            document.getElementById('systems').style.display = 'none';
+            document.getElementById('hardware').style.display = 'none';
             document.getElementById('products').style.display = 'block';
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         }
-
-        function showCategory(cat) {
-            ['products', 'handles', 'hinges', 'systems', 'hardware'].forEach(id => {
-                document.getElementById(id).style.display = 'none';
-            });
-            document.getElementById(cat).style.display = 'block';
-            document.getElementById(cat).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function openTelegramWithMessage(msg) {
-            const url = `https://t.me/+79624044323?text=${encodeURIComponent(msg)}`;
-            window.open(url, '_blank');
-        }
-
-        // === ПОИСК ===
-        function setupSearch() {
-            const input = document.getElementById('searchInput');
-            const results = document.getElementById('searchResults');
-            if (!input || !results) return;
-
-            input.addEventListener('input', () => {
-                const q = input.value.trim().toLowerCase();
-                results.style.display = q.length < 2 ? 'none' : 'block';
-                if (q.length < 2) return;
-
-                const found = productsData.filter(p => 
-                    p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)
-                );
-
-                results.innerHTML = found.length 
-                    ? found.map(p => `<div class="search-result-item" data-category="${p.category}" data-id="${p.id}">
-                        <div class="search-result-name">${p.name}</div>
-                        <div class="search-result-price">${p.price} ₽</div>
-                      </div>`)
-                    : '<div class="no-results">Товары не найдены</div>';
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!input.contains(e.target) && !results.contains(e.target)) {
-                    results.style.display = 'none';
-                }
-            });
-        }
-
-        // === МОБИЛЬНОЕ МЕНЮ ===
-        function setupMobileMenu() {
-            const btn = document.getElementById('mobileMenuBtn');
-            const menu = document.getElementById('navMenu');
-            if (btn && menu) {
-                btn.addEventListener('click', () => menu.classList.toggle('active'));
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
             }
         }
-
-        // === ОБРАБОТКА СОБЫТИЙ (ДЕЛЕГИРОВАНИЕ) ===
+        function getCategoryName(category) {
+            const names = {
+                'handles': 'Ручки',
+                'hinges': 'Петли',
+                'systems': 'Системы',
+                'hardware': 'Крепеж'
+            };
+            return names[category] || 'Товар';
+        }
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            if (!searchInput || !searchResults) return;
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                const results = productsData.filter(product => 
+                    product.name.toLowerCase().includes(query) || 
+                    product.description.toLowerCase().includes(query)
+                );
+                if (results.length > 0) {
+                    searchResults.innerHTML = results.map(product => `
+                        <div class="search-result-item" onclick="selectSearchResult('${product.category}', ${product.id})">
+                            <div class="search-result-name">${product.name}</div>
+                            <div class="search-result-price">${product.price} ₽</div>
+                        </div>
+                    `).join('');
+                    searchResults.style.display = 'block';
+                } else {
+                    searchResults.innerHTML = '<div class="no-results">Товары не найдены</div>';
+                    searchResults.style.display = 'block';
+                }
+            });
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+        }
+        function selectSearchResult(category, productId) {
+            showCategory(category);
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResults').style.display = 'none';
+            setTimeout(() => {
+                document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+        function orderProduct(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (product) {
+                const message = `Здравствуйте! Хочу заказать товар: ${product.name} - ${product.price}₽`;
+                openTelegramWithMessage(message);
+            }
+        }
+        function openTelegram() {
+            const message = 'Здравствуйте! У меня вопрос по мебельной фурнитуре.';
+            openTelegramWithMessage(message);
+        }
+        function openTelegramWithMessage(message) {
+            const phone = '+79624044323';
+            const url = `https://t.me/share/url?url=${encodeURIComponent(phone)}&text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+        function openAIAssistant() {
+            showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время');
+        }
+        function setupMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+        function showNotification(message) {
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
         function setupEventListeners() {
-            document.addEventListener('click', (e) => {
-                // Категории
-                if (e.target.closest('.category-card')) {
-                    const cat = e.target.closest('.category-card').dataset.category;
-                    if (cat) showCategory(cat);
-                }
-                // Назад к категориям
-                if (e.target.closest('[data-action="back-to-categories"]')) {
-                    showCategories();
-                }
-                // Добавление в корзину
-                if (e.target.classList.contains('add-to-cart')) {
-                    const card = e.target.closest('.product-card');
-                    addToCart(+card.dataset.id, card.dataset.name, +card.dataset.price);
-                }
-                // Быстрый заказ
-                if (e.target.classList.contains('order-product')) {
-                    const card = e.target.closest('.product-card');
-                    openTelegramWithMessage(`Хочу заказать: ${card.dataset.name} — ${card.dataset.price}₽`);
-                }
-                // Удаление из корзины
-                if (e.target.classList.contains('cart-item-remove')) {
-                    const id = +e.target.dataset.id;
-                    removeFromCart(id);
-                }
-                // Изменение количества
-                if (e.target.classList.contains('quantity-btn')) {
-                    const id = +e.target.dataset.id;
-                    const change = e.target.classList.contains('inc') ? 1 : -1;
-                    updateQuantity(id, change);
-                }
-                // Поиск
-                if (e.target.classList.contains('search-result-item')) {
-                    const cat = e.target.dataset.category;
-                    showCategory(cat);
-                    document.getElementById('searchInput').value = '';
-                    document.getElementById('searchResults').style.display = 'none';
-                }
-            });
-
-            // Кнопки
-            document.getElementById('gotoCatalog')?.addEventListener('click', showCategories);
-            document.getElementById('openTelegramHero')?.addEventListener('click', () => 
-                openTelegramWithMessage('Здравствуйте! У меня вопрос по мебельной фурнитуре.')
-            );
-            document.getElementById('cartButton')?.addEventListener('click', () => {
-                updateCartModal();
-                document.getElementById('cartModal').style.display = 'block';
-            });
-            document.querySelector('.close, #continueShopping')?.addEventListener('click', () => {
-                document.getElementById('cartModal').style.display = 'none';
-                showCategories(); // ← возврат в каталог
-            });
-            document.getElementById('clearCart')?.addEventListener('click', () => {
-                cart = [];
-                saveCart();
-                updateCartModal();
-                showNotification('🗑️ Корзина очищена');
-            });
-            document.getElementById('checkout')?.addEventListener('click', processCheckout);
-
-            // Форма обратной связи
-            const form = document.getElementById('contactForm');
-            if (form) {
-                form.addEventListener('submit', (e) => {
+            setupCartModal();
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     const name = document.getElementById('contactName').value;
                     const phone = document.getElementById('contactPhone').value;
-                    const msg = document.getElementById('contactMessage').value || '—';
-                    openTelegramWithMessage(`📧 Заявка с сайта:\nИмя: ${name}\nТелефон: ${phone}\nСообщение: ${msg}`);
-                    form.reset();
-                    showNotification('✅ Сообщение отправлено!');
+                    const message = document.getElementById('contactMessage').value;
+                    processContactForm(name, phone, message);
                 });
             }
         }
-
-        function showNotification(msg) {
-            const notif = document.createElement('div');
-            notif.className = 'notification';
-            notif.textContent = msg;
-            document.body.appendChild(notif);
-            setTimeout(() => notif.remove(), 3000);
+        function processContactForm(name, phone, message) {
+            const fullMessage = `📧 НОВАЯ ЗАЯВКА С САЙТА VEGADAR.RU\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Сообщение: ${message || 'Не указано'}`;
+            openTelegramWithMessage(fullMessage);
+            document.getElementById('contactForm').reset();
+            showNotification('✅ Сообщение отправлено! Мы свяжемся с вами в течение 15 минут.');
         }
 
-        // === ЗАПУСК ===
-        initApp();
-        document.addEventListener('DOMContentLoaded', initApp);
+        // === ИНИЦИАЛИЗАЦИЯ ===
+        document.addEventListener('DOMContentLoaded', function() {
+            initCart();
+            setupEventListeners();
+            setupMobileMenu();
+            loadAllProducts(); // ← теперь вызывается один раз
+            setupSearch();
+        });
     </script>
 </body>
 </html>

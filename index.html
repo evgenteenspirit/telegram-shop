@@ -105,8 +105,8 @@
             overflow: hidden;
             position: relative;
             background: var(--black);
-            width: 100%; /* УБРАНО 133% */
-            margin-left: 0; /* УБРАНО отрицательное смещение */
+            width: 100%;
+            margin-left: 0;
         }
         .carousel-slides {
             display: flex;
@@ -139,7 +139,6 @@
             display: flex;
             gap: 1.5rem;
             align-items: center;
-            flex-wrap: wrap;
         }
         .nav-link {
             color: var(--white);
@@ -790,8 +789,18 @@
             padding: 1.5rem 2rem;
             border-top: 1px solid #333;
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
             justify-content: space-between;
+            align-items: center;
+        }
+        .modal-footer > div {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1;
+            min-width: 200px;
         }
         .cart-actions {
             display: flex;
@@ -1049,12 +1058,6 @@
                 width: 95%;
                 margin: 10% auto;
             }
-            .modal-footer {
-                flex-direction: column;
-            }
-            .cart-actions {
-                flex-direction: column;
-            }
             .header-carousel {
                 height: 200px;
             }
@@ -1102,15 +1105,20 @@
             .stat-label {
                 font-size: 0.7rem;
             }
-            /* === КРИТИЧЕСКИЕ ИЗМЕНЕНИЯ ДЛЯ МОБИЛ === */
+            /* Скрываем поиск на маленьких экранах */
             .search-container {
-                display: none; /* Скрываем поиск на маленьких экранах */
+                display: none;
             }
-            .nav {
-                padding: 0.8rem 0;
+            .modal-footer {
+                gap: 12px;
             }
-            .nav-actions {
-                gap: 0.5rem;
+            .modal-footer > div {
+                justify-content: center;
+                width: 100%;
+            }
+            .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -1214,9 +1222,7 @@
                 <h2 class="section-title">Категории товаров</h2>
                 <p class="section-subtitle">Широкий ассортимент качественной фурнитуры для профессионалов</p>
             </div>
-            <div class="categories-grid" id="categoriesGrid">
-                <!-- Заполняется JS -->
-            </div>
+            <div class="categories-grid" id="categoriesGrid"></div>
         </div>
     </section>
     <!-- Category Sections -->
@@ -1448,7 +1454,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <div class="cart-actions">
+                <div>
                     <button class="btn btn-outline" id="clearCart">
                         <i class="fas fa-trash"></i>
                         Очистить корзину
@@ -1468,7 +1474,6 @@
         </button>
     </div>
     <script>
-        // === ДАННЫЕ ===
         const productsData = [
             { id: 1, name: "Ручка мебельная 'Престиж' алюминиевая", price: 450, category: "handles", image: "images/handles.jpg", description: "Алюминиевая ручка с матовым покрытием, 128мм. Для современной мебели." },
             { id: 2, name: "Ручка-кноб 'Элегант' хром", price: 320, category: "handles", image: "images/handles.jpg", description: "Шарообразная ручка, хром покрытие, 32мм. Универсальное решение." },
@@ -1488,8 +1493,26 @@
             { id: 16, name: "Мебельный уголок усиленный", price: 25, category: "hardware", image: "images/hardware.jpg", description: "Усиленный уголок для крепления полок. Грузоподъемность 50кг." }
         ];
 
-        // === КОРЗИНА ===
-        let cart = JSON.parse(localStorage.getItem('vegadar_cart') || '[]');
+        let cart = [];
+        let productsLoaded = false;
+
+        function initApp() {
+            if (!document.getElementById('cartButton')) {
+                setTimeout(initApp, 50);
+                return;
+            }
+            initCart();
+            setupEventListeners();
+            setupMobileMenu();
+            loadAllProductsOnce();
+            setupSearch();
+        }
+
+        function initCart() {
+            const saved = localStorage.getItem('vegadar_cart');
+            cart = saved ? JSON.parse(saved) : [];
+            updateCartCount();
+        }
 
         function saveCart() {
             localStorage.setItem('vegadar_cart', JSON.stringify(cart));
@@ -1498,8 +1521,84 @@
 
         function updateCartCount() {
             const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const countEl = document.querySelector('.cart-count');
-            if (countEl) countEl.textContent = count;
+            const el = document.querySelector('.cart-count');
+            if (el) el.textContent = count;
+        }
+
+        function loadAllProductsOnce() {
+            if (productsLoaded) return;
+            productsLoaded = true;
+            loadCategories();
+            loadAllProducts();
+        }
+
+        function loadCategories() {
+            const grid = document.getElementById('categoriesGrid');
+            if (!grid) return;
+            grid.innerHTML = `
+                <div class="category-card" data-category="handles">
+                    <div class="category-image"><img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Ручки'"></div>
+                    <div class="category-content">
+                        <h3>Мебельные ручки</h3>
+                        <p>Широкий выбор ручек для мебели всех стилей и размеров от ведущих производителей</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="hinges">
+                    <div class="category-image"><img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Петли'"></div>
+                    <div class="category-content">
+                        <h3>Мебельные петли</h3>
+                        <p>Четырехшарнирные и скрытые петли для любой мебели с регулировками</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="systems">
+                    <div class="category-image"><img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Системы+Хранения'"></div>
+                    <div class="category-content">
+                        <h3>Системы хранения</h3>
+                        <p>Направляющие и выдвижные механизмы для ящиков с плавным ходом</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="hardware">
+                    <div class="category-image"><img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Крепежные+Изделия'"></div>
+                    <div class="category-content">
+                        <h3>Крепежные изделия</h3>
+                        <p>Винты, шурупы, стяжки и метизы для профессиональной сборки мебели</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadAllProducts() {
+            ['handles', 'hinges', 'systems', 'hardware'].forEach(cat => {
+                const container = document.getElementById(cat + 'Products');
+                if (!container) return;
+                const items = productsData.filter(p => p.category === cat);
+                container.innerHTML = items.map(p => `
+                    <div class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-category="${p.category}">
+                        <div class="product-image">
+                            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
+                            <div class="product-badge">${getCategoryName(p.category)}</div>
+                        </div>
+                        <div class="product-content">
+                            <h3>${p.name}</h3>
+                            <p>${p.description}</p>
+                            <div class="product-price">${p.price} ₽</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart">В корзину</button>
+                                <button class="btn btn-secondary order-product">Заказать</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function getCategoryName(cat) {
+            const map = { handles: 'Ручки', hinges: 'Петли', systems: 'Системы', hardware: 'Крепеж' };
+            return map[cat] || 'Товар';
         }
 
         function addToCart(id, name, price) {
@@ -1539,6 +1638,8 @@
         function updateCartModal() {
             const itemsEl = document.getElementById('cartItems');
             const totalEl = document.getElementById('cartTotal');
+            if (!itemsEl || !totalEl) return;
+
             if (cart.length === 0) {
                 itemsEl.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
                 totalEl.textContent = '0';
@@ -1589,97 +1690,23 @@
             setTimeout(() => notif.remove(), 3000);
         }
 
-        // === НАВИГАЦИЯ ===
-        function showCategory(cat) {
-            document.querySelectorAll('#products, #handles, #hinges, #systems, #hardware').forEach(el => el.style.display = 'none');
-            document.getElementById(cat).style.display = 'block';
-            document.getElementById(cat).scrollIntoView({ behavior: 'smooth' });
-        }
-
         function showCategories() {
             document.querySelectorAll('#handles, #hinges, #systems, #hardware').forEach(el => el.style.display = 'none');
             document.getElementById('products').style.display = 'block';
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // === ЗАГРУЗКА ТОВАРОВ ===
-        function loadCategories() {
-            const grid = document.getElementById('categoriesGrid');
-            if (!grid) return;
-            grid.innerHTML = `
-                <div class="category-card" data-category="handles">
-                    <div class="category-image"><img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Ручки'"></div>
-                    <div class="category-content">
-                        <h3>Мебельные ручки</h3>
-                        <p>Широкий выбор ручек для мебели всех стилей и размеров от ведущих производителей</p>
-                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </div>
-                <div class="category-card" data-category="hinges">
-                    <div class="category-image"><img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Петли'"></div>
-                    <div class="category-content">
-                        <h3>Мебельные петли</h3>
-                        <p>Четырехшарнирные и скрытые петли для любой мебели с регулировками</p>
-                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </div>
-                <div class="category-card" data-category="systems">
-                    <div class="category-image"><img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Системы+Хранения'"></div>
-                    <div class="category-content">
-                        <h3>Системы хранения</h3>
-                        <p>Направляющие и выдвижные механизмы для ящиков с плавным ходом</p>
-                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </div>
-                <div class="category-card" data-category="hardware">
-                    <div class="category-image"><img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Крепежные+Изделия'"></div>
-                    <div class="category-content">
-                        <h3>Крепежные изделия</h3>
-                        <p>Винты, шурупы, стяжки и метизы для профессиональной сборки мебели</p>
-                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </div>
-            `;
+        function showCategory(cat) {
+            document.querySelectorAll('#products, #handles, #hinges, #systems, #hardware').forEach(el => el.style.display = 'none');
+            document.getElementById(cat).style.display = 'block';
+            document.getElementById(cat).scrollIntoView({ behavior: 'smooth' });
         }
 
-        function loadAllProducts() {
-            ['handles', 'hinges', 'systems', 'hardware'].forEach(cat => {
-                const container = document.getElementById(cat + 'Products');
-                if (container) {
-                    const items = productsData.filter(p => p.category === cat);
-                    container.innerHTML = items.map(p => `
-                        <div class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-category="${p.category}">
-                            <div class="product-image">
-                                <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
-                                <div class="product-badge">${getCategoryName(p.category)}</div>
-                            </div>
-                            <div class="product-content">
-                                <h3>${p.name}</h3>
-                                <p>${p.description}</p>
-                                <div class="product-price">${p.price} ₽</div>
-                                <div class="product-actions">
-                                    <button class="btn btn-primary add-to-cart">В корзину</button>
-                                    <button class="btn btn-secondary order-product">Заказать</button>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('');
-                }
-            });
-        }
-
-        function getCategoryName(cat) {
-            const map = { handles: 'Ручки', hinges: 'Петли', systems: 'Системы', hardware: 'Крепеж' };
-            return map[cat] || 'Товар';
-        }
-
-        // === TELEGRAM ===
         function openTelegramWithMessage(msg) {
             const url = `https://t.me/+79624044323?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         }
 
-        // === ПОИСК ===
         function setupSearch() {
             const input = document.getElementById('searchInput');
             const results = document.getElementById('searchResults');
@@ -1691,17 +1718,14 @@
                 if (q.length < 2) return;
 
                 const found = productsData.filter(p => 
-                    p.name.toLowerCase().includes(q) || 
-                    p.description.toLowerCase().includes(q)
+                    p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)
                 );
 
                 results.innerHTML = found.length 
-                    ? found.map(p => `
-                        <div class="search-result-item" data-category="${p.category}" data-id="${p.id}">
-                            <div class="search-result-name">${p.name}</div>
-                            <div class="search-result-price">${p.price} ₽</div>
-                        </div>
-                      `).join('')
+                    ? found.map(p => `<div class="search-result-item" data-category="${p.category}" data-id="${p.id}">
+                        <div class="search-result-name">${p.name}</div>
+                        <div class="search-result-price">${p.price} ₽</div>
+                      </div>`)
                     : '<div class="no-results">Товары не найдены</div>';
             });
 
@@ -1712,15 +1736,19 @@
             });
         }
 
-        // === ОБРАБОТЧИКИ СОБЫТИЙ ===
-        function setupEventDelegation() {
+        function setupMobileMenu() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('navMenu');
+            if (btn && menu) {
+                btn.addEventListener('click', () => menu.classList.toggle('active'));
+            }
+        }
+
+        function setupEventListeners() {
             document.addEventListener('click', (e) => {
                 if (e.target.closest('.category-card')) {
                     const cat = e.target.closest('.category-card').dataset.category;
-                    showCategory(cat);
-                }
-                if (e.target.closest('[id^="backToCategories"]')) {
-                    showCategories();
+                    if (cat) showCategory(cat);
                 }
                 if (e.target.classList.contains('add-to-cart')) {
                     const card = e.target.closest('.product-card');
@@ -1728,10 +1756,10 @@
                 }
                 if (e.target.classList.contains('order-product')) {
                     const card = e.target.closest('.product-card');
-                    openTelegramWithMessage(`Здравствуйте! Хочу заказать: ${card.dataset.name} - ${card.dataset.price}₽`);
+                    openTelegramWithMessage(`Хочу заказать: ${card.dataset.name} — ${card.dataset.price}₽`);
                 }
-                if (e.target.classList.contains('cart-item-remove') || e.target.closest('.cart-item-remove')) {
-                    const id = +e.target.closest('.cart-item-remove').dataset.id;
+                if (e.target.classList.contains('cart-item-remove')) {
+                    const id = +e.target.dataset.id;
                     removeFromCart(id);
                 }
                 if (e.target.classList.contains('quantity-btn')) {
@@ -1745,50 +1773,21 @@
                     document.getElementById('searchInput').value = '';
                     document.getElementById('searchResults').style.display = 'none';
                 }
+                if (e.target.closest('[id^="backToCategories"]')) {
+                    showCategories();
+                }
             });
 
-            document.getElementById('gotoCatalog')?.addEventListener('click', () => showCategories());
-            document.getElementById('openTelegramHero')?.addEventListener('click', () => openTelegramWithMessage('Здравствуйте! У меня вопрос по мебельной фурнитуре.'));
-            document.getElementById('openAI')?.addEventListener('click', () => showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время'));
-
-            const form = document.getElementById('contactForm');
-            if (form) {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const name = document.getElementById('contactName').value;
-                    const phone = document.getElementById('contactPhone').value;
-                    const msg = document.getElementById('contactMessage').value || '—';
-                    const text = `📧 НОВАЯ ЗАЯВКА С САЙТА\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Сообщение: ${msg}`;
-                    openTelegramWithMessage(text);
-                    form.reset();
-                    showNotification('✅ Сообщение отправлено! Ожидайте звонка.');
-                });
-            }
-
-            const mobileBtn = document.getElementById('mobileMenuBtn');
-            const navMenu = document.getElementById('navMenu');
-            if (mobileBtn && navMenu) {
-                mobileBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
-            }
-
-            // Footer категории
-            document.querySelectorAll('[data-category]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showCategory(link.dataset.category);
-                });
-            });
-        }
-
-        // === МОДАЛЬНОЕ ОКНО КОРЗИНЫ ===
-        function setupCartModal() {
-            const modal = document.getElementById('cartModal');
             document.getElementById('cartButton')?.addEventListener('click', () => {
                 updateCartModal();
-                modal.style.display = 'block';
+                document.getElementById('cartModal').style.display = 'block';
             });
-            document.querySelector('.close, #continueShopping')?.addEventListener('click', () => {
-                modal.style.display = 'none';
+            document.querySelector('.close')?.addEventListener('click', () => {
+                document.getElementById('cartModal').style.display = 'none';
+            });
+            document.getElementById('continueShopping')?.addEventListener('click', () => {
+                document.getElementById('cartModal').style.display = 'none';
+                showCategories(); // ← КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ
             });
             document.getElementById('clearCart')?.addEventListener('click', () => {
                 cart = [];
@@ -1797,28 +1796,25 @@
                 showNotification('🗑️ Корзина очищена');
             });
             document.getElementById('checkout')?.addEventListener('click', processCheckout);
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) modal.style.display = 'none';
-            });
-        }
+            document.getElementById('gotoCatalog')?.addEventListener('click', showCategories);
+            document.getElementById('openTelegramHero')?.addEventListener('click', () => 
+                openTelegramWithMessage('Здравствуйте! У меня вопрос по мебельной фурнитуре.')
+            );
 
-        // === ИНИЦИАЛИЗАЦИЯ ===
-        function initApp() {
-            // Ждём, пока DOM частично загрузится
-            if (!document.getElementById('cartButton')) {
-                setTimeout(initApp, 50);
-                return;
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const phone = document.getElementById('contactPhone').value;
+                    const msg = document.getElementById('contactMessage').value || '—';
+                    openTelegramWithMessage(`📧 Заявка с сайта:\nИмя: ${name}\nТелефон: ${phone}\nСообщение: ${msg}`);
+                    form.reset();
+                    showNotification('✅ Сообщение отправлено!');
+                });
             }
-
-            updateCartCount();
-            loadCategories();
-            loadAllProducts();
-            setupEventDelegation();
-            setupCartModal();
-            setupSearch();
         }
 
-        // Запускаем немедленно + в DOMContentLoaded
         initApp();
         document.addEventListener('DOMContentLoaded', initApp);
     </script>

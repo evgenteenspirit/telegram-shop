@@ -745,6 +745,9 @@
             max-width: 600px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             animation: modalSlideIn 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
         }
         @keyframes modalSlideIn {
             from {
@@ -782,8 +785,8 @@
         }
         .modal-body {
             padding: 2rem;
-            max-height: 400px;
             overflow-y: auto;
+            flex: 1;
         }
         .modal-footer {
             padding: 1.5rem 2rem;
@@ -801,10 +804,6 @@
             justify-content: center;
             flex: 1;
             min-width: 200px;
-        }
-        .cart-actions {
-            display: flex;
-            gap: 1rem;
         }
         .cart-items {
             margin-bottom: 1.5rem;
@@ -1054,10 +1053,6 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-            }
             .header-carousel {
                 height: 200px;
             }
@@ -1105,9 +1100,13 @@
             .stat-label {
                 font-size: 0.7rem;
             }
-            /* Скрываем поиск на маленьких экранах */
             .search-container {
                 display: none;
+            }
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                max-height: 85vh;
             }
             .modal-footer {
                 gap: 12px;
@@ -1473,6 +1472,7 @@
             <i class="fas fa-robot"></i>
         </button>
     </div>
+
     <script>
         const productsData = [
             { id: 1, name: "Ручка мебельная 'Престиж' алюминиевая", price: 450, category: "handles", image: "images/handles.jpg", description: "Алюминиевая ручка с матовым покрытием, 128мм. Для современной мебели." },
@@ -1504,7 +1504,10 @@
             initCart();
             setupEventListeners();
             setupMobileMenu();
-            loadAllProductsOnce();
+            if (!productsLoaded) {
+                loadAllProductsOnce();
+                productsLoaded = true;
+            }
             setupSearch();
         }
 
@@ -1526,8 +1529,6 @@
         }
 
         function loadAllProductsOnce() {
-            if (productsLoaded) return;
-            productsLoaded = true;
             loadCategories();
             loadAllProducts();
         }
@@ -1787,7 +1788,7 @@
             });
             document.getElementById('continueShopping')?.addEventListener('click', () => {
                 document.getElementById('cartModal').style.display = 'none';
-                showCategories(); // ← КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ
+                showCategories(); // ← ключевое исправление
             });
             document.getElementById('clearCart')?.addEventListener('click', () => {
                 cart = [];

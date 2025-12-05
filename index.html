@@ -30,6 +30,7 @@
             color: var(--white);
             background: var(--black);
             overflow-x: hidden;
+            scroll-padding-top: 160px;
         }
         .container {
             max-width: 1400px;
@@ -49,8 +50,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 2rem;
+            gap: 1rem;
             padding: 1rem 0;
+            flex-wrap: wrap;
         }
         .logo {
             display: flex;
@@ -61,6 +63,7 @@
             font-size: 1.5rem;
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
+            white-space: nowrap;
         }
         .logo-icon {
             width: 40px;
@@ -102,8 +105,8 @@
             overflow: hidden;
             position: relative;
             background: var(--black);
-            width: 100%;       /* ← исправлено */
-            margin-left: 0;    /* ← исправлено */
+            width: 100%;
+            margin-left: 0;
         }
         .carousel-slides {
             display: flex;
@@ -134,7 +137,7 @@
         }
         .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
         }
         .nav-link {
@@ -145,6 +148,7 @@
             padding: 0.5rem 0;
             position: relative;
             font-family: 'Montserrat', sans-serif;
+            white-space: nowrap;
         }
         .nav-link:hover {
             color: var(--lime);
@@ -165,7 +169,8 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
+            flex-shrink: 0;
         }
         .search-container {
             position: relative;
@@ -202,6 +207,8 @@
             padding: 0.5rem;
             color: var(--white);
             transition: color 0.3s ease;
+            min-width: 40px;
+            text-align: center;
         }
         .cart-btn:hover {
             color: var(--lime);
@@ -782,8 +789,18 @@
             padding: 1.5rem 2rem;
             border-top: 1px solid #333;
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
             justify-content: space-between;
+            align-items: center;
+        }
+        .modal-footer > div {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1;
+            min-width: 200px;
         }
         .cart-actions {
             display: flex;
@@ -1006,6 +1023,7 @@
             }
             .search-input {
                 width: 150px;
+                min-width: 120px;
             }
             .search-input:focus {
                 width: 180px;
@@ -1039,12 +1057,6 @@
             .modal-content {
                 width: 95%;
                 margin: 10% auto;
-            }
-            .modal-footer {
-                flex-direction: column;
-            }
-            .cart-actions {
-                flex-direction: column;
             }
             .header-carousel {
                 height: 200px;
@@ -1093,6 +1105,21 @@
             .stat-label {
                 font-size: 0.7rem;
             }
+            /* Скрываем поиск на маленьких экранах */
+            .search-container {
+                display: none;
+            }
+            .modal-footer {
+                gap: 12px;
+            }
+            .modal-footer > div {
+                justify-content: center;
+                width: 100%;
+            }
+            .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -1130,20 +1157,20 @@
         <div class="header-carousel">
             <div class="carousel-slides">
                 <div class="carousel-slide">
-                    <img src="images/carousel/facade1.jpg" alt="Мебельные фасады с ручками" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельные+Фасады'">
+                    <img src="images/carousel/facade1.jpg" alt="Мебельные фасады с ручками">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/carousel/kitchen1.jpg" alt="Кухонная мебель" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Кухонная+Мебель'">
+                    <img src="images/carousel/kitchen1.jpg" alt="Кухонная мебель">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/carousel/hardware1.jpg" alt="Мебельная фурнитура" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Мебельная+Фурнитура'">
+                    <img src="images/carousel/hardware1.jpg" alt="Мебельная фурнитура">
                 </div>
                 <div class="carousel-slide">
-                    <img src="images/carousel/storage1.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/1200x300/32CD32/000000?text=Системы+Хранения'">
+                    <img src="images/carousel/storage1.jpg" alt="Системы хранения">
                 </div>
                 <div class="carousel-slide">
                     <!-- КОТ ОСТАЕТСЯ! -->
-                    <img src="images/carousel/cat.jpg" alt="Рыжий кот - наш талисман" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=300&fit=crop'">
+                    <img src="images/carousel/cat.jpg" alt="Рыжий кот - наш талисман">
                 </div>
             </div>
         </div>
@@ -1162,11 +1189,11 @@
                     Гарантия качества и доступные цены. Работаем с 2008 года.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary btn-large" onclick="scrollToSection('products')">
+                    <button class="btn btn-primary btn-large" id="gotoCatalog">
                         <i class="fas fa-box-open"></i>
                         Перейти в каталог
                     </button>
-                    <button class="btn btn-secondary btn-large" onclick="openTelegram()">
+                    <button class="btn btn-secondary btn-large" id="openTelegramHero">
                         <i class="fab fa-telegram"></i>
                         Написать в Telegram
                     </button>
@@ -1195,67 +1222,14 @@
                 <h2 class="section-title">Категории товаров</h2>
                 <p class="section-subtitle">Широкий ассортимент качественной фурнитуры для профессионалов</p>
             </div>
-            <div class="categories-grid">
-                <a href="#handles" class="category-card" onclick="showCategory('handles')">
-                    <div class="category-image">
-                        <img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Ручки'">
-                    </div>
-                    <div class="category-content">
-                        <h3>Мебельные ручки</h3>
-                        <p>Широкий выбор ручек для мебели всех стилей и размеров от ведущих производителей</p>
-                        <div class="category-link">
-                            Смотреть товары
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </a>
-                <a href="#hinges" class="category-card" onclick="showCategory('hinges')">
-                    <div class="category-image">
-                        <img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Петли'">
-                    </div>
-                    <div class="category-content">
-                        <h3>Мебельные петли</h3>
-                        <p>Четырехшарнирные и скрытые петли для любой мебели с регулировками</p>
-                        <div class="category-link">
-                            Смотреть товары
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </a>
-                <a href="#systems" class="category-card" onclick="showCategory('systems')">
-                    <div class="category-image">
-                        <img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Системы+Хранения'">
-                    </div>
-                    <div class="category-content">
-                        <h3>Системы хранения</h3>
-                        <p>Направляющие и выдвижные механизмы для ящиков с плавным ходом</p>
-                        <div class="category-link">
-                            Смотреть товары
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </a>
-                <a href="#hardware" class="category-card" onclick="showCategory('hardware')">
-                    <div class="category-image">
-                        <img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Крепежные+Изделия'">
-                    </div>
-                    <div class="category-content">
-                        <h3>Крепежные изделия</h3>
-                        <p>Винты, шурупы, стяжки и метизы для профессиональной сборки мебели</p>
-                        <div class="category-link">
-                            Смотреть товары
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <div class="categories-grid" id="categoriesGrid"></div>
         </div>
     </section>
     <!-- Category Sections -->
     <section id="handles" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" id="backToCategories" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
@@ -1268,7 +1242,7 @@
     <section id="hinges" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" id="backToCategories2" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
@@ -1281,7 +1255,7 @@
     <section id="systems" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" id="backToCategories3" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
@@ -1294,7 +1268,7 @@
     <section id="hardware" class="section section-light" style="display: none;">
         <div class="container">
             <div class="section-header">
-                <button class="btn btn-outline" onclick="showCategories()" style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" id="backToCategories4" style="margin-bottom: 2rem;">
                     <i class="fas fa-arrow-left"></i>
                     Назад к категориям
                 </button>
@@ -1442,10 +1416,10 @@
                 </div>
                 <div class="footer-section">
                     <h4>Категории</h4>
-                    <a href="#handles" onclick="showCategory('handles')">Мебельные ручки</a>
-                    <a href="#hinges" onclick="showCategory('hinges')">Мебельные петли</a>
-                    <a href="#systems" onclick="showCategory('systems')">Системы хранения</a>
-                    <a href="#hardware" onclick="showCategory('hardware')">Крепежные изделия</a>
+                    <a href="#handles" data-category="handles">Мебельные ручки</a>
+                    <a href="#hinges" data-category="hinges">Мебельные петли</a>
+                    <a href="#systems" data-category="systems">Системы хранения</a>
+                    <a href="#hardware" data-category="hardware">Крепежные изделия</a>
                 </div>
                 <div class="footer-section">
                     <h4>Компания</h4>
@@ -1462,7 +1436,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 Вегадар. Все права защищены.</p>
+                <p>© 2025 Вегадар. Все права защищены.</p>
             </div>
         </div>
     </footer>
@@ -1480,7 +1454,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <div class="cart-actions">
+                <div>
                     <button class="btn btn-outline" id="clearCart">
                         <i class="fas fa-trash"></i>
                         Очистить корзину
@@ -1495,12 +1469,11 @@
     </div>
     <!-- AI Assistant -->
     <div class="ai-assistant">
-        <button class="ai-button" onclick="openAIAssistant()">
+        <button class="ai-button" id="openAI">
             <i class="fas fa-robot"></i>
         </button>
     </div>
     <script>
-        // Данные товаров
         const productsData = [
             { id: 1, name: "Ручка мебельная 'Престиж' алюминиевая", price: 450, category: "handles", image: "images/handles.jpg", description: "Алюминиевая ручка с матовым покрытием, 128мм. Для современной мебели." },
             { id: 2, name: "Ручка-кноб 'Элегант' хром", price: 320, category: "handles", image: "images/handles.jpg", description: "Шарообразная ручка, хром покрытие, 32мм. Универсальное решение." },
@@ -1521,41 +1494,111 @@
         ];
 
         let cart = [];
-        let cartLoaded = false; // ← флаг, чтобы избежать дублирования
+        let productsLoaded = false;
 
-        // Инициализация
-        document.addEventListener('DOMContentLoaded', function() {
+        function initApp() {
+            if (!document.getElementById('cartButton')) {
+                setTimeout(initApp, 50);
+                return;
+            }
             initCart();
             setupEventListeners();
             setupMobileMenu();
-            if (!cartLoaded) {
-                loadAllProducts();
-                cartLoaded = true;
-            }
+            loadAllProductsOnce();
             setupSearch();
-        });
+        }
 
         function initCart() {
             const saved = localStorage.getItem('vegadar_cart');
-            if (saved) {
-                try {
-                    cart = JSON.parse(saved);
-                    if (!Array.isArray(cart)) cart = [];
-                } catch (e) {
-                    cart = [];
-                }
-            }
+            cart = saved ? JSON.parse(saved) : [];
             updateCartCount();
         }
 
         function saveCart() {
             localStorage.setItem('vegadar_cart', JSON.stringify(cart));
+            updateCartCount();
         }
 
         function updateCartCount() {
             const count = cart.reduce((sum, item) => sum + item.quantity, 0);
             const el = document.querySelector('.cart-count');
             if (el) el.textContent = count;
+        }
+
+        function loadAllProductsOnce() {
+            if (productsLoaded) return;
+            productsLoaded = true;
+            loadCategories();
+            loadAllProducts();
+        }
+
+        function loadCategories() {
+            const grid = document.getElementById('categoriesGrid');
+            if (!grid) return;
+            grid.innerHTML = `
+                <div class="category-card" data-category="handles">
+                    <div class="category-image"><img src="images/handles.jpg" alt="Мебельные ручки" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Ручки'"></div>
+                    <div class="category-content">
+                        <h3>Мебельные ручки</h3>
+                        <p>Широкий выбор ручек для мебели всех стилей и размеров от ведущих производителей</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="hinges">
+                    <div class="category-image"><img src="images/hinges.jpg" alt="Мебельные петли" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельные+Петли'"></div>
+                    <div class="category-content">
+                        <h3>Мебельные петли</h3>
+                        <p>Четырехшарнирные и скрытые петли для любой мебели с регулировками</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="systems">
+                    <div class="category-image"><img src="images/drawers.jpg" alt="Системы хранения" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Системы+Хранения'"></div>
+                    <div class="category-content">
+                        <h3>Системы хранения</h3>
+                        <p>Направляющие и выдвижные механизмы для ящиков с плавным ходом</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="hardware">
+                    <div class="category-image"><img src="images/hardware.jpg" alt="Крепежные изделия" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Крепежные+Изделия'"></div>
+                    <div class="category-content">
+                        <h3>Крепежные изделия</h3>
+                        <p>Винты, шурупы, стяжки и метизы для профессиональной сборки мебели</p>
+                        <div class="category-link">Смотреть товары <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadAllProducts() {
+            ['handles', 'hinges', 'systems', 'hardware'].forEach(cat => {
+                const container = document.getElementById(cat + 'Products');
+                if (!container) return;
+                const items = productsData.filter(p => p.category === cat);
+                container.innerHTML = items.map(p => `
+                    <div class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-category="${p.category}">
+                        <div class="product-image">
+                            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
+                            <div class="product-badge">${getCategoryName(p.category)}</div>
+                        </div>
+                        <div class="product-content">
+                            <h3>${p.name}</h3>
+                            <p>${p.description}</p>
+                            <div class="product-price">${p.price} ₽</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart">В корзину</button>
+                                <button class="btn btn-secondary order-product">Заказать</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function getCategoryName(cat) {
+            const map = { handles: 'Ручки', hinges: 'Петли', systems: 'Системы', hardware: 'Крепеж' };
+            return map[cat] || 'Товар';
         }
 
         function addToCart(id, name, price) {
@@ -1566,24 +1609,15 @@
                 cart.push({ id, name, price, quantity: 1 });
             }
             saveCart();
-            updateCartCount();
             showNotification(`✅ "${name}" добавлен в корзину!`);
         }
 
-        // ... остальные функции без изменений ...
         function removeFromCart(id) {
             cart = cart.filter(i => i.id !== id);
             saveCart();
-            updateCartCount();
             updateCartModal();
         }
-        function clearCart() {
-            cart = [];
-            saveCart();
-            updateCartCount();
-            updateCartModal();
-            showNotification('🗑️ Корзина очищена');
-        }
+
         function updateQuantity(id, change) {
             const item = cart.find(i => i.id === id);
             if (item) {
@@ -1596,51 +1630,40 @@
                 }
             }
         }
+
         function calculateTotal() {
             return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
         }
-        function setupCartModal() {
-            const modal = document.getElementById('cartModal');
-            document.getElementById('cartButton')?.addEventListener('click', () => {
-                updateCartModal();
-                modal.style.display = 'block';
-            });
-            document.querySelector('.close, #continueShopping')?.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-            document.getElementById('clearCart')?.addEventListener('click', clearCart);
-            document.getElementById('checkout')?.addEventListener('click', processCheckout);
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) modal.style.display = 'none';
-            });
-        }
+
         function updateCartModal() {
-            const items = document.getElementById('cartItems');
-            const total = document.getElementById('cartTotal');
-            if (!items || !total) return;
+            const itemsEl = document.getElementById('cartItems');
+            const totalEl = document.getElementById('cartTotal');
+            if (!itemsEl || !totalEl) return;
+
             if (cart.length === 0) {
-                items.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
-                total.textContent = '0';
+                itemsEl.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
+                totalEl.textContent = '0';
             } else {
-                items.innerHTML = cart.map(item => `
+                itemsEl.innerHTML = cart.map(item => `
                     <div class="cart-item">
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-price">${item.price} ₽ × ${item.quantity}</div>
                         </div>
                         <div class="cart-item-quantity">
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <button class="quantity-btn dec" data-id="${item.id}">-</button>
                             <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            <button class="quantity-btn inc" data-id="${item.id}">+</button>
                         </div>
-                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                        <button class="cart-item-remove" data-id="${item.id}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 `).join('');
-                total.textContent = calculateTotal();
+                totalEl.textContent = calculateTotal();
             }
         }
+
         function processCheckout() {
             if (cart.length === 0) {
                 showNotification('❌ Корзина пуста!');
@@ -1655,9 +1678,10 @@
             window.open(url, '_blank');
             cart = [];
             saveCart();
-            updateCartCount();
+            updateCartModal();
             showNotification('✅ Заказ отправлен в Telegram! Ожидайте звонка.');
         }
+
         function showNotification(msg) {
             const notif = document.createElement('div');
             notif.className = 'notification';
@@ -1665,96 +1689,53 @@
             document.body.appendChild(notif);
             setTimeout(() => notif.remove(), 3000);
         }
-        function showCategory(cat) {
-            document.querySelectorAll('#products, #handles, #hinges, #systems, #hardware').forEach(el => el.style.display = 'none');
-            document.getElementById(cat).style.display = 'block';
-            document.getElementById(cat).scrollIntoView({ behavior: 'smooth' });
-        }
+
         function showCategories() {
             document.querySelectorAll('#handles, #hinges, #systems, #hardware').forEach(el => el.style.display = 'none');
             document.getElementById('products').style.display = 'block';
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         }
-        function scrollToSection(id) {
-            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+
+        function showCategory(cat) {
+            document.querySelectorAll('#products, #handles, #hinges, #systems, #hardware').forEach(el => el.style.display = 'none');
+            document.getElementById(cat).style.display = 'block';
+            document.getElementById(cat).scrollIntoView({ behavior: 'smooth' });
         }
-        function loadAllProducts() {
-            ['handles', 'hinges', 'systems', 'hardware'].forEach(cat => {
-                const container = document.getElementById(cat + 'Products');
-                if (!container) return;
-                const items = productsData.filter(p => p.category === cat);
-                container.innerHTML = items.map(p => `
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x200/32CD32/000000?text=Мебельная+Фурнитура'">
-                            <div class="product-badge">${getCategoryName(p.category)}</div>
-                        </div>
-                        <div class="product-content">
-                            <h3>${p.name}</h3>
-                            <p>${p.description}</p>
-                            <div class="product-price">${p.price} ₽</div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" onclick="addToCart(${p.id}, '${p.name.replace(/'/g, "\\'")}', ${p.price})">
-                                    <i class="fas fa-cart-plus"></i>
-                                    В корзину
-                                </button>
-                                <button class="btn btn-secondary" onclick="orderProduct(${p.id})">
-                                    <i class="fab fa-telegram"></i>
-                                    Заказать
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-            });
-        }
-        function getCategoryName(cat) {
-            const map = { handles: 'Ручки', hinges: 'Петли', systems: 'Системы', hardware: 'Крепеж' };
-            return map[cat] || 'Товар';
-        }
-        function orderProduct(id) {
-            const p = productsData.find(p => p.id === id);
-            if (p) openTelegramWithMessage(`Хочу заказать: ${p.name} — ${p.price}₽`);
-        }
-        function openTelegram() {
-            openTelegramWithMessage('Здравствуйте! У меня вопрос по мебельной фурнитуре.');
-        }
+
         function openTelegramWithMessage(msg) {
             const url = `https://t.me/+79624044323?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         }
-        function openAIAssistant() {
-            showNotification('🤖 ИИ-ассистент будет подключен в ближайшее время');
-        }
+
         function setupSearch() {
             const input = document.getElementById('searchInput');
             const results = document.getElementById('searchResults');
             if (!input || !results) return;
+
             input.addEventListener('input', () => {
                 const q = input.value.trim().toLowerCase();
                 results.style.display = q.length < 2 ? 'none' : 'block';
                 if (q.length < 2) return;
+
                 const found = productsData.filter(p => 
                     p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)
                 );
+
                 results.innerHTML = found.length 
-                    ? found.map(p => `<div class="search-result-item" onclick="selectSearchResult('${p.category}', ${p.id})">
+                    ? found.map(p => `<div class="search-result-item" data-category="${p.category}" data-id="${p.id}">
                         <div class="search-result-name">${p.name}</div>
                         <div class="search-result-price">${p.price} ₽</div>
                       </div>`)
                     : '<div class="no-results">Товары не найдены</div>';
             });
+
             document.addEventListener('click', (e) => {
                 if (!input.contains(e.target) && !results.contains(e.target)) {
                     results.style.display = 'none';
                 }
             });
         }
-        function selectSearchResult(cat, id) {
-            showCategory(cat);
-            document.getElementById('searchInput').value = '';
-            document.getElementById('searchResults').style.display = 'none';
-        }
+
         function setupMobileMenu() {
             const btn = document.getElementById('mobileMenuBtn');
             const menu = document.getElementById('navMenu');
@@ -1762,8 +1743,64 @@
                 btn.addEventListener('click', () => menu.classList.toggle('active'));
             }
         }
+
         function setupEventListeners() {
-            setupCartModal();
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.category-card')) {
+                    const cat = e.target.closest('.category-card').dataset.category;
+                    if (cat) showCategory(cat);
+                }
+                if (e.target.classList.contains('add-to-cart')) {
+                    const card = e.target.closest('.product-card');
+                    addToCart(+card.dataset.id, card.dataset.name, +card.dataset.price);
+                }
+                if (e.target.classList.contains('order-product')) {
+                    const card = e.target.closest('.product-card');
+                    openTelegramWithMessage(`Хочу заказать: ${card.dataset.name} — ${card.dataset.price}₽`);
+                }
+                if (e.target.classList.contains('cart-item-remove')) {
+                    const id = +e.target.dataset.id;
+                    removeFromCart(id);
+                }
+                if (e.target.classList.contains('quantity-btn')) {
+                    const id = +e.target.dataset.id;
+                    const change = e.target.classList.contains('inc') ? 1 : -1;
+                    updateQuantity(id, change);
+                }
+                if (e.target.classList.contains('search-result-item')) {
+                    const cat = e.target.dataset.category;
+                    showCategory(cat);
+                    document.getElementById('searchInput').value = '';
+                    document.getElementById('searchResults').style.display = 'none';
+                }
+                if (e.target.closest('[id^="backToCategories"]')) {
+                    showCategories();
+                }
+            });
+
+            document.getElementById('cartButton')?.addEventListener('click', () => {
+                updateCartModal();
+                document.getElementById('cartModal').style.display = 'block';
+            });
+            document.querySelector('.close')?.addEventListener('click', () => {
+                document.getElementById('cartModal').style.display = 'none';
+            });
+            document.getElementById('continueShopping')?.addEventListener('click', () => {
+                document.getElementById('cartModal').style.display = 'none';
+                showCategories(); // ← КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ
+            });
+            document.getElementById('clearCart')?.addEventListener('click', () => {
+                cart = [];
+                saveCart();
+                updateCartModal();
+                showNotification('🗑️ Корзина очищена');
+            });
+            document.getElementById('checkout')?.addEventListener('click', processCheckout);
+            document.getElementById('gotoCatalog')?.addEventListener('click', showCategories);
+            document.getElementById('openTelegramHero')?.addEventListener('click', () => 
+                openTelegramWithMessage('Здравствуйте! У меня вопрос по мебельной фурнитуре.')
+            );
+
             const form = document.getElementById('contactForm');
             if (form) {
                 form.addEventListener('submit', (e) => {
@@ -1777,6 +1814,9 @@
                 });
             }
         }
+
+        initApp();
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
